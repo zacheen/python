@@ -1,0 +1,1187 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head id="ctl00_Head1">
+  <title>
+   國光客運網路訂票系統multi
+  </title>
+  <link href="../css/nav_kingbus.css" rel="stylesheet" type="text/css"/>
+  <style type="text/css">
+   .tableFix {
+            display: block;
+            /*max-width: 100%;*/
+            /*word-break: break-all; /* overflow: scroll; <!-- Available options: visible, hidden, scroll, auto --> */
+        }
+  </style>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+ </head>
+ <body style="margin-top: 0px; margin-bottom: 0px; background-color: #f5f5f5; padding: 0">
+  <form action="ORD_M_1510_OrderGo.aspx" id="aspnetForm" method="post" name="aspnetForm">
+   <div>
+    <input id="__EVENTTARGET" name="__EVENTTARGET" type="hidden" value=""/>
+    <input id="__EVENTARGUMENT" name="__EVENTARGUMENT" type="hidden" value=""/>
+    <input id="__LASTFOCUS" name="__LASTFOCUS" type="hidden" value=""/>
+    <input id="__VIEWSTATE" name="__VIEWSTATE" type="hidden" value="/wEPDwUKMjAwNzk2NzgzNA8WDB4SQmFja19BdmFpbGFibGVfRGF5BQIxNB4RSXNfQXZhaWxhYmxlX1RpbWUFAVkeDEhvdXJfU2VnbWVudAUCMTAeF1ZhY2FuX0VmZmVjdGl2ZV9NaW51dGVzBQE1HhZPcmRlcl9Ib3Vyc19CeVNjaGVkdWxlBQEyHhVNYXhVbkNsb3NlT3JkZXJDb3VudHMFATMWAmYPZBYCAgMPZBYEAgUPEGRkFgFmZAIVD2QWFgIHDw9kDxAWAWYWARYCHg5QYXJhbWV0ZXJWYWx1ZQUDVTAzFgFmZGQCCQ8PZA8PFCsAARYIHgROYW1lBQdDdWx0dXJlHgRUeXBlCylcU3lzdGVtLlR5cGVDb2RlLCBtc2NvcmxpYiwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkSHgxEZWZhdWx0VmFsdWUFBXpoLVRXHwZkFCsBAQIDZGQCCw8PZA8PFCsAARYIHwcFB0N1bHR1cmUfCAsrBBIfCQUFemgtVFcfBmQUKwEBAgNkZAINDw9kDw8UKwABFggfBwUHQ3VsdHVyZR8ICysEEh8JBQV6aC1UVx8GZBQrAQECA2RkAg8PD2QPDxQrAAEWCB8HBQdDdWx0dXJlHwgLKwQSHwkFBXpoLVRXHwZkFCsBAQIDZGQCEw9kFgJmD2QWAgIBDw8WAh4HVmlzaWJsZWhkZAIVD2QWAmYPZBYCAgEPDxYCHgdFbmFibGVkaGQWBgIDDw8WBh4EVGV4dAUKSTEwMDQzOTI1NR4JQmFja0NvbG9yDB4EXyFTQgIIFgQeCm9ua2V5cHJlc3MFFXJldHVybiBDaGVja0tleUFaMDkoKR4Hb25rZXl1cAUfdmFsdWU9dmFsdWUucmVwbGFjZSgvW1xXXS9nLCcnKWQCBw8PFgYfDAUKMDk4Mzk5MjQyNR8NDB8OAggWBh8PBRdyZXR1cm4gQ2hlY2tLZXlOdW1iZXIoKR8QBR92YWx1ZT12YWx1ZS5yZXBsYWNlKC9bXFddL2csJycpHgZvbmJsdXIFLnRlbGNoZWNrKCdjdGwwMF9Db250ZW50UGxhY2VIb2xkZXIxX3R4dFBob25lJylkAhEPDxYCHwpoZGQCFw9kFgJmD2QWAgIBDw8WAh8KaGRkAhkPZBYCZg9kFgICAQ8PFgIfCmdkFgoCAw9kFgJmD2QWAgIBDxAPFgIeC18hRGF0YUJvdW5kZ2QQFTUM5a6c44CA44CA6JitDOe+heOAgOOAgOadsQzln7rjgIDjgIDpmoYM5Y+w5YyX6L2J6YGLDOmHjeOAgOOAgOmZvQzmnpfjgIDjgIDlj6MM5p2/44CA44CA5qmLDOahg+OAgOOAgOWckgnntpPlnIvnq5kM57aT5ZyL6L2J6YGLDOS4reOAgOOAgOWjogzkuK3lo6LmsJHml48M6b6N44CA44CA5r2tDOaWsOOAgOOAgOeruQzmuIXjgIDjgIDlpKcM6aCt44CA44CA5Lu9DOerueOAgOOAgOWNlwzoi5fjgIDjgIDmoJcM6IuX5qCX6b6c5bGxDOiLkeOAgOOAgOijoQzlj7DjgIDjgIDkuK0M5rC044CA44CA5rmzD+acneOAgOOAgOmmrOOAgAzlvbDjgIDjgIDljJYM5ZOh44CA44CA5p6XDOWMl+OAgOOAgOaWlwzojYnjgIDjgIDlsa8M5Lit44CA44CA6IiIDOekvuOAgOOAgOWPowzljZfjgIDjgIDmipUM5Z+U44CA44CA6YeMDOmbmeOAgOOAgOWGrAzmn5HlrZDmnpfjgIAM5YyX5bGx5Z2R44CADOW0juOAgOOAgOS4iw/prZrjgIDjgIDmsaDjgIAJ5pel5pyI5r2tDOilv+OAgOOAgOieugzlmInjgIDjgIDnvqkM5paw44CA44CA54efDOWPsOOAgOOAgOWNlwzpub3jgIDjgIDooYwM5qWg44CA44CA5qKTDOmrmOmbhOS4reatowzpq5jjgIDjgIDpm4QM5bGP5p2x5Lmd5aaCDOWxj+OAgOOAgOadsQzkuK3lj7DljZrppKgM5Lit5Y+w56aq5a+6DOaZruWPsOmrmOS4rQzomIfjgIDjgIDmvrMM6Iqx44CA44CA6JOuDOWkquW5s+WxseOAgBU1A1UwMwNVMDQDQTA3A0EwMwNBMTkDRDMyA0EyMQNBMTEDRDI2A0QyNwNBMTIDRTk1A0QzOQNBMTQDRDIzA0ExNQNEMjUDRjA0A0c5NgNINDUDRzY3A0gwMQNIMjYDRjEwA0YxMQNGMTIDRjE1A0YxNgNKNDIDRjE3A0YyMANHNDYDRzUwA0c1MwNHNTgDRzY0A0YxOQNLMDkDSzA2A0swNQNLMDQDTDQzA0w1OANMNjMDSzAyA0w5MwNLMTEDRjI2A0YyNwNGMjgDVTA1A1UwNwNXNDQUKwM1Z2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2cWAWZkAgcPZBYCZg9kFgICAQ8QDxYCHxJnZBAVAQzlpKrlubPlsbHjgIAVAQNXNDQUKwMBZxYBZmQCCw8PZBYGHgVDbGFzcwUMcmVhZG9ubHlEYXRlHw8FFXJldHVybiBDaGVja0tleURhdGUoKR8RBYQBRGF0ZU9ial9PbmJsdXIoJ2N0bDAwX0NvbnRlbnRQbGFjZUhvbGRlcjFfdHh0T3V0X0R0JyxudWxsLCdjdGwwMF9Db250ZW50UGxhY2VIb2xkZXIxX3R4dER0TWluJywnY3RsMDBfQ29udGVudFBsYWNlSG9sZGVyMV90eHREdE1heCcpZAINDxYCHgdvbmNsaWNrBY0BU2hvd0NhbGVuZGFyKCdjdGwwMF9Db250ZW50UGxhY2VIb2xkZXIxX3R4dE91dF9EdCcsdHJ1ZSxmYWxzZSxudWxsLCdjdGwwMF9Db250ZW50UGxhY2VIb2xkZXIxX3R4dER0TWF4JywnY3RsMDBfQ29udGVudFBsYWNlSG9sZGVyMV90eHREdE1pbicpZAIZDxBkEBUGAjAwAjEwAjIwAjMwAjQwAjUwFQYCMDACMTACMjACMzACNDACNTAUKwMGZ2dnZ2dnZGQCGw9kFgJmD2QWAgIBDw8WAh8KaGQWAgIBDzwrAA0AZAIdD2QWAmYPZBYCAgEPDxYCHwpoZBYKAg0PEGRkFgBkAhEPEGQQFQAVABQrAwAWAGQCFQ8QZBAVAQAVAQAUKwMBZxYBZmQCGQ8QZBAVAQAVAQAUKwMBZxYBZmQCHQ8QZBAVAQAVAQAUKwMBZxYBZmQYAQUhY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRncmRMaXN0DzwrAAoCBhUEClNlY3Rpb25fSUQIUm91dGVfSUQGT3V0X0RUCkNhclR5cGVfSUQIAv////8PZKVwKodoRYBrjQWYikXKCKWqofOc"/>
+   </div>
+   <script type="text/javascript">
+    //<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+   </script>
+   <script src="/WebResource.axd?d=nAGEzhU8gSIqXXWDJfpE6RNqhIRdrCcgvhQaFwkwKrN47TdaCouI-8C5pDG-oEoSBBMfr2LvMJzH8C_06SdY2hLUSEA1&amp;t=636284921597151108" type="text/javascript">
+   </script>
+   <script type="text/javascript">
+    //<![CDATA[
+var __cultureInfo = '{"name":"zh-TW","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":".","IsReadOnly":false,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":",","CurrencySymbol":"NT$","NaNSymbol":"不是一個數字","CurrencyNegativePattern":1,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"負無窮大","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":0,"PositiveInfinitySymbol":"正無窮大","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"上午","Calendar":{"MinSupportedDateTime":"\/Date(-62135596800000)\/","MaxSupportedDateTime":"\/Date(253402271999999)\/","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":false},"DateSeparator":"/","FirstDayOfWeek":0,"CalendarWeekRule":0,"FullDateTimePattern":"yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 tt hh:mm:ss","LongDatePattern":"yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027","LongTimePattern":"tt hh:mm:ss","MonthDayPattern":"M\u0027月\u0027d\u0027日\u0027","PMDesignator":"下午","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"yyyy/M/d","ShortTimePattern":"tt hh:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"yyyy\u0027年\u0027M\u0027月\u0027","AbbreviatedDayNames":["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],"ShortestDayNames":["日","一","二","三","四","五","六"],"DayNames":["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],"AbbreviatedMonthNames":["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],"MonthNames":["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],"IsReadOnly":false,"NativeCalendarName":"西曆 (中文)","AbbreviatedMonthGenitiveNames":["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],"MonthGenitiveNames":["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]}}';//]]>
+   </script>
+   <script src="/ScriptResource.axd?d=0HHTH9qyx0ELavELYJfP0vjiRvyMuSfYLacuRDluyDv_s4Fe-NPkcjsll6nd9vkyKl381orebPW_OjWm_GLmr5Mysjyiq40DtnFHtEs5b8RVfttRctGLeH-slCcoynIKxkxU5fV34N1DTFjXJ7LF4zE5l0ABpu0OqvBVWy1E6OGHdSB-0&amp;t=636680504149126275" type="text/javascript">
+   </script>
+   <script src="/ScriptResource.axd?d=9G_IntilcdEHf91xAdEPwCTd9ggzGtja1g9dEQyDcADhfIVIDT9yT_pZJP9VCcduTdt5Xu2J_smonGP-Mcnn8YdwUZkuzhHt6BIbbfBgRYsyqNndYcQ10JSPPnn9LPnoa31tGniZBW55xPYmhaa_KFWJsFb3L1CeOQdEo31rHJU19jqH0&amp;t=636680504149126275" type="text/javascript">
+   </script>
+   <script src="../Script/Util.js" type="text/javascript">
+   </script>
+   <script src="/ScriptResource.axd?d=VN6SltQFJSiqmla7q2m1kXx37ZHmCEPObGcHSZA9114unu6Z2rbbQaNbCqC4SkkK20J0ZNXtbeLufgWKlXeioOI-6U9d4l3XrQ-Q26HMYiyFPwdF58bqKmJssTI6TdWGheXICulJesQZmGOfj8G7wBIfn4s1&amp;t=633628577000000000" type="text/javascript">
+   </script>
+   <script src="/ScriptResource.axd?d=6pRw9SJbzmyL1KRwP-oCX1GDoGMujaDst5axnj4CLLbaP45t5ke-ug50dcpZywMhet97n7EtoMyqEkZXYoLzv_kUCvvsrZh97vVB6ofqbipzlwODj1nza7ykJGuIlZf-lahwjWn6GvGa3kgur2oaZ5H8FFU1&amp;t=633628577000000000" type="text/javascript">
+   </script>
+   <script src="/ScriptResource.axd?d=lB_AyWCM8gaPoxO0aSAOCB2a_3infBvB99T_eaGaLcl2Ie_MvkTAp_XmTgGvhkuq7Uf3zFp_f15Cl3kX966LQMCr10_rvrFhfbwS5w3AmSajVl9SQ7v95xH77EU7RwuUycN5dw6FxujFq42Gv5Iu7G5nPLKuhINdk-ubhriDj81rCL5o0&amp;t=633628577000000000" type="text/javascript">
+   </script>
+   <script src="/ScriptResource.axd?d=MSx6vGLFaaAsWhP0FhEVWKi9fN-5TWAA5sREfnYeNCK7tY1cbHetHrIEmXn6-S5U0ynGVTClt9m1GPq2-_gEofUBoPgMVbiqIBUSsL8WMVsdyV58fJFSX8Heci6Lad2UvwJQAZ_YyLgLPF4ta00fWiNpLJE1&amp;t=633628577000000000" type="text/javascript">
+   </script>
+   <script src="/ScriptResource.axd?d=RYMuIvcbXgrRURd-tBtjvNELQcIHq2z7gKRqnJqJmVpctc_kW_T_UgN67A7_k3ufiDnCFEKnJ3XCLPEegnUAF5MNl9PSyHOsyD_s-fTzxDGbXYXJ8xAl5CvcJQjJfRZYowGLinrJpJTIdU6kYoyqQzlyxgs1&amp;t=633628577000000000" type="text/javascript">
+   </script>
+   <script src="/ScriptResource.axd?d=sSvlGhUs1GOvn1O3oZd9mwzUqOO9-et5NKlSNeoPGY3UbuevOUhhaZRaT6wVbgkqIeZGLFSmEqrRgKIBsC40jN_zkPo1MQ9u4bsoYxxZNbJTsnYaqR5grudfsJsH0gdrfWMFTDJto11d0Q1pniJlAkrXPbw1mNpds_3CPklFJ_iRc-tW0&amp;t=633628577000000000" type="text/javascript">
+   </script>
+   <script src="/ScriptResource.axd?d=kFqvcgka-1tzeRH5XsRMSrAo987js6yE5jYHx08rRJFLZAAZnlWF-im48UlC1LZT0_2ge0aLTEpI_1Op0WWQ6Q3O_c_F2UGMimQtuP8rvR3l8zFBYpuZgO5Bq9SOB0nhfUsY2ljwf9uqSvxrMeAQH-Pp-7qQbNjb9uZifd_lRSVtp6e40&amp;t=633628577000000000" type="text/javascript">
+   </script>
+   <script src="/ScriptResource.axd?d=FnfS9iE0Myq4PTBCTt_neRqFQc0q06oHvFHOkgbFmiSommxAhIkGG8lGVLZyq45cUJU5iLSIS4HTamiipQX3KdyI-hxobzN00CGrnuRjCF2U2jcWRcWDMkdfSFcF2CsJVXVr6hMyhJOe_D-ShiitZ2zIMf97yg_f_NdUjbMYou6rYGE-0&amp;t=633628577000000000" type="text/javascript">
+   </script>
+   <script src="/ScriptResource.axd?d=PQSL0IQSlPLmCaWc_qX6h9atvKw0QhQ4dUYcrFVFHYHTMsiMK0iClTczvMu6jUk-5GKSGOw07Q8goN0d0mFk6qCMyk1TuAstrLgistGPKl8etYEG4pVQBdE6JuXngYBsXJufd9_pX6Z1n1tLILFyYecSuj5t2xhowcjGEEcNyE3leQ_40&amp;t=633628577000000000" type="text/javascript">
+   </script>
+   <div>
+    <input id="__VIEWSTATEGENERATOR" name="__VIEWSTATEGENERATOR" type="hidden" value="8D8BF8B6"/>
+    <input id="__SCROLLPOSITIONX" name="__SCROLLPOSITIONX" type="hidden" value="0"/>
+    <input id="__SCROLLPOSITIONY" name="__SCROLLPOSITIONY" type="hidden" value="0"/>
+   </div>
+   <script type="text/javascript">
+    //<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', document.getElementById('aspnetForm'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls(['tctl00$ContentPlaceHolder1$UsrMsgBox$updMsg','tctl00$ContentPlaceHolder1$UsrMsgFunc$updMsg','tctl00$ContentPlaceHolder1$UpdShowAvailableTime','tctl00$ContentPlaceHolder1$UpdStep1','tctl00$ContentPlaceHolder1$updViolate','tctl00$ContentPlaceHolder1$UpdStep2','tctl00$ContentPlaceHolder1$UpdStep3','tctl00$ContentPlaceHolder1$UpdStep4'], [], [], 300);
+//]]>
+   </script>
+   <div>
+    <center>
+     <table border="0" cellpadding="0" cellspacing="0">
+      <tbody>
+       <tr>
+        <td align="right">
+         <input id="ctl00_hLanguage" name="ctl00$hLanguage" type="hidden" value="zh-TW"/>
+         <table border="0" id="ctl00_rdoLanguage">
+          <tbody>
+           <tr>
+            <td>
+             <input checked="checked" id="ctl00_rdoLanguage_0" name="ctl00$rdoLanguage" type="radio" value="zh-TW"/>
+             <label for="ctl00_rdoLanguage_0">
+              繁體中文
+             </label>
+            </td>
+            <td>
+             <input id="ctl00_rdoLanguage_1" name="ctl00$rdoLanguage" onclick="javascript:setTimeout('__doPostBack(\'ctl00$rdoLanguage$1\',\'\')', 0)" type="radio" value="en-US"/>
+             <label for="ctl00_rdoLanguage_1">
+              English
+             </label>
+            </td>
+            <td>
+             <input id="ctl00_rdoLanguage_2" name="ctl00$rdoLanguage" onclick="javascript:setTimeout('__doPostBack(\'ctl00$rdoLanguage$2\',\'\')', 0)" type="radio" value="ja-JP"/>
+             <label for="ctl00_rdoLanguage_2">
+              日本語
+             </label>
+            </td>
+            <td>
+             <input id="ctl00_rdoLanguage_3" name="ctl00$rdoLanguage" onclick="javascript:setTimeout('__doPostBack(\'ctl00$rdoLanguage$3\',\'\')', 0)" type="radio" value="ko-KR"/>
+             <label for="ctl00_rdoLanguage_3">
+              한국어
+             </label>
+            </td>
+           </tr>
+          </tbody>
+         </table>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <img alt="國光客運網路訂票" border="0px" height="200px" id="Banner" name="banner" src="../Images/Banner.jpg" width="920px"/>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <div id="nav">
+          <ul>
+           <li>
+            <a href="../ORD/ORD_M_1500_HomePage.aspx">
+             網路訂票首頁
+            </a>
+           </li>
+           <li>
+            <a href="../ORD/ORD_M_1060_Anounce_OrderG.aspx">
+             單程訂票
+            </a>
+           </li>
+           <li>
+            <a href="../ORD/ORD_M_1060_Anounce_OrderGB.aspx">
+             去回程訂票
+            </a>
+           </li>
+           <li>
+            <a href="../ORD/ORD_Q_1530_ViewSchedule.aspx">
+             班次查詢
+            </a>
+           </li>
+           <li>
+            <a href="../ORD/ORD_M_1540_ViewOrder.aspx">
+             訂票紀錄查詢
+            </a>
+           </li>
+           <li>
+            <a href="../ORD/ORD_Q_1550_OrderCancel.aspx">
+             取消訂票
+            </a>
+           </li>
+           <li>
+            <a href="../ORD/ORD_Q_1560_ViewPrice.aspx">
+             票價查詢
+            </a>
+           </li>
+          </ul>
+         </div>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <table border="0" cellpadding="0" cellspacing="0" width="920px">
+      <tbody>
+       <tr>
+        <td>
+         <table border="0" cellpadding="0" cellspacing="0" class="tableFix" width="920px">
+          <tbody>
+           <tr>
+            <td style="background-color: White; padding: 20px 0px 0px 0px; vertical-align: top; display: block" width="750px">
+             <div>
+              <script type="text/javascript">
+               if (window.history.forward(1) != null) window.history.forward(1);
+         
+
+            function telcheck(pObjID) {
+                var telno = $get(pObjID).value;
+                if (telno.length == 0) return;
+
+                if (telno.length > 10 || telno.length < 8) {
+                    //alert(document.getElementsByName('rdoLanguage')[0].checked);
+                    alert(document.getElementsByName('rdoLanguage').get(0).checked);
+                    alert('您輸入的電話號碼長度須為8至10碼，例: 0912345678 或 0222345678 ');
+                    $get(pObjID).style.backgroundColor = "Pink";
+                    $get(pObjID).focus();
+                    $get("ctl00_ContentPlaceHolder1_btnStep1_OK").disabled = true;
+                } else {
+                    $get(pObjID).style.backgroundColor = "";
+                    $get("ctl00_ContentPlaceHolder1_btnStep1_OK").disabled = false;
+                }
+            }
+
+            function IDCheck(pObjID) {
+                var ID = $get(pObjID).value;
+                if (ID.length == 0) return;
+                if (!(checkID(ID))) {
+                    alert('身份證號碼不合理!!');
+                    $get(pObjID).style.backgroundColor = "Pink";
+                    $get(pObjID).focus();
+                    $get("ctl00_ContentPlaceHolder1_btnStep1_OK").disabled = true;
+                } else {
+                    $get(pObjID).style.backgroundColor = "";
+                    $get("ctl00_ContentPlaceHolder1_btnStep1_OK").disabled = false;
+                }
+            }
+
+            function checkID(id) {
+                tab = "ABCDEFGHJKLMNPQRSTUVXYWZIO"
+                A1 = new Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3);
+                A2 = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5);
+                Mx = new Array(9, 8, 7, 6, 5, 4, 3, 2, 1, 1);
+
+                if (id.length != 10) return false;
+
+                i = tab.indexOf(id.charAt(0));
+                if (i == -1) return false;
+
+                if (id.charAt(1) != "1" && id.charAt(1) != "2") return false;
+
+                sum = A1[i] + A2[i] * 9;
+
+                for (i = 1; i < 10; i++) {
+                    v = parseInt(id.charAt(i));
+                    if (isNaN(v)) return false;
+                    sum = sum + v * Mx[i];
+                }
+                if (sum % 10 != 0) return false;
+                return true;
+            }
+
+            function check_resident_ID(id) {
+                //驗證填入身分證字號長度及格式
+                if (id.length != 10) {
+                    return false;
+                }
+                
+                //格式，用正則表示式比對第一個字母是否為英文字母
+                if (isNaN(id.substr(2, 8)) ||
+                (!/^[A-Z]$/.test(id.substr(0, 1))) || (!/^[A-Z]$/.test(id.substr(1, 1)))) {
+                    return false;
+                }
+
+                var idHeader = "ABCDEFGHJKLMNPQRSTUVXYWZIO"; //按照轉換後權數的大小進行排序
+
+                //這邊把身分證字號轉換成準備要對應的
+                id = (idHeader.indexOf(id.substring(0, 1)) + 10) +
+                '' + ((idHeader.indexOf(id.substr(1, 1)) + 10) % 10) + '' + id.substr(2, 8);
+
+                //開始進行身分證數字的相乘與累加，依照順序乘上1987654321
+                snumber = parseInt(id.substr(0, 1)) +
+                parseInt(id.substr(1, 1)) * 9 +
+                parseInt(id.substr(2, 1)) * 8 +
+                parseInt(id.substr(3, 1)) * 7 +
+                parseInt(id.substr(4, 1)) * 6 +
+                parseInt(id.substr(5, 1)) * 5 +
+                parseInt(id.substr(6, 1)) * 4 +
+                parseInt(id.substr(7, 1)) * 3 +
+                parseInt(id.substr(8, 1)) * 2 +
+                parseInt(id.substr(9, 1));
+                
+                checkNum = parseInt(id.substr(10, 1));
+
+                //模數 - 總和/模數(10)之餘數若等於第九碼的檢查碼，則驗證成功
+                console.log(10 - snumber % 10);
+
+                if ((10 - snumber % 10) == checkNum) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            //             if (window.navigator.userAgent.indexOf("MSIE")>=1)
+            //                {
+            //                 document.onkeydown = check;
+            //                }else if (window.navigator.userAgent.indexOf("Firefox")>=1)
+            //                {
+            //                 document.onkeypress = check;
+            //                }
+            //            function check(e){
+            //               var code;
+            //               if (!e) var e = window.event;
+            //               if (e.keyCode) code = e.keyCode;
+            //               else if (e.which) code = e.which;
+            //                 if (code == 8)
+            //                {
+            //              code = 0;
+            //                window.alert('請勿返回程式');
+            //              return false;
+            //             }
+            //               return true;
+            //            }
+              </script>
+              <input id="ctl00_ContentPlaceHolder1_UsrMsgBox_txtTarget" name="ctl00$ContentPlaceHolder1$UsrMsgBox$txtTarget" style=" display:none" type="text"/>
+              <input id="ctl00_ContentPlaceHolder1_UsrMsgFunc_txtTarget" name="ctl00$ContentPlaceHolder1$UsrMsgFunc$txtTarget" style=" display:none" type="text"/>
+              <div>
+               <table width="100%">
+                <tbody>
+                 <tr>
+                  <td align="left">
+                   <span id="ctl00_ContentPlaceHolder1_lblOneWay">
+                    單程訂票
+                   </span>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+               <table width="100%">
+                <tbody>
+                 <tr>
+                  <td>
+                   <div id="ctl00_ContentPlaceHolder1_UpdShowAvailableTime">
+                   </div>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+               <table width="100%">
+                <tbody>
+                 <tr>
+                  <td>
+                   <div id="ctl00_ContentPlaceHolder1_UpdStep1">
+                    <div disabled="disabled" id="ctl00_ContentPlaceHolder1_pnlStep1">
+                     <fieldset>
+                      <legend>
+                       步驟一：基本資料(身份證號及聯絡電話為必要輸入)
+                      </legend>
+                      <table border="0">
+                       <tbody>
+                        <tr>
+                         <td align="right" style="width:120px;">
+                          <font color="red">
+                           *
+                          </font>
+                          <span id="ctl00_ContentPlaceHolder1_lblIDNO">
+                           身份證號：
+                          </span>
+                         </td>
+                         <td align="left">
+                          <input disabled="disabled" id="ctl00_ContentPlaceHolder1_txtCustomer_ID" maxlength="20" name="ctl00$ContentPlaceHolder1$txtCustomer_ID" onkeypress="return CheckKeyAZ09()" onkeyup="value=value.replace(/[\W]/g,'')" type="text" value="I100439255"/>
+                         </td>
+                         <td align="right" style="width:150px">
+                          <font color="red">
+                           *
+                          </font>
+                          <span id="ctl00_ContentPlaceHolder1_lblPhone">
+                           聯絡電話：
+                          </span>
+                         </td>
+                         <td>
+                          <input disabled="disabled" id="ctl00_ContentPlaceHolder1_txtPhone" maxlength="15" name="ctl00$ContentPlaceHolder1$txtPhone" onblur="telcheck('ctl00_ContentPlaceHolder1_txtPhone')" onkeypress="return CheckKeyNumber()" onkeyup="value=value.replace(/[\W]/g,'')" type="text" value="0983992425"/>
+                         </td>
+                        </tr>
+                        <tr>
+                         <td align="right">
+                          <span id="ctl00_ContentPlaceHolder1_lblName">
+                           姓名：
+                          </span>
+                         </td>
+                         <td align="left">
+                          <input disabled="disabled" id="ctl00_ContentPlaceHolder1_txtCustomer_N" maxlength="10" name="ctl00$ContentPlaceHolder1$txtCustomer_N" type="text"/>
+                         </td>
+                         <td align="right">
+                          <span id="ctl00_ContentPlaceHolder1_lblEMail">
+                           電子郵件：
+                          </span>
+                         </td>
+                         <td align="left">
+                          <input disabled="disabled" id="ctl00_ContentPlaceHolder1_txtE_mail" maxlength="50" name="ctl00$ContentPlaceHolder1$txtE_mail" type="text"/>
+                         </td>
+                        </tr>
+                        <tr>
+                         <td style="text-align: left">
+                         </td>
+                         <td colspan="3">
+                          <span id="ctl00_ContentPlaceHolder1_lblPhoneMemo" style="color:Red;font-size:Small;">
+                           請正確填寫，[身分證號]與[聯絡電話]，此欄位為[訂票記錄查詢]、[取消訂票]之必要條件
+                          </span>
+                         </td>
+                        </tr>
+                       </tbody>
+                      </table>
+                     </fieldset>
+                    </div>
+                    <br/>
+                   </div>
+                   <br/>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td>
+                   <div id="ctl00_ContentPlaceHolder1_updViolate">
+                   </div>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td>
+                   <div id="ctl00_ContentPlaceHolder1_UpdStep2">
+                    <div id="ctl00_ContentPlaceHolder1_pnlStep2">
+                     <fieldset>
+                      <legend>
+                       步驟二：查詢班次
+                      </legend>
+                      <table border="0">
+                       <tbody>
+                        <tr>
+                         <td align="right" width="20%">
+                          <span id="ctl00_ContentPlaceHolder1_lblFrom">
+                           起站：
+                          </span>
+                         </td>
+                         <td align="left">
+                          <span id="ctl00_ContentPlaceHolder1_udpStation_ID_From">
+                           <select id="ctl00_ContentPlaceHolder1_ddlStation_ID_From" name="ctl00$ContentPlaceHolder1$ddlStation_ID_From" onchange="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$ddlStation_ID_From\',\'\')', 0)" style="font-size:11pt;height:20px;">
+                            <option selected="selected" value="U03">
+                             宜　　蘭
+                            </option>
+                            <option value="U04">
+                             羅　　東
+                            </option>
+                            <option value="A07">
+                             基　　隆
+                            </option>
+                            <option value="A03">
+                             台北轉運
+                            </option>
+                            <option value="A19">
+                             重　　陽
+                            </option>
+                            <option value="D32">
+                             林　　口
+                            </option>
+                            <option value="A21">
+                             板　　橋
+                            </option>
+                            <option value="A11">
+                             桃　　園
+                            </option>
+                            <option value="D26">
+                             經國站
+                            </option>
+                            <option value="D27">
+                             經國轉運
+                            </option>
+                            <option value="A12">
+                             中　　壢
+                            </option>
+                            <option value="E95">
+                             中壢民族
+                            </option>
+                            <option value="D39">
+                             龍　　潭
+                            </option>
+                            <option value="A14">
+                             新　　竹
+                            </option>
+                            <option value="D23">
+                             清　　大
+                            </option>
+                            <option value="A15">
+                             頭　　份
+                            </option>
+                            <option value="D25">
+                             竹　　南
+                            </option>
+                            <option value="F04">
+                             苗　　栗
+                            </option>
+                            <option value="G96">
+                             苗栗龜山
+                            </option>
+                            <option value="H45">
+                             苑　　裡
+                            </option>
+                            <option value="G67">
+                             台　　中
+                            </option>
+                            <option value="H01">
+                             水　　湳
+                            </option>
+                            <option value="H26">
+                             朝　　馬
+                            </option>
+                            <option value="F10">
+                             彰　　化
+                            </option>
+                            <option value="F11">
+                             員　　林
+                            </option>
+                            <option value="F12">
+                             北　　斗
+                            </option>
+                            <option value="F15">
+                             草　　屯
+                            </option>
+                            <option value="F16">
+                             中　　興
+                            </option>
+                            <option value="J42">
+                             社　　口
+                            </option>
+                            <option value="F17">
+                             南　　投
+                            </option>
+                            <option value="F20">
+                             埔　　里
+                            </option>
+                            <option value="G46">
+                             雙　　冬
+                            </option>
+                            <option value="G50">
+                             柑子林
+                            </option>
+                            <option value="G53">
+                             北山坑
+                            </option>
+                            <option value="G58">
+                             崎　　下
+                            </option>
+                            <option value="G64">
+                             魚　　池
+                            </option>
+                            <option value="F19">
+                             日月潭
+                            </option>
+                            <option value="K09">
+                             西　　螺
+                            </option>
+                            <option value="K06">
+                             嘉　　義
+                            </option>
+                            <option value="K05">
+                             新　　營
+                            </option>
+                            <option value="K04">
+                             台　　南
+                            </option>
+                            <option value="L43">
+                             鹽　　行
+                            </option>
+                            <option value="L58">
+                             楠　　梓
+                            </option>
+                            <option value="L63">
+                             高雄中正
+                            </option>
+                            <option value="K02">
+                             高　　雄
+                            </option>
+                            <option value="L93">
+                             屏東九如
+                            </option>
+                            <option value="K11">
+                             屏　　東
+                            </option>
+                            <option value="F26">
+                             中台博館
+                            </option>
+                            <option value="F27">
+                             中台禪寺
+                            </option>
+                            <option value="F28">
+                             普台高中
+                            </option>
+                            <option value="U05">
+                             蘇　　澳
+                            </option>
+                            <option value="U07">
+                             花　　蓮
+                            </option>
+                            <option value="W44">
+                             太平山
+                            </option>
+                           </select>
+                          </span>
+                         </td>
+                         <td align="right" width="35%">
+                          <span id="ctl00_ContentPlaceHolder1_lblTo">
+                           迄站：
+                          </span>
+                         </td>
+                         <td align="left">
+                          <span id="ctl00_ContentPlaceHolder1_udpStation_ID_To">
+                           <select id="ctl00_ContentPlaceHolder1_ddlStation_ID_To" name="ctl00$ContentPlaceHolder1$ddlStation_ID_To" style="font-size:11pt;height:20px;">
+                            <option selected="selected" value="W44">
+                             太平山
+                            </option>
+                           </select>
+                          </span>
+                         </td>
+                        </tr>
+                        <tr>
+                         <td align="right">
+                          <span id="ctl00_ContentPlaceHolder1_lblOutDt">
+                           乘車日期：
+                          </span>
+                         </td>
+                         <td align="left">
+                          <input class="readonlyDate" id="ctl00_ContentPlaceHolder1_txtOut_Dt" name="ctl00$ContentPlaceHolder1$txtOut_Dt" onblur="DateObj_Onblur('ctl00_ContentPlaceHolder1_txtOut_Dt',null,'ctl00_ContentPlaceHolder1_txtDtMin','ctl00_ContentPlaceHolder1_txtDtMax')" onkeypress="return CheckKeyDate()" style="width:88px;" type="text"/>
+                          <img alt="按此可點選日期" id="ctl00_ContentPlaceHolder1_imgOutDt" onclick="ShowCalendar('ctl00_ContentPlaceHolder1_txtOut_Dt',true,false,null,'ctl00_ContentPlaceHolder1_txtDtMax','ctl00_ContentPlaceHolder1_txtDtMin')" src="../Images/planner-16.gif" style="border: 0;"/>
+                          <input id="ctl00_ContentPlaceHolder1_txtDtMin" name="ctl00$ContentPlaceHolder1$txtDtMin" style="display: none" type="text" value="2020/07/17"/>
+                          <input id="ctl00_ContentPlaceHolder1_txtDtMax" name="ctl00$ContentPlaceHolder1$txtDtMax" style="display: none" type="text" value="2020/07/31"/>
+                         </td>
+                         <td align="right" nowrap="">
+                          <span id="ctl00_ContentPlaceHolder1_lblOutTime">
+                           預計乘車時間：
+                          </span>
+                         </td>
+                         <td align="left">
+                          <select id="ctl00_ContentPlaceHolder1_ddlHour" name="ctl00$ContentPlaceHolder1$ddlHour" style="font-size:11pt;height:20px;width:50px;">
+                           <option selected="selected" value="00">
+                            00
+                           </option>
+                           <option value="01">
+                            01
+                           </option>
+                           <option value="02">
+                            02
+                           </option>
+                           <option value="03">
+                            03
+                           </option>
+                           <option value="04">
+                            04
+                           </option>
+                           <option value="05">
+                            05
+                           </option>
+                           <option value="06">
+                            06
+                           </option>
+                           <option value="07">
+                            07
+                           </option>
+                           <option value="08">
+                            08
+                           </option>
+                           <option value="09">
+                            09
+                           </option>
+                           <option value="10">
+                            10
+                           </option>
+                           <option value="11">
+                            11
+                           </option>
+                           <option value="12">
+                            12
+                           </option>
+                           <option value="13">
+                            13
+                           </option>
+                           <option value="14">
+                            14
+                           </option>
+                           <option value="15">
+                            15
+                           </option>
+                           <option value="16">
+                            16
+                           </option>
+                           <option value="17">
+                            17
+                           </option>
+                           <option value="18">
+                            18
+                           </option>
+                           <option value="19">
+                            19
+                           </option>
+                           <option value="20">
+                            20
+                           </option>
+                           <option value="21">
+                            21
+                           </option>
+                           <option value="22">
+                            22
+                           </option>
+                           <option value="23">
+                            23
+                           </option>
+                          </select>
+                          <span id="ctl00_ContentPlaceHolder1_lblHour">
+                           時
+                          </span>
+                          <select id="ctl00_ContentPlaceHolder1_ddlMinute" name="ctl00$ContentPlaceHolder1$ddlMinute" onchange="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$ddlMinute\',\'\')', 0)" style="font-size:11pt;height:20px;width:50px;">
+                           <option selected="selected" value="00">
+                            00
+                           </option>
+                           <option value="10">
+                            10
+                           </option>
+                           <option value="20">
+                            20
+                           </option>
+                           <option value="30">
+                            30
+                           </option>
+                           <option value="40">
+                            40
+                           </option>
+                           <option value="50">
+                            50
+                           </option>
+                          </select>
+                          <span id="ctl00_ContentPlaceHolder1_lblMinute">
+                           分
+                          </span>
+                         </td>
+                        </tr>
+                        <tr>
+                         <td>
+                          <input id="ctl00_ContentPlaceHolder1_btnStep2_OK" name="ctl00$ContentPlaceHolder1$btnStep2_OK" onclick="this.disabled=true;__doPostBack('ctl00$ContentPlaceHolder1$btnStep2_OK','')" style="font-size:11pt;height:25px;" type="button" value="下一步"/>
+                         </td>
+                         <td align="center" colspan="3">
+                          <span id="ctl00_ContentPlaceHolder1_lblSchedule" style="color:Red;font-size:Small;">
+                           將顯示前後共3個班次
+                          </span>
+                         </td>
+                        </tr>
+                       </tbody>
+                      </table>
+                     </fieldset>
+                    </div>
+                    <div id="divCalendar" style="visibility: hidden; display: none">
+                     <div class="bd" id="divMain">
+                      <table border="1" cellspacing="0" style="background-color:White;border-color:WhiteSmoke">
+                       <tbody>
+                        <tr>
+                         <td style="background-color:LightGrey;">
+                          <input id="txtType" readonly="readonly" style="border-style:none;width:32px;background-color:LightGrey;" type="text"/>
+                          <select id="selYear" name="selYear" onchange="setMonthDays()">
+                          </select>
+                          <select id="selMonth" name="selMonth" onchange="setMonthDays()">
+                           <option value="01">
+                            01
+                           </option>
+                           <option value="02">
+                            02
+                           </option>
+                           <option value="03">
+                            03
+                           </option>
+                           <option value="04">
+                            04
+                           </option>
+                           <option value="05">
+                            05
+                           </option>
+                           <option value="06">
+                            06
+                           </option>
+                           <option value="07">
+                            07
+                           </option>
+                           <option value="08">
+                            08
+                           </option>
+                           <option value="09">
+                            09
+                           </option>
+                           <option value="10">
+                            10
+                           </option>
+                           <option value="11">
+                            11
+                           </option>
+                           <option value="12">
+                            12
+                           </option>
+                          </select>
+                          <input id="btnOK" name="btnOK" onclick="retDate('')" style=" display:none" type="button" value="OK"/>
+                          <input id="btnClear" name="btnClear" onclick="ClearDate()" type="button" value="Del"/>
+                          <input id="btnCancel" name="btnCancel" onclick="HideCalendar()" type="button" value="Cancel"/>
+                         </td>
+                        </tr>
+                        <tr>
+                         <td>
+                          <!--- tblDay 日期背景顏色  --->
+                          <div id="tblDay" style="background:White">
+                          </div>
+                         </td>
+                        </tr>
+                       </tbody>
+                      </table>
+                     </div>
+                    </div>
+                    <script type="text/javascript">
+                     var cDateObj="";
+ var cMonthOnly=false;
+ var cYearByAD=true;
+ var cCurDay="";
+ var cDateCopyObj="";
+ var cMaxDate="";
+ var cMinDate="";
+ 
+//**********************************************************
+//* 檢核日期
+//**********************************************************
+function isDate(pYY,pMM,pDD) {
+  pMM --;
+  var sDate = new Date(pYY,pMM,pDD);
+  if (parseInt(pDD,10) == sDate.getDate()) {
+     return true;
+  } else {
+     return false;
+  }      
+}
+
+//**********************************************************
+//* 設定西元年
+//**********************************************************
+function setYears() {
+   var sYobj = $get("selYear");
+   var sMobj = $get("selMonth");
+   var sItem;
+   var sValu=0;
+   var sNow = new Date();
+   //var sYear = sNow.getFullYear() - 90;   
+   var sYear = sNow.getFullYear() - 3; 
+   
+   //---------------------------* 預設10個年(系統年之前3及後7年)
+   sYobj.options.length = 0;  //* 先清空
+   //for(var i=0; i<=100; i++) {
+   for(var i=0; i<=10; i++) {
+     sValu = sYear + i - (cYearByAD ? 0:1911);
+     sItem = new Option(sValu,sValu);
+     sYobj.options.add(sItem);
+   }
+   
+   //---------------------------* 設定 年月日之位置   
+   if($get(cDateObj).value =='') { 
+       sYobj.selectedIndex = 3;
+      sMobj.selectedIndex = sNow.getMonth();   //本月
+      cCurDay = sNow.getDate();                //本'日'-only
+      
+   } else {
+      var sAry = $get(cDateObj).value.split("/");
+      sValu = parseInt(sAry[0],10) + (cYearByAD ? 0:1911);
+      sValu = sNow.getFullYear() - sValu; 
+      sYobj.selectedIndex = 3 - sValu;
+      sMobj.selectedIndex = parseInt(sAry[1],10) -1 ; 
+      if( ! cMonthOnly) { cCurDay = sAry[2]; }  
+   }
+   
+   if(cMonthOnly) {
+      $get('btnOK').style.display = "";      //顯示 確認鍵
+      $get('tblDay').style.display = "none"; //隱藏 日期
+   } else {
+      $get('btnOK').style.display = "none"; 
+      $get('tblDay').style.display = ""; 
+      setMonthDays(); //設定該年月之日期
+   }
+   // $get('tblCalendar').style.zIndex = 199; //最上層顯示
+}
+
+function roll(obj, highlightcolor, textcolor) {
+    obj.style.backgroundColor = highlightcolor;
+    obj.style.color = textcolor;
+}
+function OnMouseIn(obj) {
+    //obj.style.border = "1px solid blue";
+    obj.style.backgroundColor = "lightgrey";
+    
+}
+function OnMouseOut(obj) {
+    //obj.style.border = "";
+    obj.style.backgroundColor = "";
+}
+//**********************************************************
+//* 設定日期格式
+//**********************************************************
+function setDayValue(pDay, pIdx, pCmp, pLimit) {
+   var sStr;
+   if(pIdx < pCmp) { 
+       sStr = "<td></td> ";
+    } else if ( ! pLimit) {
+    sStr = "<td align='right' " + (parseInt(cCurDay, 10) != pDay ? "style='border-style:solid;border-width:thin;border-color:lightgrey;' " : "style='background-color:Pink;font-family: Arial;border-style:solid;border-width:thin;border-color:lightgrey;")
+           + " onmouseover='OnMouseIn (this)' onmouseout='OnMouseOut (this)' "
+            //+ " onmouseover='roll(this," + "blue" +","+"red"+");"+ " onmouseout='roll(this,'blue','red')' "
+            + "><a href=javascript:void(0) onclick='retDate(" + pDay + ")' <font id=calDateText style='color:Black;CURSOR:Hand;font-family: Arial;' >" + pDay + "</font></a></td> ";
+    } else {  
+    //disable area
+    sStr = "<td align='right'  border=1 style='background-color:WhiteSmoke;border-style:solid;border-width:thin;border-color:lightgrey;'"
+            + "><font id=calDateText style='color:Grey;CURSOR:Hand;font-family: Arial;' >" + pDay + "</font></td> ";    
+    }
+    return sStr;
+}
+
+//**********************************************************
+//* 設定整月日期
+//**********************************************************
+function setMonthDays() {
+    if(cMonthOnly) { return; }
+    var sStr, I, J, K ;
+
+    sStr = "<table width='100%'> "
+         + "<thead>"
+         + "<tr style='background:white;border-style: hidden;'> "   //星期顏色
+         + "<th align='center' style='font-family: Arial;FONT-WEIGHT: bold'>Su</th> "
+         + "<th align='center' style='font-family: Arial;FONT-WEIGHT: bold'>Mo</th> "
+         + "<th align='center' style='font-family: Arial;FONT-WEIGHT: bold'>Tu</th> "
+         + "<th align='center' style='font-family: Arial;FONT-WEIGHT: bold'>We</th> "
+         + "<th align='center' style='font-family: Arial;FONT-WEIGHT: bold'>Th</th> "
+         + "<th align='center' style='font-family: Arial;FONT-WEIGHT: bold'>Fr</th> "
+         + "<th align='center' style='font-family: Arial;FONT-WEIGHT: bold'>Sa</th> "
+         + "</tr> "
+         + "</thead>"
+         + "<tbody>"
+ 
+    var sYear = parseInt($get("selYear").value,10) + (cYearByAD ? 0:1911);
+    var sMonth = $get("selMonth").value;
+    var sDate = new Date(sYear,sMonth-1,"01");
+    I = sDate.getDay();   //取得星期,星期日 = 0,星期一 = 1,星期二 = 2,星期三 = 3,星期四 = 4,星期五 = 5, 星期六 = 6
+    
+    J = 1;
+    
+    var sLimit = false;
+    var sMinDate = '';
+    var sMaxDate = '';
+    if (cMinDate != '') { sMinDate = $get(cMinDate).value; }
+    if (cMaxDate != '') { sMaxDate = $get(cMaxDate).value; }
+    
+    while(true) {
+        sStr = sStr + "<tr> ";
+       
+       for(K=0; K<=6; K++) {      
+          sLimit = false;
+          if (sMinDate != '') { //限制低於某個時間就不能再點選日期 (2008/05/08 NEC 杜)
+              if (sMinDate > (sYear + '/' + sMonth + '/' + ((J<10) ? "0":"") + J)) { sLimit = true;}
+          } 
+          if (sMaxDate != '') { //限制超過某個時間就不能再點選日期 (2008/05/08 NEC 杜)
+              if (sMaxDate < (sYear + '/' + sMonth + '/' + ((J<10) ? "0":"") + J)) { sLimit = true;}
+          } 
+       
+          sStr = sStr + setDayValue(J, K, I, sLimit);
+          if(K >= I) {
+             J++;
+             if(J >= 28){
+               if (! isDate(sYear,sMonth,J)) { I = 9; }
+             }
+          }
+        }
+ 
+        sStr = sStr + "</tr> ";
+        if( I == 9 ) { break; }
+        I = 0;
+    }
+
+    sStr = sStr + "</tbody></table>";
+    //alert(sStr);
+    $get("tblDay").innerHTML = sStr;
+}
+
+//**********************************************************
+//* 回傳日期 /年月
+//**********************************************************
+function retDate(pSelDay) {
+   if(cMonthOnly) {
+     $get(cDateObj).value= $get("selYear").value + '/' + $get("selMonth").value ;
+   } else {
+     $get(cDateObj).value = $get("selYear").value + '/' + $get("selMonth").value + '/' + ((pSelDay<10) ? "0":"") + pSelDay;
+   }     
+   
+   if (cDateCopyObj != "") { 
+      if ($get(cDateCopyObj).value =='') { $get(cDateCopyObj).value = $get(cDateObj).value; }
+   }
+   
+   HideCalendar();
+}
+
+//**********************************************************
+//* 清除日期
+//**********************************************************
+function ClearDate() {
+   $get(cDateObj).value= '';   
+   HideCalendar();
+}
+
+//**********************************************************
+//* 隱藏日期選擇視窗
+//**********************************************************
+function HideCalendar() {
+   $get('divCalendar').style.visibility = "hidden";
+   $get('divCalendar').style.display = "none";           //janewang 20091129
+}
+
+//**********************************************************
+//* 開啟日期選擇視窗
+//* 參數1:pDateObj => 日期物件之ClientID (須完整)
+//* 參數2:pYearByAD => 西元年(true) / 民國年(false)
+//* 參數3:pMonthOnly => 只顯示年月
+//* 參數4:pDateCopyObj => 設定另一個日期物件為同選取值
+//* 參數5:pMaxDate => 超過此時間就不能再點選日期(年/MM/dd)
+//* 參數6:pMinDate => 低於此時間就不能再點選日期(年/MM/dd)
+//**********************************************************
+function ShowCalendar(pDateObj, pYearByAD, pMonthOnly, pDateCopyObj, pMaxDate, pMinDate) {
+   // if (sYobj.options.length > 0) { return; } 
+   cMinDate = '';
+   cMaxDate = '';
+   cDateObj = pDateObj;
+   cYearByAD = pYearByAD;
+   cMonthOnly = pMonthOnly;
+   if (pDateCopyObj != null) { if (pDateCopyObj != '') cDateCopyObj = pDateCopyObj;  } 
+   if (pMinDate != null) { cMinDate = pMinDate;  } 
+   if (pMaxDate != null) { cMaxDate = pMaxDate;  }
+   
+   setYears();
+   //$get('txtType').value = (cYearByAD ? "西元" : "民國");
+   $get('txtType').value = (cYearByAD ? "" : "民國");
+   $get('divCalendar').style.visibility = "visible"; 
+   $get('divCalendar').style.display = "inline";                   //janewang 20091129)
+   SetPosXY();
+}
+
+//**********************************************************
+//* 設定日期起始位置
+//**********************************************************
+function SetPosXY() {
+   var sObj = $get(cDateObj);
+   var X = sObj.offsetTop;
+   var Y = sObj.offsetLeft;
+
+   while(sObj = sObj.offsetParent) {
+      X += sObj.offsetTop;
+      Y += sObj.offsetLeft;
+   }
+   $get('divCalendar').style.top = X+15;  
+   $get('divCalendar').style.left = Y-12;
+
+}
+                    </script>
+                   </div>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td>
+                   <div id="ctl00_ContentPlaceHolder1_UpdStep3">
+                   </div>
+                   <br/>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td>
+                   <div id="ctl00_ContentPlaceHolder1_UpdStep4">
+                   </div>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </div>
+              <br/>
+              <div id="ctl00_ContentPlaceHolder1_UsrMsgBox_popMsgBox_foregroundElement" style="display: none; position: fixed; z-index: 100001; left: 951.5px; top: 483px;">
+               <div id="ctl00_ContentPlaceHolder1_UsrMsgBox_pnlMsgBox" style="background-color:Thistle;height:200px;width:300px;display: none">
+                <span id="ctl00_ContentPlaceHolder1_UsrMsgBox_updMsg">
+                 <input id="ctl00_ContentPlaceHolder1_UsrMsgBox_txtTitle" name="ctl00$ContentPlaceHolder1$UsrMsgBox$txtTitle" style="width: 100%;background-color:DarkBlue; border-style:none; color:White; font-weight:bold;padding-left:10px; " type="text" value="Message"/>
+                 <textarea cols="20" id="ctl00_ContentPlaceHolder1_UsrMsgBox_txtMsg" name="ctl00$ContentPlaceHolder1$UsrMsgBox$txtMsg" rows="2" style="background-color:thistle; border-style:none; max-height:145px; min-height:145px; max-width:290px; min-width:290px;">查無資料!</textarea>
+                </span>
+                <br/>
+                <div style="text-align:center">
+                 <input id="ctl00_ContentPlaceHolder1_UsrMsgBox_btnOK" name="ctl00$ContentPlaceHolder1$UsrMsgBox$btnOK" onclick="return false;" style="font-size:11pt;height:25px;width:60px;" type="submit" value="確定"/>
+                </div>
+               </div>
+              </div>
+              <div class="modalBackground" id="ctl00_ContentPlaceHolder1_UsrMsgBox_popMsgBox_backgroundElement" style="display: none; position: fixed; left: 0px; top: 0px; z-index: 10000; width: 1903px; height: 991px;">
+              </div>
+              <div id="ctl00_ContentPlaceHolder1_UsrMsgFunc_popMsgBox_foregroundElement" style="display: none; position: fixed; z-index: 100001; left: 951.5px; top: 483px;">
+               <div class="modalPopup" id="ctl00_ContentPlaceHolder1_UsrMsgFunc_pnlMsgBox" style="background-color:Thistle;height:180px;width:300px;display: none">
+                <span id="ctl00_ContentPlaceHolder1_UsrMsgFunc_updMsg">
+                 <input id="ctl00_ContentPlaceHolder1_UsrMsgFunc_txtTitle" name="ctl00$ContentPlaceHolder1$UsrMsgFunc$txtTitle" style="background-color: DarkBlue; border-style: none;
+            width: 290px;color:White; font-weight: bold" type="text" value="訊息"/>
+                 <br/>
+                 <br/>
+                 <textarea cols="20" id="ctl00_ContentPlaceHolder1_UsrMsgFunc_txtMsg" name="ctl00$ContentPlaceHolder1$UsrMsgFunc$txtMsg" rows="2" style="background-color: thistle; border-style: none;
+            width: 290px; height: 100px">查無資料！</textarea>
+                </span>
+                <br/>
+                <div style="text-align:center">
+                 <input id="ctl00_ContentPlaceHolder1_UsrMsgFunc_btnOK" name="ctl00$ContentPlaceHolder1$UsrMsgFunc$btnOK" style="font-size:11pt;height:25px;width:60px;" type="submit" value="確定"/>
+                </div>
+               </div>
+              </div>
+              <div class="modalBackground" id="ctl00_ContentPlaceHolder1_UsrMsgFunc_popMsgBox_backgroundElement" style="display: none; position: fixed; left: 0px; top: 0px; z-index: 10000; width: 1903px; height: 991px;">
+              </div>
+             </div>
+            </td>
+            <td style="width: 170px; vertical-align: top">
+             <center>
+              <table border="0" cellpadding="0" cellspacing="0" width="170">
+               <tbody>
+                <tr>
+                 <td style="width: 160px; height: 100px; text-align: center">
+                  <a href="https://3000.gov.tw/News_Content.aspx?Create=1&amp;n=53&amp;state=F5D336F102ACBC68&amp;s=415&amp;ccms_cs=1&amp;sms=9110">
+                   <img alt="triple_coupon_taiwan" height="150" id="triple_coupon_taiwan" src="../Images/triple_coupon_taiwan_26006.jpg" style="border: 0px" width="150"/>
+                  </a>
+                 </td>
+                </tr>
+                <tr>
+                 <td style="width: 160px; height: 100px; text-align: center">
+                  <img alt="AD-1" height="90" id="Img1" src="../Images/KKBUS-1.gif" style="border: 0px" width="150"/>
+                 </td>
+                </tr>
+                <tr>
+                 <td style="width: 160px; height: 100px; text-align: center">
+                  <img alt="AD-2" height="90" id="Img2" src="../Images/KKBUS-2.gif" style="border: 0px" width="150"/>
+                 </td>
+                </tr>
+                <tr>
+                 <td style="width: 160px; height: 100px; text-align: center">
+                  <img alt="AD-3" height="90" id="Img3" src="../Images/KKBUS-3.gif" style="border: 0px" width="150"/>
+                 </td>
+                </tr>
+                <tr>
+                 <td style="width: 160px; height: 100px; text-align: center">
+                  <a href="https://www.busgobuy.com.tw">
+                   <img alt="AD-busgobuy" height="90" id="AD-busgobuy" src="../Images/KKBUS-AD-busgobuy.gif" style="border: 0px" width="150"/>
+                  </a>
+                 </td>
+                </tr>
+               </tbody>
+              </table>
+              <table border="2" bordercolor="blue" style="position: relative">
+               <tbody>
+                <tr>
+                 <td>
+                  <a href="https://order.kingbus.com.tw/ORD/ORD_M_1060_Anounce_Order.aspx">
+                   網路訂票須知
+                  </a>
+                 </td>
+                </tr>
+                <tr>
+                 <td>
+                  <a href="http://www.kingbus.com.tw/" target="_blank">
+                   國光客運首頁
+                  </a>
+                 </td>
+                </tr>
+               </tbody>
+              </table>
+              <br/>
+             </center>
+            </td>
+           </tr>
+          </tbody>
+         </table>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <table>
+      <tbody>
+       <tr>
+        <td style="height: 100px; width: 920px; color: White; background-image: url(../Images/bottom.jpg); background-repeat: no-repeat; background-color: transparent;">
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </center>
+   </div>
+   <script type="text/javascript">
+    //<![CDATA[
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+Sys.Application.initialize();
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","DropShadow":true,"OkControlID":"ctl00_ContentPlaceHolder1_UsrMsgBox_btnOK","PopupControlID":"ctl00_ContentPlaceHolder1_UsrMsgBox_pnlMsgBox","dynamicServicePath":"/ORD/ORD_M_1510_OrderGo.aspx","id":"ctl00_ContentPlaceHolder1_UsrMsgBox_popMsgBox"}, null, null, $get("ctl00_ContentPlaceHolder1_UsrMsgBox_txtTarget"));
+});
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","DropShadow":true,"PopupControlID":"ctl00_ContentPlaceHolder1_UsrMsgFunc_pnlMsgBox","dynamicServicePath":"/ORD/ORD_M_1510_OrderGo.aspx","id":"ctl00_ContentPlaceHolder1_UsrMsgFunc_popMsgBox"}, null, null, $get("ctl00_ContentPlaceHolder1_UsrMsgFunc_txtTarget"));
+});
+//]]>
+   </script>
+  </form>
+ </body>
+</html>
