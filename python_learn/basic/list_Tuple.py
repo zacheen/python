@@ -1,49 +1,45 @@
 # #------------------------------------
-# # <初始化> list
+# # # <初始化> 初始化指定大小list
+# ll = [False]*10
+# # # <初始化> list
 # ll = [1,2,3,5,6,7,8,9,8]
-# print("inti :",ll)
+# print("init :",ll)
 # # # <增加項目>
 # ll.append(4)
 # print("append :",ll)
 # # # <刪除>
 # del(ll[2])
 # print("del :",ll)
-# # <取出 X 的 index>
+# # # <取出 X 的 index>
 # print("index :",ll.index(8) )
-# # <取出 X 的 index> (如果不存在)
+# # # <取出 X 的 index> (如果不存在)
 # try : 
 #     print("index :",ll.index(100) )
 # except ValueError:
 #     print("this value is not in list")
-# # <計算 X 總共有幾個>
+# # # <計算 X 總共有幾個>
 # print("count :",ll.count(8) )
 # print("count :",ll.count(100) ) # 如果不存在 會回傳 0
-# # <取出第N個項目> (不是取出某個值)
-# ll.pop(5)
-# print("pop :",ll)
-# # <取出某個值>
+# # # <取出第N個項目> (不是取出某個值)
+# print("pop 5 :",ll.pop(5))
+# print("pop 5 :",ll)
+# # # pop 最後一個項目
+# print("pop last :",ll.pop())
+# print("pop last :",ll)
+# # # <取出某個值>
 # ll.remove(5)
 # print("remove :",ll)
-# # <不確定有沒有此值的取出>
+# # # <不確定有沒有此值的取出>
 # try :
 #     ll.remove(100)
 # except ValueError :
 #     print("didnt have this value")
 # print("remove2 :",ll)
 
-
-
 # #------------------------------------
-
-
-# #------------------------------------
-
-
 # # 初始化 Tuple 基本上用法跟 list 一樣 只是不能更改
 # tt = ()
 # print(tt)
-
-
 
 # #------------------------------------
 # # list 冒號取值 (開頭:結尾:間隔)  如果有一格不填代表要取值到list結束
@@ -69,12 +65,12 @@
 # #------------------------------------
 # # list 排序 sort 使用自定義function ( key )
 # # 如果是一樣的順序就會按照原本的排序 ?? (看起來是這樣還沒驗證)
-def myFunc(e):
-    return len(e)
+# def myFunc(e):
+#     return len(e)
 
-cars = ['Ford', 'Mitsubishi', 'ABC', 'BMW', 'VW']
-cars.sort(reverse=True, key=myFunc)
-print(cars)
+# cars = ['Ford', 'Mitsubishi', 'ABC', 'BMW', 'VW']
+# cars.sort(reverse=True, key=myFunc)
+# print(cars)
 
 # #------------------------------------
 # # list 排序 sort 使用自定義function ( compare )
@@ -133,3 +129,21 @@ print(cars)
 # print(str2)
 # print(str1)
 
+# #------------------------------------
+# # 判斷這個 list 裡面是否有任何東西 == len(l) >= 1
+# # l = [1,2]
+# l = []
+# if l :
+#     print("l have thing")
+# else :
+#     print("l dont have thing")
+
+#-------------------------------------------------------------------------------------------
+# 之前踩過的坑
+
+# # 不可使用 * 初始化 List 多維陣列
+# ll = [[False]*4]*3 # 二維的
+# print(ll)
+# ll[0][0] = True  
+# # 每個list的第一個 都變成 True 了  因為不是用 copy
+# print(ll)
