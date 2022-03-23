@@ -25,7 +25,17 @@
 # print("abs",abs(3))
 
 ########################################
-# << filter >>
+# # << filter >>
+# # filter(判斷式, 要判斷的list)
+# # 記得 filter 完 還要轉回來 對應的型態才能用
+# # filter 會移除判斷為 False 的項目
+
+# # 移除 list 裡面為 None 的項目
+# def is_None(var) :
+#     return var != None
+# ll = [1,3,7,None, 8, None, 5]
+# new_ll = list(filter(is_None, ll))
+# print(new_ll)
 
 ########################################
 # << eval >>
@@ -35,9 +45,9 @@
 # print(type(ll[0]))
 # print(ll[0][0])
 
-m = eval("{ 1:'a'}")
-print(type(m))
-print(type(m[1]))
+# m = eval("{ 1:'a'}")
+# print(type(m))
+# print(type(m[1]))
 
 
 
