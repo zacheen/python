@@ -130,7 +130,7 @@
 #         return ans
 
 #------------------------------------------------------------------
-# given ans 2
+# given ans 2 邏輯一樣只是沒有用 class
 class Solution:
     def smallestStringWithSwaps(self, s, pairs):
         n = len(s)

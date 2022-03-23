@@ -1,4 +1,7 @@
 1525. Number of Good Ways to Split a String
+
+# 分開之後兩邊不同的字母個數要一樣 有幾種分法
+
 Medium
 
 1231

@@ -1,10 +1,6 @@
 # given ans 
 class Solution:
     def firstUniqChar(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
         # build hash map : character and how often it appears
         from collections import Counter
         count = Counter(s)
@@ -17,6 +13,7 @@ class Solution:
         #         return eachChar  
 
         # find the index
+        # (O)
         for idx, ch in enumerate(s):
             if count[ch] == 1:
                 return idx     
