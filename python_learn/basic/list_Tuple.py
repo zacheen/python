@@ -7,8 +7,8 @@
 # # # <增加項目>
 # ll.append(4)
 # print("append :",ll)
-# # # <刪除>
-# del(ll[2])
+# # # <刪除多個或一個>
+# del(ll[2:3])
 # print("del :",ll)
 # # # <取出 X 的 index>
 # print("index :",ll.index(8) )
@@ -84,11 +84,16 @@
 # print(ll)
 
 # #------------------------------------
-# # list 反向 reverse
+# # list 反向 反轉 reverse 
 # ll = [1,3,6,4,0,2]
 # print(ll)
-# ll.reverse()
-# print(ll)
+# # 方法1 如果只是要 for 某個東西的 reverse
+# print("reverse() : ",list(reversed(ll)))
+# print("reverse() : ",ll)
+# # 方法2 如果真的是要動到原本的
+# print(".reverse : ",ll.reverse())
+# print(".reverse : ",ll)
+ 
 
 # #------------------------------------
 # # 如果要用 compare 來 sort
@@ -119,6 +124,15 @@
 #     return x*2-1
 # ll = [change(x) for x in nums]
 # print("list comprehensive 2 : ",ll)
+
+# #------------------------------------
+# # 判斷兩個 List 有無重複項目
+ll = [1,2]
+ll2 = [2,3,4]
+if len(set(ll) & set(ll2)) == 0 :
+    print("ll 與 ll2 沒有東西重疊")
+else:
+    print("ll 與 ll2 有東西重疊")
 
 # #------------------------------------
 # # list 會連動 坑
