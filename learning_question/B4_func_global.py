@@ -1,14 +1,14 @@
 # #-------------------------
 # # global
 # ll = 1
-# print(ll)
+# print("before :",ll)
 
 # def change_l ():
 #     global ll
 #     ll = 2
 
 # change_l()
-# print(ll)
+# print("after  :",ll)
 
 # #-------------------------
 # # 沒有用 global
