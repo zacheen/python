@@ -22,21 +22,24 @@ from collections import Counter
 
 # # # <<< 語法 >>> <<< 用法 >>> 
 # # <新增項目> 同map用法
-c = Counter({'red': 4, 'blue': 2})
-print(c)
-c["orange"] = 1
-print(c)
+# c = Counter({'red': 4, 'blue': 2})
+# print(c)
+# c["orange"] = 1
+# print(c)
 
-# # <取值> 同map用法 只是如果沒有找到 會回傳0
-print(c["purple"])
+# # # <取值> 同map用法 只是如果沒有找到 會回傳0
+# print(c["purple"])
 
-# # <刪除> 同map用法 
-del c["orange"] 
-print(c)
+# # # <刪除> 同map用法 
+# del c["orange"] 
+# print(c)
 
-# # <取得數量最多的> 參數N 代表 要回傳前幾個多的
-print(c.most_common(1))
-print(c.most_common(2))
+# # # <取得數量最多的> 參數N 代表 要回傳前幾個多的
+# 要注意"回傳格式"為 : [(key, 數量),(key, 數量)]
+# c["max1"] = 100
+# c["max2"] = 100 
+# print(c.most_common(1)) # 如果有一樣多的就隨機回傳其中一個
+# print(c.most_common(2))
 
 
 
