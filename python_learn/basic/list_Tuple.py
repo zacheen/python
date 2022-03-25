@@ -7,6 +7,9 @@
 # # # <增加項目>
 # ll.append(4)
 # print("append :",ll)
+# # # <插入項目> insert(位置, val)
+# ll.insert(3,10)
+# print("insert :",ll)
 # # # <刪除多個或一個>
 # del(ll[2:3])
 # print("del :",ll)
@@ -26,7 +29,7 @@
 # # # pop 最後一個項目
 # print("pop last :",ll.pop())
 # print("pop last :",ll)
-# # # <取出某個值>
+# # # <刪除某個值>
 # ll.remove(5)
 # print("remove :",ll)
 # # # <不確定有沒有此值的取出>
@@ -51,7 +54,10 @@
 # #------------------------------------
 # # list 排序 sort
 # ll = [1,3,6,4,0,2]
-# print(ll)
+# # 如果不想要改 原本的list  sorted(list, key, reverse)
+# print("sorted :",sorted(ll))
+# print("original :",ll)
+# # 要改動原本的list
 # ll.sort()
 # print(ll)
 
@@ -127,12 +133,12 @@
 
 # #------------------------------------
 # # 判斷兩個 List 有無重複項目
-ll = [1,2]
-ll2 = [2,3,4]
-if len(set(ll) & set(ll2)) == 0 :
-    print("ll 與 ll2 沒有東西重疊")
-else:
-    print("ll 與 ll2 有東西重疊")
+# ll = [1,2]
+# ll2 = [2,3,4]
+# if len(set(ll) & set(ll2)) == 0 :
+#     print("ll 與 ll2 沒有東西重疊")
+# else:
+#     print("ll 與 ll2 有東西重疊")
 
 # #------------------------------------
 # # list 會連動 坑
@@ -153,7 +159,28 @@ else:
 #     print("l dont have thing")
 
 #-------------------------------------------------------------------------------------------
-# 之前踩過的坑
+# # <<< 之前踩過的坑 >>>
+
+# # copy 只會複製 目前這一層而已
+# red = ['flower', 'blood', [55, 6]]
+# red_list = list(red)
+# red_slice = red[:]
+# red_copy = red.copy()
+# import copy
+# red_deepcopy = copy.deepcopy(red)
+
+# print("ori   :",red)
+# print("list  :",red_list)
+# print("slice :",red_slice)
+# print("copy  :",red_copy)
+# print("deep  :",red_deepcopy)
+# red[0] = 100  # 這是第一層 所以其他不會被影響
+# red[2][0] = 88  # 這是第二層 其他會跟著被影響
+# print("ori   :",red)
+# print("list  :",red_list)
+# print("slice :",red_slice)
+# print("copy  :",red_copy)
+# print("deep  :",red_deepcopy)
 
 # # 不可使用 * 初始化 List 多維陣列
 # ll = [[False]*4]*3 # 二維的
@@ -161,3 +188,5 @@ else:
 # ll[0][0] = True  
 # # 每個list的第一個 都變成 True 了  因為不是用 copy
 # print(ll)
+
+print([1]+[2])

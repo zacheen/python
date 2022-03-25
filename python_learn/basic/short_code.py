@@ -2,6 +2,13 @@
 #     # 某個list
 #     # enumerate(iterable)
 
+# # -- 判斷式 ----------------------------------------------
+# # 判斷式"給值" (for 裡面不能用 else)
+# example 如果是偶數 才賦予值
+x = 1 #2
+x = x if x%2==0 else 0
+print(x)
+
 # # -- 型態 genexpr ----------------------------------------------
 # # 語法 : 執行回傳 for var_name in iterable [判斷式] [for var_name in iterable[判斷式]] 
 # # 如果有第二組就是雙層for迴圈
