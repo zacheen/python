@@ -31,7 +31,7 @@ class Solution:
             if nums[m] < nums[r]:
                 r = m
             else:
-                l = m + 1  # 我的程式如果 +1 會有錯  為什麼他不會 ??
+                l = m + 1  # 我的程式如果 +1 會有錯  為什麼他不會 ?  因為 binary search 使用的template不一樣
 
         return nums[l]
 
