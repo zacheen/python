@@ -10,7 +10,7 @@
     # 比較運算子
     # if else 語法
     # Casting
-    # 連動
+    # 連動  (str 不會連動)
     # list
     # Tuple
 

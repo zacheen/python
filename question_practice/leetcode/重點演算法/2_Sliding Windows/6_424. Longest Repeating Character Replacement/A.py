@@ -126,7 +126,7 @@ class Solution:
             while maxCount + k < r - l + 1:
                 count[s[l]] -= 1
                 l += 1
-            # 就算答案不對 反正也不會比較長 所以不用特別處理
+            # (O) 這個演算法能成功的關鍵 : 就算答案不對 反正也不會比較長 所以不用特別處理 
             ans = max(ans, r - l + 1)
 
         return ans
