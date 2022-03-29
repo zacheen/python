@@ -57,3 +57,42 @@
 # print(ll)
 # # 所以記得要宣告 global 不要用預設會抓取外面的方法取值
 
+# < function 裡面又宣告 function >
+# 不管怎樣 inner_def 一定改不到 outer_def 的值
+# 錯誤
+# # def outer_def():
+# #     ll = 0
+# #     def inner_def():
+# #         print("inner1 :",ll)
+# #         ll += 1
+# #         print("inner2 :",ll)
+# #     inner_def()
+# #     print("outer :",ll)
+# # outer_def()
+
+# # 只能看到而已
+# # def outer_def():
+# #     ll = 0
+# #     def inner_def():
+# #         print("inner1 :",ll)
+# #         # ll += 1
+# #         # print("inner2 :",ll)
+# #     inner_def()
+# #     print("outer :",ll)
+# # outer_def()
+
+# # 所以要用 return 修改 outer_def 的值
+# def outer_def():
+#     ll = 0
+#     def inner_def():
+#         print("inner1 :",ll)
+#         ret = ll + 1
+#         print("inner2 :",ret)
+#         return ret
+#     ll = inner_def()
+#     print("outer :",ll)
+# outer_def()
+
+# python 有 & 用法嗎 ??
+# 應該是沒有
+# 只能用 return 或 把值存在list裡面

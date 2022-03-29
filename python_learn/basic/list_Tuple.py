@@ -189,4 +189,3 @@
 # # 每個list的第一個 都變成 True 了  因為不是用 copy
 # print(ll)
 
-print([1]+[2])
