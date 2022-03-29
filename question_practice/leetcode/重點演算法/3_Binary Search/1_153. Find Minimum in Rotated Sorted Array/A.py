@@ -35,6 +35,21 @@ class Solution:
 
         return nums[l]
 
+# My v2 如果不想要 corner case
+# Runtime: 43 ms, faster than 86.00% of Python3
+# class Solution:
+#     def findMin(self, nums) :
+#         l,r = 0, len(nums)-1
+#         while l < r-1 :
+#             mid = (l+r)//2
+#             # print(l,mid,r)
+#             if nums[mid] < nums[r] :
+#                 r = mid
+#             else :
+#                 l = mid
+        
+#         return min(nums[r] , nums[l])
+
 s = Solution()
 # print(s.findMin([11,13,15,17]))
 # print(s.findMin([4,5,6,7,0,1,2]))
