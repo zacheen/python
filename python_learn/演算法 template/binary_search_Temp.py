@@ -37,12 +37,12 @@ def binarySearch2(nums, target):
     # if len(nums) == 0:
     #     return -1
 
-# 不懂為什麼是 len(nums) 而不是 len(nums)-1 ? binarySearch2_adv 看起來沒問題
+# 不懂為什麼是 len(nums) 而不是 len(nums)-1 ?
 # 這是因為 0 ~ len() 這樣有 len()+1 個位置  最後結果就算找不到項目 也可以知道要找的項目可以插入的位置
     left, right = 0, len(nums)  
     # left right 會碰到 但不會越過彼此
     while left < right:
-        mid = (left + right) // 2
+        mid = (left + right) // 2 # 曾經看到 mid = l + (r - l) // 2 竟然就不用判斷下面的 nums[left] == target ??
         # print(left, mid, " : ", nums[left], nums[mid])
         if nums[mid] == target:
             return mid
@@ -54,9 +54,9 @@ def binarySearch2(nums, target):
     # Post-processing:
     # End Condition: left == right
     if left != len(nums) and nums[left] == target:  #而且是真的需要的ㄟ
-        return left  # ?? 為什麼兩個 return 阿  ?? 上面 == target 已經 return 了阿
+        return left
     return -1
-    # 不懂為什麼要 left != len(nums) ? binarySearch2_adv 看起來沒問題
+    # 不懂為什麼要 left != len(nums) ? 
     # 解釋範例  註解上面
     # if left == len(nums) :
     #     return str(target)+"的範圍在 " + str(left) + " 之後"
