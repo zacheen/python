@@ -1,4 +1,4 @@
-# 其實有時候並不需要排序 說不定用hash就可以了
+# 其實有時候並不需要排序 說不定用hash就可以了 -> 有一個專有名詞 bucket sort
 
 from collections import Counter
 from collections import defaultdict
