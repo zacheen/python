@@ -1,4 +1,7 @@
 1673. Find the Most Competitive Subsequence
+
+找到 由k個項目組成的subsequence(順序要按照原本list的順序) 數字最小
+
 Medium
 
 1225

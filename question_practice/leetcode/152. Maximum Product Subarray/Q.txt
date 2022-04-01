@@ -1,4 +1,7 @@
 152. Maximum Product Subarray
+
+找Subarray最大可能的的乘積
+
 Medium
 
 10529
