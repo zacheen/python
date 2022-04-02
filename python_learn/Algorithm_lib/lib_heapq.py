@@ -24,5 +24,19 @@ print(minheapList)  # 原本的不會動到
 
 # 取出 前n個 最小的項目
 # heapq.nsmallest(n, iterable, key=None)
-print("min n :",heapq.nsmallest(3, minheapList))
-print(minheapList)  # 原本的不會動到
+print("min n :",heapq.nsmallest(3, minheapList))  # [2, 3, 3]
+print(minheapList)  # 原本的不會動到 # [2, 3, 4, 3, 6, 5, 8, 10, 7, 9]
+
+# heapq 沒有實作 remove
+# remove 項目 O(n) (找項目) + O(logn) (刪除項目之後排序)
+def remove_num(value):
+    rm_indx = minheapList.index(value)
+    minheapList[rm_indx] = minheapList[-1]
+    minheapList.pop()
+    if rm_indx < len(minheapList):
+        heapq._siftup(minheapList, rm_indx)
+        heapq._siftdown(minheapList, 0, rm_indx)
+
+remove_num(4)
+print("remove 4 :",minheapList)  # 原本的不會動到
+
