@@ -22,7 +22,9 @@
 # print(end - start)
 
 
-
+# @lru_cache(None)
+# 效果等同 @cache  不過會根據使用的次數  調整記憶體空間
+# 比較常用的取用就會比較快
 
 
 
