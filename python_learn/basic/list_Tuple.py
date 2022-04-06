@@ -99,7 +99,19 @@
 # # 方法2 如果真的是要動到原本的
 # print(".reverse : ",ll.reverse())
 # print(".reverse : ",ll)
- 
+
+# #------------------------------------
+# # list 反向 反轉 reverse 某個區間
+# # 包含 l,r 兩個位置
+# def reverse(nums, l, r):
+#     while l < r:
+#         nums[l], nums[r] = nums[r], nums[l]
+#         l += 1
+#         r -= 1
+
+# ll = [0,1,2,3,4,5,6,7]
+# reverse(ll,3,6)
+# print("reverse region :", ll)
 
 # #------------------------------------
 # # 如果要用 compare 來 sort

@@ -43,7 +43,9 @@ def binarySearch2(nums, target):
     left, right = 0, len(nums)  
     # left right 會碰到 但不會越過彼此
     while left < right:
-        mid = (left + right) // 2 # 曾經看到 mid = l + (r - l) // 2 竟然就不用判斷下面的 nums[left] == target ??
+        mid = (left + right) // 2 
+        # 曾經看到 mid = l + (r - l) // 2 就不用判斷下面的 nums[left] == target
+        # 也有人這樣計算 (l + r + 1) / 2 原因是 有些情況只能left = mid 就這種方法計算mid可以用 r = mid - 1
         # print(left, mid, " : ", nums[left], nums[mid])
         if nums[mid] == target:
             return mid

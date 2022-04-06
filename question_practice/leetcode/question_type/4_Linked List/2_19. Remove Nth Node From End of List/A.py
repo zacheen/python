@@ -1,21 +1,18 @@
 # my Runtime: 41 ms, faster than 67.65% of Python3
 class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int):
         dummy = ListNode(0, head)
-        prev = dummy
         
-        fast = dummy.next
-        for i in range(n) :
+        fast = dummy
+        for i in range(n) : 
             fast = fast.next
             
-        # corner case
-        if fast == None:
-            return head.next
-            
-        slow = dummy.next
+        slow = dummy
         while fast.next != None :
             fast = fast.next
             slow = slow.next
+        
+        # 刪除點
         slow.next = slow.next.next
         
         return dummy.next

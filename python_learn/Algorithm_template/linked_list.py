@@ -38,6 +38,30 @@ def basic_print(head):
 # ll = create_linkList([1,2,3,4,5])
 # print(basic_print(ll))
 
+# # 找到從後面數來第N個點 #############################################
+def printNthFromEnd(head, n):
+    dummy = ListNode(0, head)
+    
+    fast = dummy
+    # 如果是要找到前一個點 改成 for i in range(n) :
+    # 如果是要找到 k點本身 改成 for i in range(n-1) :
+    # for i in range(n) : 
+    for i in range(n-1) :    
+        fast = fast.next
+        
+    slow = dummy
+    while fast.next != None :
+        fast = fast.next
+        slow = slow.next
+    
+    # 如果是 for i in range(n): 那就是 k 的前一個點
+    # 如果是 for i in range(n-1): 那就是 k 點本身
+    print("in printNthFromEnd :",slow.val)
+    return dummy.next
+
+# ll = create_linkList([1,2,3,4,5])
+# printNthFromEnd(ll, 5)
+
 # # 反轉 link list #############################################
 def reverseList(head):
     prev = None
