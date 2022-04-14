@@ -1,0 +1,14 @@
+[
+    {
+        "id" : 1 ,
+        "name" : "name1",
+        "url": "https://www.google.com", 
+        "user": [{"account":"account1", "password":"password1"}]
+    },
+    {
+        "id" : 2 ,
+        "name" : "name2",
+        "url": "https://www.google.com/gmail/", 
+        "user": [{"account":"account2", "password":"password2"}]
+    }
+]
