@@ -50,5 +50,9 @@
 # print(type(m[1]))
 
 
-
+########################################
+# # << any >>
+# # 如果裡面有任何項目為 True 就會是True
+# mylist = [False, True, False]
+# print(any(mylist))
 
