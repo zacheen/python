@@ -1,4 +1,4 @@
-# My_v2  Time Limit Exceeded
+# My_v2  Runtime: 35 ms, faster than 95.90% of Python3
 class Solution:
     def wordBreak(self, s, wordDict):
         cache = [False]* (len(s)+1)
@@ -61,6 +61,20 @@ class Solution:
 #                     dp[i] = True
 #         print(dp)
 #         return dp[-1]
+
+# given ans
+# 完美的縮寫 (O)
+class Solution:
+    def wordBreak(self, s, wordDict):
+        wordSet = set(wordDict)
+
+        @lru_cache(None)  # 因為尾端比較常被呼叫到
+        def wordBreak(s):
+            if s in wordSet:
+                return True
+            return any(s[:i] in wordSet and wordBreak(s[i:]) for i in range(len(s)))
+
+        return wordBreak(s)
 
 s = Solution()
 print(s.wordBreak(
