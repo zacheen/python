@@ -81,7 +81,8 @@
 # #     print("outer :",ll)
 # # outer_def()
 
-# # 所以要用 return 修改 outer_def 的值
+# # << 如果要修改外面的值 >> 
+# # 方法1 用 return 修改 outer_def 的值
 # def outer_def():
 #     ll = 0
 #     def inner_def():
@@ -93,6 +94,17 @@
 #     print("outer :",ll)
 # outer_def()
 
-# python 有 & 用法嗎 ??
-# 應該是沒有
-# 只能用 return 或 把值存在list裡面
+# python 有 & 用法嗎 ? nonlocal 類似這種用法
+# 方法2 nonlocal
+# def outer_def():
+#     ll = 0
+#     def inner_def():
+#         nonlocal ll
+#         print("inner1 :",ll) # 0
+#         ll = ll + 1
+#         print("inner2 :",ll) # 1 有修改到
+#     inner_def()
+#     print("outer :",ll) # 1 外面也有修改到
+# outer_def()
+
+
