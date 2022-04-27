@@ -30,3 +30,17 @@
 # print(func(10,20))
 # print(func(10))
 # print(func())
+
+# # ----------------------
+# # 預設值 是list
+# # 預設值的給值只會初始化一次
+# def func(bb = []):
+#     bb += [1,2]
+#     return bb
+
+# print(func(["start"]))
+# print(func())
+# print(func())
+# print(func())
+# print(func(["start"]))
+# print(func())
