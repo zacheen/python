@@ -1,3 +1,6 @@
+# time out of limit 兩次 
+    # 如果 guards 量少的話應該是不加 or mem[now_gx][now_gy] == "g" 會比較快
+    # 但有一個 test case 有滿滿的 guard
 # my 3298 ms
 # 我是以每一個 guards 看四方
 # class Solution:
