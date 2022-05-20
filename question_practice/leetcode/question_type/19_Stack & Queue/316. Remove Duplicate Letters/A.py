@@ -40,7 +40,7 @@
 # given ans 
 class Solution:
     def removeDuplicateLetters(self, s) :
-        # 統計每個重復的字母 最後的位置
+        # 紀錄每個重復的字母 最後的位置
         last = {c: i  for i, c in enumerate(s)}
         print(last)
 
@@ -60,4 +60,5 @@ class Solution:
         
 s = Solution()
 # print(s.removeDuplicateLetters("cbacdcbc"))
-print(s.removeDuplicateLetters("bcacb"))
+# print(s.removeDuplicateLetters("bcacb"))
+print(s.removeDuplicateLetters("bcab"))

@@ -13,7 +13,7 @@
 # # # << 轉型 >>
 # # # <int 轉 str> <為了好看印出來>
 # # 0b數值 == bin() == 2進位制
-# print("bin :",bin(17))
+# print("bin :",bin(17)) # bin : 0b10001
 # # 0o數值 == oct() == 8進位制
 # print("oct :",oct(17))
 # # 0x數值 == hex() == 16進位制
