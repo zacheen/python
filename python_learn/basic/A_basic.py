@@ -70,6 +70,19 @@
 # print(x)
 # print(type(x))
 
+# # 查看是否有繼承關係
+# class A:
+#     pass
+# class B(A):
+#     pass
+
+# print(isinstance(A(), A))    # returns True
+# print(type(A()) == A)        # returns True
+# print(isinstance(B(), A))    # returns True
+# print(type(B()) == A)        # returns False
+# print(isinstance(A(), B))    # returns False
+# print(type(A()) == B)        # returns False
+
 # #------------------------------------
 # # 數學運算子 運算 加法 減法 乘法 除法 整除法 餘數 次方 執行優先順序
 # print("運算順序1 :",72 - 6 * 6 / 3 + 3 - 3)
@@ -134,11 +147,12 @@
 # #------------------------------------
 # # 比較運算子 Tuple 比較
 # # 會先比前面的 如果一樣再比下一個
-print((11,2) > (10,100)) # True
-print((11,2) > (11,100)) # False
-print((11,2,1) > (10,100)) # True
-print((11,2,1) > (11,100)) # False
-print((11,2,1) > (11,2)) # True
+# print((11,2) > (10,100)) # True
+# print((11,2) > (11,100)) # False
+# print((11,2,1) > (10,100)) # True
+# print((11,2,1) > (11,100)) # False
+# print((11,2,1) > (11,2)) # True
+
 # #------------------------------------
 # # 比較運算子 不同型別比較 1 坑
 # x = 5
