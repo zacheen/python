@@ -2,3 +2,4 @@
 206. Reverse Linked List 本身已經是 template
 344. Reverse String : s.reverse()
 706. Design HashMap
+387. First Unique Character in a String

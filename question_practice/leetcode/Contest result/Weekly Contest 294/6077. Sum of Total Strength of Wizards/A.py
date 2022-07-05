@@ -1,7 +1,6 @@
 # my 
 class Solution:
-    def totalStrength(self, strength: List[int]) -> int:
-        
+    def totalStrength(self, strength):
         # 從頭到此index的累計
         sum_acc = [0]
         now_sum = 0
@@ -45,9 +44,43 @@ class Solution:
         return ans
 
 # given ans
+class Solution:
+    def totalStrength(self, strength):
+        MOD = 1000000007
+        ans = 0
+
+        n = len(strength)
+        pL = [0]*n
+        pR = [0]*n
+        sum1 = [0]*(n+1)
+        sum2 = [0]*(n+1)
+
+        for i in range(n) :
+            sum1[i+1] = (sum1[i] + strength[i]) % MOD
+            sum2[i+1] = (sum1[i] + i * strength[i]) % MOD
+            pL[i] = i-1
+            while pL[i] >= 0 and strength[pL[i]] >= strength[i] :
+                pL[i] = pL[pL[i]]
+        print(pL) # pL 是往右看比此位置大的位置
+
+        for i in range(n-1,-1,-1) :
+            pR[i] = i+1
+            while pR[i] < 0 and strength[pR[i]] > strength[i] :
+                pR[i] = pR[pR[i]]
+            sL = ((sum2[i + 1] - sum2[pL[i] + 1]) - pL[i] * (sum1[i + 1] - sum1[pL[i] + 1])) % MOD
+            sR = (pR[i] * (sum1[pR[i]] - sum1[i + 1]) - (sum2[pR[i]] - sum2[i + 1])) % MOD
+            prd = (sL * (pR[i] - i) + (i - pL[i]) * sR) % MOD
+            ans = (ans + prd * strength[i]) % MOD
+        
+        if ans < 0 :
+            return ans + MOD
+        else :
+            return ans
 
 s = Solution()
-print(s.())
-
+print(s.totalStrength([1,3,1,2])) # 44
+# print(s.totalStrength([1,2,3,4]))
+# print(s.totalStrength([4,3,2,1]))
+# print(s.totalStrength([1,2,1,2,1,2]))
 
 

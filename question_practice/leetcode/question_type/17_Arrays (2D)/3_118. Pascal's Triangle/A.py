@@ -1,3 +1,4 @@
+# my Runtime: 42 ms, faster than 51.22% of Python3
 class Solution:
     def generate(self, numRows):
         
@@ -23,5 +24,20 @@ class Solution:
             
         return ans
                     
+# given ans 
+# 沒有比較快 但是比較好看
+class Solution:
+    def generate(self, numRows):
+        ans = []
+
+        for i in range(numRows):
+            ans.append([1] * (i + 1))
+
+        for i in range(2, numRows):
+            for j in range(1, len(ans[i]) - 1):
+                ans[i][j] = ans[i - 1][j - 1] + ans[i - 1][j]
+
+        return ans
+
 s = Solution()
 print(s.generate(5))

@@ -1,4 +1,5 @@
 5269. Maximum Value of K Coins From Piles
+變成 Q2218. Maximum Value of K Coins From Piles
 
 每次只能拿最上面的
 最多能拿多少錢

@@ -32,32 +32,33 @@ import math
 #         return dp(0,len(nums)-1)
 
 # my Runtime: 985 ms, faster than 46.21% of Python3
-class Solution:
-    def maxSubArray(self, nums):
-        # 到i這個位置 最大的總和是多少
-        before_max = nums[0]
-        def rec(i):
-            nonlocal before_max
-            if i == 0 :
-                return nums[0]
-            ret = max(nums[i], rec(i-1)+nums[i])
-            # print("nonlocal 更新 :", max(before_max, ret))
-            before_max = max(before_max, ret)
-            return ret
-        rec(len(nums)-1)
-        return before_max
-
-# given ans greedy
 # class Solution:
 #     def maxSubArray(self, nums):
-#         ans = -math.inf
-#         summ = 0
-#         # summ 是到目前為止 最大的總和
-#         for num in nums:
-#             summ += num
-#             ans = max(ans, summ)  # 看目前的總和 跟之前的總和 哪個比較大
-#             summ = max(summ, 0)   # 只要是負的一遇到正的 就從這個數字開始算
-#         return ans
+#         # 到i這個位置 最大的總和是多少
+#         before_max = nums[0]
+#         def rec(i):
+#             nonlocal before_max
+#             if i == 0 :
+#                 return nums[0]
+#             ret = max(nums[i], rec(i-1)+nums[i])
+#             # print("nonlocal 更新 :", max(before_max, ret))
+#             before_max = max(before_max, ret)
+#             return ret
+#         rec(len(nums)-1)
+#         return before_max
+
+# # given ans greedy
+# 2022 05 20 再次練習
+class Solution:
+    def maxSubArray(self, nums):
+        now_sum = 0
+        max_sum = nums[-1]
+        for n in nums :
+            now_sum += n
+            max_sum = max(max_sum, now_sum)
+            now_sum = max(0, now_sum)
+        
+        return max_sum
 
 
 
