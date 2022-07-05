@@ -6,13 +6,13 @@ import numpy as np
 #     # shape = (column, row)
 #     # dtype : float int
 # print(array)
-# 初始化 方法2 類似range
-array = np.arange(12, dtype=int)
-    # np.arange(start = 3,stop = 10, step = 2, dtype=int)
-print("original :",array)
-# 初始化 方法3 list 轉型
-array = np.array([[1,3,2],[8,5,7]])
-print(array)
+# # 初始化 方法2 類似range
+# array = np.arange(12, dtype=int)
+#     # np.arange(start = 3,stop = 10, step = 2, dtype=int)
+# print("original :",array)
+# # 初始化 方法3 list 轉型
+# array = np.array([[1,3,2],[8,5,7]])
+# print(array)
 
 # < 可察看的屬性 >
 # 查看形狀
@@ -30,10 +30,10 @@ np.set_printoptions(threshold=np.inf)
 # new_array = array.astype("float16")
 # print("float16 :",new_array)
 
-# 找出最大值
-print("max :",np.max(array))
-# 找出某個項目的位置
-print("where :",np.where(array==8))
+# # 找出最大值
+# print("max :",np.max(array))
+# # 找出某個項目的位置
+# print("where :",np.where(array==8))
 
 # # << 較不常用到 >>
 # # < 百分位數 percentile >
@@ -65,5 +65,11 @@ print("where :",np.where(array==8))
 # ll = np.array([5,3,2,1,4,8,6,7,9])
 # print("bef clip :",ll)
 # print("aft clip :",np.clip(ll,3,7))
+
+# 把 shape 中 各個維度的 channel 長度為 1 的刪除
+array = np.array([[5,3,2,1,4,8,6,7,9]])
+print(array.shape)
+array_squ = array.squeeze()
+print(array_squ.shape)
 
 
