@@ -14,6 +14,11 @@ import numpy as np
 # # 初始化 方法3 list 轉型
 # array = np.array([[1,3,2],[8,5,7]])
 # print(array)
+# # 初始化 方法4 隨機
+# array = np.random.rand(3,4) # 隨機產生 0~1 之間的數字
+array = np.random.randint(1,10,(3,4)) # 隨機產生 0~1 之間的數字
+# numpy.random.randint(low, high=None, size=None, dtype='l')
+print(array)
 
 # # 初始值
 # array.fill(100)
@@ -30,13 +35,17 @@ import numpy as np
 # 取消印出長度限制
 np.set_printoptions(threshold=np.inf)
 
-# # 轉換型別
+# # 轉換型態、改變型態 (轉型) 
 # # 但是 大轉小會出問題 EX int32 轉 int16
 # new_array = array.astype("float16")
 # print("float16 :",new_array)
 
 # # 找出最大值
 # print("max :",np.max(array))
+# # 找出最小值
+# print("max :",np.min(array))
+# # 找最大值的位置 比較快的方法
+# print("max pos :", np.unravel_index(np.argmax(array),array.shape))
 # # 找出某個項目的位置
 # print("where :",np.where(array==8))
 
