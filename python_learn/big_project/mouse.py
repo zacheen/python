@@ -63,6 +63,8 @@
 # # 比較常用的取用就會比較快
 
 # # -- @functools.wraps -----------------------------------------------------------
+# __module__, __name__, __qualname__, __doc__, and __annotations__
+# 上面這些資訊會印出 原本 function 的 而不是 @function 的
 
 def logged(func):
     def with_logging(*args, **kwargs):
@@ -70,17 +72,32 @@ def logged(func):
         return func(*args, **kwargs)
     return with_logging
 
-
 @logged
 def f(x):
    """does some math"""
    return x + x * x
 print(f(10))
 
-print("功能等同")
+# 印出 f.__doc__ 的時候應該是希望印出 f 的說明文字
+# (因為我們是在使用 f(10) )
+print("f.__doc__ :",f.__doc__) # None
+# 但不是 所以就出現了 @functools.wraps
 
+# 使用 @functools.wraps 的正確寫法 
+import functools
+def logged(func):
+    @functools.wraps(func)
+    def with_logging(*args, **kwargs):
+        print(func.__name__ + " was called")
+        return func(*args, **kwargs)
+    return with_logging
+
+@logged
 def f(x):
-    """does some math"""
-    return x + x * x
-f = logged(f)
-print(f(10))
+   """does some math"""
+   return x + x * x
+
+print(f.__name__)  # 'f'
+print(f.__doc__)   # 'does some math'
+
+# # --  -----------------------------------------------------------
