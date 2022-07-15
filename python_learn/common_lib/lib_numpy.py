@@ -49,6 +49,17 @@ np.set_printoptions(threshold=np.inf)
 # # 找出某個項目的位置
 # print("where :",np.where(array==8))
 
+#  << 維度相關 >>
+# # 變成一維 
+# print("flatten :",array.flatten())
+
+# # 把 shape 中 各個維度的 channel 長度為 1 的刪除
+# array = np.array([[5,3,2,1,4,8,6,7,9]])
+# print(array.shape)
+# array_squ = array.squeeze()
+# print(array_squ.shape)
+
+
 # # << 較不常用到 >>
 # # < 百分位數 percentile >
 #     # 求數列中 第 X%分位 的數值
@@ -79,12 +90,6 @@ np.set_printoptions(threshold=np.inf)
 # ll = np.array([5,3,2,1,4,8,6,7,9])
 # print("bef clip :",ll)
 # print("aft clip :",np.clip(ll,3,7))
-
-# # 把 shape 中 各個維度的 channel 長度為 1 的刪除
-# array = np.array([[5,3,2,1,4,8,6,7,9]])
-# print(array.shape)
-# array_squ = array.squeeze()
-# print(array_squ.shape)
 
 # # # << 注意事項 >>
 # # # numpy 的 type 一定要是數字
