@@ -44,10 +44,13 @@ np.set_printoptions(threshold=np.inf)
 # print("nan :",val_float)
 # val_float[0] = None
 # print("None :",val_float)
-# # 無限大 無限小
+# # 無限大
 # val_float[0] = np.inf
 # print("np.inf :",val_float)
+# # 無限小
 # val_float[0] = -np.inf
+# print("-np.inf :",val_float)
+# val_float[0] = np.NINF
 # print("-np.inf :",val_float)
 
 # # 轉換型態、改變型態 (轉型) 
@@ -73,8 +76,20 @@ np.set_printoptions(threshold=np.inf)
 # # 平均 (nan 的值會去掉 )
 # array[0] = np.nan
 # print("mean :",np.nanmean(array))
+# # 計算各個項目各有幾個
+# unique_item, counts = np.unique(array, return_counts=True)
+# print(dict(zip(unique_item, counts)))
 
 # << 對每個項目做運算 >>
+
+# # boolean 運算
+# # logical_and logical_or logical_xor ...
+# mid_value = np.logical_and(array > 2, array < 7)
+# print(mid_value)
+
+# # + - * / 都可以直接做
+# # 這樣是把其他的值都改成0
+# print(mid_value * array)
 
 # # 取對數 log
 # # log 預設的底數是 e 
@@ -118,14 +133,19 @@ np.set_printoptions(threshold=np.inf)
 # print("isscalar(1.5) :",np.isscalar(1.5)) # True
 # print("isscalar(-1) :",np.isscalar(-1)) # True
 
-# # < 限制資料的大小 >
+# # < 限制資料的大小 > 
 # # clip
 # # 如果大/小於規定的數字 則會變成規定的數字
+# # boundary 的 值都會保留
 # ll = np.array([5,3,2,1,4,8,6,7,9])
-# print("bef clip :",ll)
-# print("aft clip :",np.clip(ll,3,7))
+# print("bef clip :",ll)              # [5 3 2 1 4 8 6 7 9]
+# print("aft clip :",np.clip(ll,3,7)) # [5 3 3 3 4 7 6 7 7]
 
-# # # << 注意事項 >>  ####################################################
+# # < 初始化一個大小、型態一樣大小 全部數字都為零的空間 > 
+# # zeros_like
+# print(np.zeros_like(array))
+
+# # # << 注意事項 >> ####################################################
 # # # numpy 的 type 一定要是數字
 # # import math
 # # array.fill(math.inf)
