@@ -59,7 +59,12 @@ np.set_printoptions(threshold=np.inf)
 # print("float16 :",new_array)
 
 # # 找出最大值
-# print("max :",np.max(array))
+# # 方法 1
+# print("max 1 :",np.max(array))
+# # 方法 2
+# print("max 2 :",array.max())
+# # 如果是要對個別 dimention 取最大值，就要帶入參數
+# print(array.max(1))
 # # 找出最小值
 # print("max :",np.min(array))
 # # 找最大值的位置 比較快的方法
@@ -79,6 +84,23 @@ np.set_printoptions(threshold=np.inf)
 # # 計算各個項目各有幾個
 # unique_item, counts = np.unique(array, return_counts=True)
 # print(dict(zip(unique_item, counts)))
+
+# # < 組合兩個 array >
+# array2 = array*2
+# # < 水平組合 >
+# # 方法1 : (較通用)
+# array_concat = np.concatenate((array,array2), axis = 1)
+# print("horizon 1 :\n",array_concat)
+# # 方法2 :
+# # array_concat = np.hstack((array,array2))
+# # print("horizon 2 :\n",array_concat)
+# # < 垂直組合 >
+# # 方法1 : (較通用)
+# array_concat = np.concatenate((array,array2), axis = 0)
+# print("vertical 1 :\n",array_concat)
+# # 方法2 :
+# # array_concat = np.vstack((array,array2))
+# # print("vertical 2 :\n",array_concat)
 
 # << 對每個項目做運算 >>
 
