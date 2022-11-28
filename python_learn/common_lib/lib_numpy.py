@@ -15,8 +15,8 @@ import math
 # array = np.array([[1,3,2],[8,5,7]])
 # print(array)
 # # 初始化 方法4 隨機
-# array = np.random.rand(3,4) # 隨機產生 0~1 之間的數字
-array = np.random.randint(1,11,(3,4)) # 隨機產生 0~1 之間的數字
+# array = np.random.rand(3,4) # 隨機產生 0~1 之間的數字 大小為 3*4
+array = np.random.randint(1,11,(3,4)) # 隨機產生 1~10(不包含11) 之間的數字 大小為 3*4
 array = array.astype("float16") # 有時候會需要 float 才能計算
 # numpy.random.randint(low, high=None, size=None, dtype='l')
 print(array)
@@ -124,7 +124,7 @@ np.set_printoptions(threshold=np.inf)
 # # 變成一維 
 # print("flatten :",array.flatten())
 
-# # 把 shape 中 各個維度的 channel 長度為 1 的刪除
+# # 把 shape 中 各個維度(dim)的 channel 長度為 1 的刪除
 # array = np.array([[5,3,2,1,4,8,6,7,9]])
 # print(array.shape)
 # array_squ = array.squeeze()
