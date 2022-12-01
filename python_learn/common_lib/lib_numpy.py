@@ -121,15 +121,19 @@ np.set_printoptions(threshold=np.inf)
 
 
 #  << 維度相關 >> ####################################################
-# # 變成一維 
+# # < 變成一維 > 
 # print("flatten :",array.flatten())
 
-# # 把 shape 中 各個維度(dim)的 channel 長度為 1 的刪除
+# # < 把 shape 中 各個維度(dim)的 channel 長度為 1 的刪除 >
 # array = np.array([[5,3,2,1,4,8,6,7,9]])
 # print(array.shape)
 # array_squ = array.squeeze()
 # print(array_squ.shape)
 
+# # 重新調整 dimension 大小
+# print("reshape :\n",array.reshape(2,6))
+# # 如果用 -1 ，np 會自動計算 -1 的值可以是多少
+# print("reshape :\n",array.reshape(2,-1))
 
 # # << 較不常用到 >> ####################################################
 # # < 百分位數 percentile >

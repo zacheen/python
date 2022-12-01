@@ -1,5 +1,6 @@
 # 時間格式 https://www.geeksforgeeks.org/python-strftime-function/
 
+# timeformat # time string 
 from datetime import datetime
 
 now = datetime.now()
