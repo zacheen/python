@@ -130,10 +130,39 @@ np.set_printoptions(threshold=np.inf)
 # array_squ = array.squeeze()
 # print(array_squ.shape)
 
-# # 重新調整 dimension 大小
+# # < 重新調整 dimension 大小 : reshape >
 # print("reshape :\n",array.reshape(2,6))
 # # 如果用 -1 ，np 會自動計算 -1 的值可以是多少
 # print("reshape :\n",array.reshape(2,-1))
+# # 注意 reshape 會公用記憶體 !!
+# test_reshape_1 = array.copy()
+# test_reshape_2 = test_reshape_1.reshape(2,6)
+# print("before : \n", 
+# "test_reshape_1 :\n", test_reshape_1, "\n",
+# "test_reshape_2 :\n", test_reshape_2)
+# test_reshape_1[0,0] = 100 # test_reshape_1 跟 test_reshape_2 都會修改
+# print("before : \n", 
+# "test_reshape_1 :\n", test_reshape_1, "\n",
+# "test_reshape_2 :\n", test_reshape_2)
+
+# # < 重新調整 dimension 大小 : resize >
+# # 其實跟 reshape 很像，只是如果大小不符會補重複的資料或刪除資料
+print("resize(2,6) :\n",np.resize(array,(2,6)))
+print("resize(2,5) :\n",np.resize(array,(2,5)))
+print("resize(2,7) :\n",np.resize(array,(2,7)))
+
+# # << 轉型 >> ####################################################
+# # < 轉 int >
+# # 有時候 np 印出來是單個數值，但其實 type 是 np 的 type
+# ten = np.array(10)
+# print(ten)
+# print(type(ten))
+# ten = int(ten)
+# print(ten)
+# print(type(ten))
+
+# # < 轉 list >
+# print(array.tolist())
 
 # # << 較不常用到 >> ####################################################
 # # < 百分位數 percentile >
