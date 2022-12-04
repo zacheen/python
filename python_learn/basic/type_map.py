@@ -30,6 +30,15 @@
 #     print(i)
 
 # #------------------------------------
+# # 如果同時要取 index 跟 value (map)
+# # map 不能直接用 enumerate !! 坑 
+# m = {1:"a",2:"b"}
+# for key, val in m.items():
+#     print(key, val)
+
+# print(list(range(5,-1)))
+
+# #------------------------------------
 # # 使用 map 轉型
 # nums = [1,3,5]
 # # nums = ["1","3","5"]
