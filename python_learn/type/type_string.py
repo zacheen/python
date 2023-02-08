@@ -21,6 +21,35 @@
 # print("!1".isnumeric())
 
 # #------------------------------------
+# # 判斷是不是包含 subString
+# print("123 in 01234 :", "123" in "01234")
+# print("123 in 01234 :", "01234".__contains__("123"))
+
+# print("1235 in 01234 :", "1235" in "01234")
+# print("1235 in 01234 :", "01234".__contains__("1235"))
+
+# #------------------------------------
+# # # split 分割字串
+# s = "1\t2\t3\n4\n"
+# print("use \\t to split :",s.split("\t"))
+# # # 注意 split 只能使用一個字串去切割, 不能使用多個
+# # #     如果要使用多個 應該要使用 re.split()
+# # # 或是使用 replace 
+# # # 用 ["\t", "\n"] 分割
+# split_list = ["\t", "\n"]
+# for split_word in split_list :
+#     s = s.replace(split_word,"@@@")
+# print("use \\t, \\n to split :", s.split("@@@"))
+# # # 需要注意的是 應該要替換成真的不會用到的字串
+# # 錯誤範例
+# # 想要使用 "and" 跟 "d" 跟 "t" 分割 (所以先把 "t", "and" 轉換成 "d", 再用 "d" 分割)
+# s = "I want this ant toy and gameboy"
+# print("wrong : "+ str(s.replace("t","d").replace("and","d").split("d")))
+# # 錯誤 : ['I w', ' ', 'his ', ' ', 'oy ', ' gameboy']
+# print("right : "+ str(s.replace("t","@@@").replace("and","@@@").replace("d","@@@").split("@@@")))
+# # 正確 : ['I wan', ' ', 'his an', ' ', 'oy ', ' gameboy']
+
+# #------------------------------------
 # # join 組合成字串
 # # 注意 !! 只能用 str 組合
 # # ll = [1,48,3] 
