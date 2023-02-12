@@ -1,3 +1,6 @@
+
+    {'c': 1, 'b': 1, 'a': 1, 'e': 0} 不等於 {'c': 1, 'b': 1, 'a': 1}
+
 1129. Shortest Path with Alternating Colors
     一開始 沒想到 最長的長度可以到哪裡
     但是後來有想到
