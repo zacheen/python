@@ -35,7 +35,10 @@ class Solution:
 
 
 s = Solution()
-print(s.findCircleNum([[1,1,0],[1,1,0],[0,0,1]]))
+# M[i][j] 代表 點i與點j有相連
+# 請問總共有幾區 (若兩點之前有相連代表是同一區)
+print(s.findCircleNum(M = [[1,1,0],[1,1,0],[0,0,1]]))
+print(s.findCircleNum(M = [[1,0,0],[0,1,0],[0,0,1]]))
 
 
 

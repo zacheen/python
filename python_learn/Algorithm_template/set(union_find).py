@@ -1,3 +1,7 @@
+# union 是用來
+    # 看說兩點之間有沒有關係
+    # 沒關係的區域共有幾個 (有count版本)
+
 # 無count版本
 class UF:
     def __init__(self, n):
@@ -46,13 +50,11 @@ class Solution:
                     uf.union(i, j)
 
         return uf.count
-
-
-
+# M[i][j] 代表 點i與點j有相連
+# 請問總共有幾區 (若兩點之前有相連代表是同一區)
 s = Solution()
-print(s.findCircleNum([[1,1,0],[1,1,0],[0,0,1]]))
-
-
+print(s.findCircleNum(M = [[1,1,0],[1,1,0],[0,0,1]]))
+print(s.findCircleNum(M = [[1,0,0],[0,1,0],[0,0,1]]))
 
 # 解釋 --------------------------------------------
 
