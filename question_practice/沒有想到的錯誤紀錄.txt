@@ -18,3 +18,10 @@
 
     如果要增加邊界的話
 
+274. H-Index
+    沒有想到 corner case 
+        應該說沒有想到 for 迴圈沒有包含到所有的狀況
+        
+2477. Minimum Fuel Cost to Report to the Capital
+    沒有想清楚 binary tree 的定義
+    

@@ -53,6 +53,9 @@ np.set_printoptions(threshold=np.inf)
 # val_float[0] = np.NINF
 # print("-np.inf :",val_float)
 
+# # 複製 copy clone
+# print("copy np :",array.copy())
+
 # # 轉換型態、改變型態 (轉型) 
 # # 但是 大轉小會出問題 EX int32 轉 int16
 # new_array = array.astype("float16")
@@ -147,9 +150,9 @@ np.set_printoptions(threshold=np.inf)
 
 # # < 重新調整 dimension 大小 : resize >
 # # 其實跟 reshape 很像，只是如果大小不符會補重複的資料或刪除資料
-print("resize(2,6) :\n",np.resize(array,(2,6)))
-print("resize(2,5) :\n",np.resize(array,(2,5)))
-print("resize(2,7) :\n",np.resize(array,(2,7)))
+# print("resize(2,6) :\n",np.resize(array,(2,6)))
+# print("resize(2,5) :\n",np.resize(array,(2,5)))
+# print("resize(2,7) :\n",np.resize(array,(2,7)))
 
 # # << 轉型 >> ####################################################
 # # < 轉 int >
