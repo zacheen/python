@@ -19,6 +19,8 @@ import math
 array = np.random.randint(1,11,(3,4)) # 隨機產生 1~10(不包含11) 之間的數字 大小為 3*4
 array = array.astype("float16") # 有時候會需要 float 才能計算
 # numpy.random.randint(low, high=None, size=None, dtype='l')
+# # 初始化 方法5 讀取 byte 檔
+# array = np.fromfile(XX, dtype=np.float32, count=-1, offset=0)
 print(array)
 
 # # 初始值
