@@ -198,18 +198,24 @@
 # print("deep  :",red_deepcopy)
 
 # # 不可使用 * 初始化 List 多維陣列
-# ll = [[False]*4]*3 # 二維的
-# print(ll)
+# len_x = 4
+# len_y = 3
+# ll = [[False]*len_y]*len_x # 二維的
 # ll[0][0] = True  
 # # 每個list的第一個 都變成 True 了  因為不是用 copy
 # print(ll)
+# # <<正確>>
+# ll = [[False]*len_y for _ in range(len_x)] # <- 要用 for 迴圈 (目前最快的方法)
+# ll[0][0] = True  
+# print(ll)
 
-# 在計算時 pop (前面的會先計算)
-ll = [1,2,3,4]
-print("ll.pop()+ll[-1] :",ll.pop()+ll[-1]) # 7
-ll = [1,2,3,4]
-print("ll[-1]+ll.pop() :",ll[-1]+ll.pop()) # 8
-# 把最後一個項目加到 倒數第二個後 刪除
-ll = [1,2,3,4]
-ll[-1] = ll[-2]+ll.pop()  # 這樣寫比較直覺
-print("ll :",ll) # 8
+# # 在計算時 pop (前面的會先計算)
+# ll = [1,2,3,4]
+# print("ll.pop()+ll[-1] :",ll.pop()+ll[-1]) # 7
+# ll = [1,2,3,4]
+# print("ll[-1]+ll.pop() :",ll[-1]+ll.pop()) # 8
+
+# # 把最後一個項目加到 倒數第二個後 刪除
+# ll = [1,2,3,4]
+# ll[-1] = ll[-2]+ll.pop()  # 這樣寫比較直覺
+# print("ll :",ll) # 8
