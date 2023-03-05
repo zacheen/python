@@ -54,26 +54,20 @@ def binarySearch2(nums, target):
         else:
             right = mid
 
-    # Post-processing:
     # End Condition: left == right
-    if left != len(nums) and nums[left] == target:  #而且是真的需要的ㄟ
-        return left
-    return -1
-    # 不懂為什麼要 left != len(nums) ? 
-    # 解釋範例  註解上面
-    # if left == len(nums) :
-    #     return str(target)+"的範圍在 " + str(left) + " 之後"
-    # elif nums[left] == target:
-    #     return left
-    # elif left == 0 :
-    #     return str(target)+"的範圍在 " + str(0) + " 之前"
-    # else :
-    #     return str(target)+"的範圍在 " + str(left-1) + " 到 " + str(left) + " 之間"
+    # 如果要回傳 insert 位置 ##########
+    return left
+    ########################################
 
+    # 如果要回傳找不到 ##########
+    if left != len(nums) and nums[left] == target:  # 如果不是超過範圍 且 在範圍內找不到 target == 沒有此項目
+        return left
+    return -1 # -1 代表找不到
+    ########################################
 # print(binarySearch2([2,4,5,6,7], 4))
 # print(binarySearch2([2,4,5,6,7], 3))
 for i in range(1,12) :
-    print(binarySearch2([2,4,6,8,10], i))
+    print("num :", i, "insert_place :", binarySearch2([2,4,6,8,10], i))
 
 def binarySearch3(nums, target):
     if len(nums) == 0:
