@@ -13,7 +13,7 @@ heapq.heappush(minheapList, 3)
 print("heappush 3 :", minheapList)
 
 # 取出最小的項目 (取出最頂點的項目)
-heapq.heappop(minheapList)
+print("get smallset item :",heapq.heappop(minheapList))
 print("heappop 1 :", minheapList)
 
 # 下面這兩個function 在n小的時候比較適合用
