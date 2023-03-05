@@ -21,20 +21,21 @@ def binarySearch1(nums, target):
     # left 會越過 right
     while left <= right:
         mid = (left + right) // 2
-        print(left, mid, right, " : ", nums[left], nums[mid], nums[right])
+        # print(left, mid, right, " : ", nums[left], nums[mid], nums[right])
         if nums[mid] == target:
             return mid
         elif nums[mid] < target:
             left = mid + 1 # 這裡是 left 會大於 right 的原因
         else:
             right = mid - 1
-    print(left, right)
+    # print(left, right)
 
     # End Condition: left > right
     return -1
 
-# print(binarySearch1([2,4,5,6,7], 4))
-# print(binarySearch1([2,4,5,6,7], 3))
+# # test
+# for i in range(1,12) :
+#     print("num :", i, "binarySearch1 insert_place :", binarySearch1([2,4,6,8,10], i))
 
 def binarySearch2(nums, target):
     # 其實不用
@@ -58,19 +59,20 @@ def binarySearch2(nums, target):
             right = mid
 
     # End Condition: left == right
-    # 如果要回傳 insert 位置 ##########
+
+    # 如果要回傳 insert 位置 ################
     return left
     ########################################
 
-    # 如果要回傳找不到 ##########
+    # 如果找不到要回傳 -1 ###################
     if left != len(nums) and nums[left] == target:  # 如果不是超過範圍 且 在範圍內找不到 target == 沒有此項目
         return left
     return -1 # -1 代表找不到
     ########################################
-# print(binarySearch2([2,4,5,6,7], 4))
-# print(binarySearch2([2,4,5,6,7], 3))
-for i in range(1,12) :
-    print("num :", i, "insert_place :", binarySearch2([2,4,6,8,10], i))
+
+# # test correct
+# for i in range(1,12) :
+#     print("num :", i, "binarySearch2 insert_place :", binarySearch2([2,4,6,8,10], i))
 
 def binarySearch3(nums, target):
     if len(nums) == 0:
@@ -92,8 +94,9 @@ def binarySearch3(nums, target):
     if nums[right] == target: return right
     return -1
 
-# print(binarySearch3([2,4,5,6,7], 4))
-# print(binarySearch3([2,4,5,6,7], 3))
+# # test correct
+# for i in range(1,12) :
+#     print("num :", i, "binarySearch3 insert_place :", binarySearch3([2,4,6,8,10], i))
 
 # 我習慣用這種 因為最簡單
 def binarySearch_adv(nums, target):
@@ -114,7 +117,7 @@ def binarySearch_adv(nums, target):
     if nums[right] == target: return right
     return -1
 
-# 確認每個位置都不會出問題
+# # test correct
 # for i in range(1,12) :
-#     print(binarySearch_adv([2,4,6,8,10], i))
+#     print("num :", i, "binarySearch_adv insert_place :", binarySearch_adv([2,4,6,8,10], i))
 
