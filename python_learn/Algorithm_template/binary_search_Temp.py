@@ -121,3 +121,26 @@ def binarySearch_adv(nums, target):
 # for i in range(1,12) :
 #     print("num :", i, "binarySearch_adv insert_place :", binarySearch_adv([2,4,6,8,10], i))
 
+# 可以嘗試用這個看看 (看起來好像更簡潔了)
+# 這個方法就是一定要做到最後 就算中間有找到答案 還是會做到 l == r
+def binarySearch_adv2(nums, target):
+    left, right = 0, len(nums) # right 通常會超出界線(因為執行的時候不會執行到這個數字)
+    while left < right:
+        mid = (left + right) // 2
+        if nums[mid] < target : # 條件 (如果 == target 應該要是 False)
+            # 沒通過
+            left = mid + 1
+        else:
+            # 通過(包含 == target 的情況)
+            right = mid 
+
+    return left
+
+# test correct
+ll = [2,4,6,8,10]
+for i in range(0,13) :
+    insert_place = binarySearch_adv2(ll, i)
+    insert_result = ll.copy()
+    insert_result.insert(insert_place, i)
+    print("num :", i, "binarySearch_adv2 insert_place :", insert_place, "insert result :", insert_result)
+

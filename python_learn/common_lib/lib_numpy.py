@@ -81,6 +81,8 @@ np.set_printoptions(threshold=np.inf)
 # print( np.where( pass_arr == np.inf, np.nan, pass_arr) )
 # # 排序 
 # print("sort :\n",np.sort(array))
+# # 總和
+# print("sum  :",np.sum(array))
 # # 平均 
 # print("mean :",np.mean(array))
 # # 平均 (nan 的值會去掉 )
