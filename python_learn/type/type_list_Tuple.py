@@ -2,8 +2,8 @@
 # # # <初始化> 初始化指定大小list
 # ll = [False]*10
 # # # <初始化> list
-# ll = [1,2,3,5,6,7,8,9,8]
-# print("init :",ll)
+ll = [1,2,3,5,6,7,8,9,8]
+print("init :",ll)
 # # # <增加項目>
 # ll.append(4)
 # print("append :",ll)
@@ -115,6 +115,12 @@
 # ll = [0,1,2,3,4,5,6,7]
 # reverse(ll,3,6)
 # print("reverse region :", ll)
+
+# #------------------------------------
+# # 隨機 隨機list的順序
+# import random
+# random.shuffle(ll)
+# print("shuffle :",ll)
 
 # #------------------------------------
 # # 如果要用 compare 來 sort
