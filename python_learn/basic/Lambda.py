@@ -1,3 +1,5 @@
+# 如果是要找 [... for ...] 的用法，去看 short_code.py
+
 # Lambda (其實Lambda就是一個function)
 # 語法 : 
 # 基本用法

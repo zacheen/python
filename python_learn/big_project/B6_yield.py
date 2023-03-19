@@ -1,11 +1,4 @@
-# # 創建 generator -------------------------------------
-# # < 使用 () 跟 for >
-# powers = (x**2 for x in range(10))
-# # print(powers)  # 注意 是generator
-# # print(powers[3]) # generator 不能直接取用
-# for x in powers:
-#     print(x)
-
+# # 創建 function 的 generator -------------------------------------
 # # < 使用 function 跟 yield >
 # def yield_test(n):
 #     print("start n =", n)  # 並不會重複執行
@@ -24,7 +17,7 @@
 #     print("--------")
 
 # #  -------------------------------------
-# # next : 可以單獨呼叫 generator
+# # next : 可以單獨呼叫 generator 的下一個值
 # # send : 會把值傳入 function 中，再繼續做，直到回傳 yield
 # def test():
 #     print("start i = 0")
