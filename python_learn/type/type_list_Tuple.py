@@ -84,12 +84,11 @@ print("init :",ll)
 # #------------------------------------
 # # list 排序 sort 使用自定義function ( compare )
 # # 如果是一樣的順序就會按照原本的排序 ?? (看起來是這樣還沒驗證)
-# from functools import cmp_to_key
-# def compare(item1, item2):
-#     return item1 > item2
-
-# ll = [6, 8, 10, 23, -4, -7]
-# sorted(ll, key=cmp_to_key(compare))
+# # 使用第二個值來排序
+# def hash_value(item1):
+#     return item1[1]
+# ll = [("no mean", 6), ("no mean", 8), ("no mean", 23), ("no mean", 10), ("no mean", -7), ("no mean", -4)]
+# ll = sorted(ll, key=hash_value)
 # print(ll)
 
 # #------------------------------------

@@ -1,4 +1,6 @@
 import bisect
+# bisect 只能儲存數字
+
 # bisect.bisect_left(ll, x, lo=0, hi=len(ll), *, key=None)
     # 回傳此項目在相同項目中第一個位置
     # 在 ll 當中找到一個位置，讓 x 插入後 ll 仍然是排序好的。
