@@ -33,6 +33,31 @@ class Solution(object):
                 next5 = nums[i5] * 5
         return nums[-1]
 
+# me 20230305 重新練習
+# class Solution:
+#     def nthUglyNumber(self, n):
+#         last_small_2_indx = 0
+#         last_small_3_indx = 0
+#         last_small_5_indx = 0
+
+#         mem = [1]
+#         mul_2 = mem[last_small_2_indx] * 2
+#         mul_3 = mem[last_small_3_indx] * 3
+#         mul_5 = mem[last_small_5_indx] * 5
+
+#         for _ in range(n-1):
+#             next_small_mul = min(mul_2, mul_3, mul_5)
+#             mem.append(next_small_mul)
+#             if next_small_mul == mul_2 :
+#                 last_small_2_indx += 1
+#                 mul_2 = mem[last_small_2_indx] * 2
+#             if next_small_mul == mul_3 :
+#                 last_small_3_indx += 1
+#                 mul_3 = mem[last_small_3_indx] * 3
+#             if next_small_mul == mul_5 :
+#                 last_small_5_indx += 1
+#                 mul_5 = mem[last_small_5_indx] * 5
+#         return mem[-1]
 
 s = Solution()
 print(s.nthUglyNumber(20))
