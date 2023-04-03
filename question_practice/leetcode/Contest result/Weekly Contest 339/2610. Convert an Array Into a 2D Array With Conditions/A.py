@@ -2,7 +2,7 @@
 from collections import Counter
 from typing import List
 class Solution:
-    def findMatrix(self, nums: List[int]) -> List[List[int]]:
+    def findMatrix(self, nums):
         cou = Counter(nums)
         ans = []
         while len(cou.keys()) != 0 :
@@ -18,6 +18,10 @@ class Solution:
             for k in remove_item :
                 del(cou[k])
         return ans
+
+# given ans 
+# 因為 1 <= nums[i] <= nums.length 
+    # 所以其實我可以不用 Counter，可以用 list[num] 來計數
 
 s = Solution()
 print(s.findMatrix([1,3,4,1,2,3,1]))

@@ -72,31 +72,55 @@ class Solution:
         
         return ans
 
-# given ans
+# given ans 改寫 (改成有意義的變數名稱) Beats 100%
+# 我是透過這一個點去計算下一個有可能的位置
+# 但是這裡是先把有可能的點列好(can_go)，然後從這個位置判斷要從 can_go 取出哪些下一回合可以走的點
+    # 這樣就不會判斷很多次，只需要判斷 can_go 剩餘的點是不是現在這個點，可以走到的位置
 from sortedcontainers import SortedSet
 class Solution:
     def minReverseOperations(self, n: int, p: int, banned: List[int], k: int):
-        a, b, c, q, v = [-1] * n, [False] * n, [SortedSet(), SortedSet()], deque([p]), 0
+        ans = [-1] * n
+        ban = [False] * n
+        can_go = [SortedSet(), SortedSet()]
+        stack = deque([p])
+        step_count = 0
+        
+        # 紀錄不能走的位置
         for x in banned:
-            b[x] = True
+            ban[x] = True
+
+        # 跟我 k 要分偶數跟奇數相同
         for i in range(n):
-            if not b[i]:
-                c[i & 1].add(i)
-        c[p & 1].remove(p)
-        while q:
-            for s in range(len(q), 0, -1):
-                w = q.popleft()
-                a[w], x = v, c[abs(w - k + 1) & 1].bisect_right(abs(w - k + 1) - 1)
-                while x < len(c[abs(w - k + 1) & 1]) and c[abs(w - k + 1) & 1][x] <= n - 1 - abs(n - w - k):
-                    q.append(c[abs(w - k + 1) & 1][x])
-                    c[abs(w - k + 1) & 1].remove(c[abs(w - k + 1) & 1][x])
-            v += 1
-        return a
+            if not ban[i]:
+                can_go[i & 1].add(i)
+        can_go[p & 1].remove(p)
+        # print(can_go)
+
+        while stack:
+            for _ in range(len(stack)):
+                now_p = stack.popleft()
+                ans[now_p] = step_count
+                smallest_possible_p = abs(now_p - k + 1)
+                next_pos_odd_even = smallest_possible_p & 1
+                next_candidate = can_go[next_pos_odd_even]
+                smallest_possible_indx = next_candidate.bisect_right(smallest_possible_p - 1) # -1 是為了找到下一個位置
+                # print("next_candidate :", next_candidate, now_p, smallest_possible_p, smallest_possible_indx)
+                # print("stack :",stack)
+                while smallest_possible_indx < len(next_candidate):
+                    next_p = next_candidate[smallest_possible_indx]
+                    if next_p > n - 1 - abs(n - now_p - k) :
+                        break
+                    stack.append(next_p)
+                    next_candidate.remove(next_p)
+                # print("stack :",stack)
+            step_count += 1
+        return ans
 s = Solution()
-print(s.minReverseOperations(n = 4, p = 0, banned = [1,2], k = 4))
-print(s.minReverseOperations(n = 5, p = 0, banned = [2,4], k = 3))
-print(s.minReverseOperations(n = 4, p = 2, banned = [0,1,3], k = 1))
-print(s.minReverseOperations(n = 4, p = 0, banned = [], k = 4))
+# print(s.minReverseOperations(n = 4, p = 0, banned = [1,2], k = 4))
+# print(s.minReverseOperations(n = 5, p = 0, banned = [2,4], k = 3))
+# print(s.minReverseOperations(n = 4, p = 2, banned = [0,1,3], k = 1))
+# print(s.minReverseOperations(n = 4, p = 0, banned = [], k = 4))
+print(s.minReverseOperations(n = 20, p = 10, banned = [], k = 5))
 
 
 
