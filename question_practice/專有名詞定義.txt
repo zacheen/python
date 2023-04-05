@@ -4,6 +4,9 @@ subset, subarray [1,2,3]
     subarray
         只能是連續的 像 [1,2] [2,3]
     
+substrings 
+    
+    
 前序 (preorder), 中序 (inorder) 和後序 (postorder)
     https://shubo.io/iterative-binary-tree-traversal/
         4

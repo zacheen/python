@@ -1,3 +1,41 @@
+# 好像是泛用型 (binarySearch2 變形而來的)
+    # 最後的 l 為插入的位置 (所以 l 有可能最後會超出 list 的長度)
+        # 要注意如果有相同的項目，插入的位置是相同的項目"之前"
+    # 只有通過與不通過
+# 可以嘗試用這個看看 (看起來好像更簡潔了)
+# 這個方法就是一定要做到最後 就算中間有找到答案 還是會做到 l == r
+def binarySearch_adv2(nums, target):
+    left, right = 0, len(nums) # right 通常會超出界線(因為執行的時候不會執行到這個數字) # 但是最後 l 有可能會超出範圍
+    while left < right:
+        mid = (left + right) // 2
+        if nums[mid] < target : # 條件 (如果 == target 的情況 要是 False)
+            # 沒通過 或 數字應該要往大的方向跑(目標沒有在 left 跟 mid 之間)
+            left = mid + 1
+        else:
+            # 通過(包含 == target 的情況)
+            right = mid 
+
+    # # 如果找不到要回傳 -1
+    # if left < len(nums) and nums[left] == target :
+    #     return left
+    # else :
+    #     return -1
+
+    # 如果要回傳插入的位置
+    return left
+
+# test correct
+ll = [2,4,6,8,10]
+for i in range(0,13) :
+    insert_place = binarySearch_adv2(ll, i)
+    insert_result = ll.copy()
+    insert_result.insert(insert_place, i)
+    print("num :", i, "binarySearch_adv2 insert_place :", insert_place, "insert result :", insert_result)
+
+
+
+
+
 # 這幾中template不同在於 "跳出迴圈的條件不同"
     # 1 : left 會越過 right 
         # 如果right會用到 且 不需要回傳找不到的位置(其實是不是就是 right 的位置阿 ??)
@@ -65,14 +103,19 @@ def binarySearch2(nums, target):
     ########################################
 
     # 如果找不到要回傳 -1 ###################
-    if left != len(nums) and nums[left] == target:  # 如果不是超過範圍 且 在範圍內找不到 target == 沒有此項目
-        return left
+    # 發現好像不用?? 因為 nums[left] == target 在 while 裡面就有判斷了
+    # if left != len(nums) and nums[left] == target:  # 如果不是超過範圍 且 在範圍內找不到 target == 沒有此項目
+    #     return left
     return -1 # -1 代表找不到
     ########################################
 
-# # test correct
-# for i in range(1,12) :
-#     print("num :", i, "binarySearch2 insert_place :", binarySearch2([2,4,6,8,10], i))
+# test correct
+ll = [2,4,6,8,10]
+for i in range(0,13) :
+    insert_place = binarySearch2(ll, i)
+    insert_result = ll.copy()
+    insert_result.insert(insert_place, i)
+    print("num :", i, "binarySearch2 insert_place :", insert_place, "insert result :", insert_result)
 
 def binarySearch3(nums, target):
     if len(nums) == 0:
@@ -120,27 +163,3 @@ def binarySearch_adv(nums, target):
 # # test correct
 # for i in range(1,12) :
 #     print("num :", i, "binarySearch_adv insert_place :", binarySearch_adv([2,4,6,8,10], i))
-
-# 可以嘗試用這個看看 (看起來好像更簡潔了)
-# 這個方法就是一定要做到最後 就算中間有找到答案 還是會做到 l == r
-def binarySearch_adv2(nums, target):
-    left, right = 0, len(nums) # right 通常會超出界線(因為執行的時候不會執行到這個數字)
-    while left < right:
-        mid = (left + right) // 2
-        if nums[mid] < target : # 條件 (如果 == target 應該要是 False)
-            # 沒通過
-            left = mid + 1
-        else:
-            # 通過(包含 == target 的情況)
-            right = mid 
-
-    return left
-
-# test correct
-ll = [2,4,6,8,10]
-for i in range(0,13) :
-    insert_place = binarySearch_adv2(ll, i)
-    insert_result = ll.copy()
-    insert_result.insert(insert_place, i)
-    print("num :", i, "binarySearch_adv2 insert_place :", insert_place, "insert result :", insert_result)
-
