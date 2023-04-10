@@ -33,6 +33,23 @@ class Solution:
 
         return not stack
 
+# 20230410 再次練習
+# 這樣觀念是沒錯 但是沒有辦法提早結束  
+# class Solution:
+#     def isValid(self, s: str) -> bool:
+#         stack = ["end"]
+#         for c in s :
+#             if c == ")" and stack[-1]== "(" :
+#                 stack.pop()
+#             elif c == "}" and stack[-1]== "{" :
+#                 stack.pop()
+#             elif c == "]" and stack[-1]== "[" :
+#                 stack.pop()
+#             else :
+#                 stack.append(c)
+#         # print(stack)
+#         return len(stack) == 1
+
 s = Solution()
 print(s.isValid("()[]{}"))
 print(s.isValid("()[{}]"))
