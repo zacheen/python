@@ -23,6 +23,25 @@ class Solution:
         
         return lps(0, len(s)-1)
 
+# 20230414 重新練習 Beats 96.24%
+# 使用 recursive 的方法
+import functools
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        @functools.lru_cache()
+        def dp(l,r):
+            if l > r :
+                return 0
+            if l == r :
+                return 1
+            
+            if s[l] == s[r] :
+                return dp(l+1, r-1) + 2
+            else :
+                return max(dp(l+1, r), dp(l, r-1))
+
+        return dp(0,len(s)-1)
+
 s = Solution()
 print(s.longestPalindromeSubseq("bbbab"))
 print(s.longestPalindromeSubseq("cbbd"))
