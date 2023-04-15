@@ -37,3 +37,9 @@ import math
 # print("round",round(-5.4))
 # print("round",round(5.5))
 # print("round",round(-5.5))
+
+# #------------------------------------
+# < sqrt > 平方根
+print("sqrt(4)",math.sqrt(4))
+print("sqrt(16)",math.sqrt(16))
+print("sqrt(17)",math.sqrt(17))
