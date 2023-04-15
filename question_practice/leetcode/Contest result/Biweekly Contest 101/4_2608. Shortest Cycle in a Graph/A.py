@@ -1,8 +1,9 @@
+from typing import List
+from collections import defaultdict
+
 # my
 # false : print(s.findShortestCycle(n = 8, edges = [[0,1],[1,2],[2,3],[3,4],[4,5],[0,7],[0,6],[5,7],[5,6]])) # 4 # 0 -> 6 -> 7 -> 0 
     # 這種情況我有可能會先找到 0,1,2,3,4,5,7,0 ,但是 0,6,7,0 更短，但因為 7 我走過了 所以我不會繼續走到 0
-from typing import List
-from collections import defaultdict
 class Solution:
     def findShortestCycle(self, n: int, edges: List[List[int]]) -> int:
         # 1 <= edges.length <= 1000
@@ -93,6 +94,42 @@ class Solution:
                         ans = min(ans, dis[can_go_p]+dis[now_p]+1) # +1 是為了加上 i 這個點
                         break
 
+        if ans == math.inf :
+            return -1
+        else :
+            return ans 
+        
+# given ans 2 Beats 49.95%
+    # 這邊會比較快的原因是 1 <= edges.length <= 1000
+    # 不過這個條件通常不會達成
+# 這裡的想法是
+    # 因為每條路徑都是不重複的
+    # 所以就去判斷 每條edges 一個當起始點(start_p) 一個當終點(destin_p) 形成的最小cycle的長度
+
+    # 所以就是從 start_p bfs (走過就不用走了)，看會不會走到 destin_p
+class Solution:
+    def findShortestCycle(self, n: int, edges: List[List[int]]) -> int:
+        path = defaultdict(list)
+        for p1,p2 in edges :
+            path[p1].append(p2)
+            path[p2].append(p1)
+
+        ans = math.inf
+        for start_p, destin_p in edges:
+            dis = [math.inf]*(n)
+            dis[start_p] = 0
+            can_go_list = deque([start_p])
+            while can_go_list :
+                # print(can_go_list)
+                now_p = can_go_list.popleft()
+                for can_go_p in path[now_p] :
+                    if (now_p != start_p or can_go_p != destin_p) and dis[can_go_p] == math.inf :
+                        dis[can_go_p] = dis[now_p] + 1
+                        can_go_list.append(can_go_p)
+                        if can_go_p == destin_p :
+                            ans = min(ans , dis[destin_p]+1)
+                            break
+            # ans = min(ans , dis[destin_p]+1)
         if ans == math.inf :
             return -1
         else :
