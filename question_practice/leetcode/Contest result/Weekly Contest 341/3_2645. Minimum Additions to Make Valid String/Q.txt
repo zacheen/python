@@ -1,4 +1,4 @@
-6375. Minimum Additions to Make Valid String
+2645. Minimum Additions to Make Valid String
 User Accepted:6372
 User Tried:8193
 Total Accepted:6620

@@ -1,4 +1,4 @@
-6378. Minimize the Total Price of the Trips
+2646. Minimize the Total Price of the Trips
 User Accepted:604
 User Tried:1824
 Total Accepted:646

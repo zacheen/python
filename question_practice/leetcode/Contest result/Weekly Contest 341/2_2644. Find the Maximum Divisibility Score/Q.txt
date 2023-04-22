@@ -1,4 +1,4 @@
-6350. Find the Maximum Divisibility Score
+2644. Find the Maximum Divisibility Score
 User Accepted:9633
 User Tried:10358
 Total Accepted:9826
