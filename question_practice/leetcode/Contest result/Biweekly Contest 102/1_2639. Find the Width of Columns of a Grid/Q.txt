@@ -1,4 +1,4 @@
-6333. Find the Width of Columns of a Grid
+2639. Find the Width of Columns of a Grid
 User Accepted:10061
 User Tried:10518
 Total Accepted:10374

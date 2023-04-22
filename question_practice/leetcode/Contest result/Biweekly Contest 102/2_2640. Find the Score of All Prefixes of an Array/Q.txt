@@ -1,4 +1,4 @@
-6334. Find the Score of All Prefixes of an Array
+2640. Find the Score of All Prefixes of an Array
 User Accepted:9538
 User Tried:10060
 Total Accepted:9778

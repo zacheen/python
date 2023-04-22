@@ -1,4 +1,4 @@
-6336. Design Graph With Shortest Path Calculator
+2642. Design Graph With Shortest Path Calculator
 User Accepted:2827
 User Tried:3496
 Total Accepted:3051

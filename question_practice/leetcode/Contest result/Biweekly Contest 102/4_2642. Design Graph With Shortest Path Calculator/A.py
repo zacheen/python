@@ -16,6 +16,8 @@ class Graph:
         self.fill_distance()
         
     def fill_distance(self):
+        # 沒想到要怎麼減少這裡的時間複雜度
+        # 我再想 這裡應該可以變成 order N
         self.distance = [[inf]*self.n for _ in range(self.n)]
         for i in range(self.n) :
             self.distance[i][i] = 0
@@ -32,6 +34,7 @@ class Graph:
 
     def addEdge(self, edge: List[int]) -> None:
         self.path[edge[0]].append((edge[1], edge[2]))
+        # 沒想到要怎麼減少這裡的時間複雜度
         self.fill_distance()
         return
 
@@ -40,6 +43,38 @@ class Graph:
         if ret == inf :
             ret = -1
         return ret
+    
+# my v2  Time Limit Exceeded
+from sortedcontainers import SortedList
+from math import inf
+from operator import neg
+class Graph:
+    def __init__(self, n: int, edges: List[List[int]]):
+        self.n = n
+        self.path = [[] for _ in range(n)]
+        for p1,p2,cost in edges :
+            self.path[p1].append((p2, cost))
+
+    def addEdge(self, edge: List[int]) -> None:
+        self.path[edge[0]].append((edge[1], edge[2]))
+        return
+
+    def shortestPath(self, node1: int, node2: int) -> int:
+        distance = [inf]*self.n
+        distance[node1] = 0
+        stack = SortedList([(0,node1)]) #(cost, p)
+        while stack :
+            total_cost, cost_less_p = stack[0]
+            del(stack[0])
+            for new_point, cost in self.path[cost_less_p] :
+                new_cost = total_cost + cost
+                if new_cost < distance[new_point] :
+                    distance[new_point] = new_cost
+                    stack.add((new_cost, new_point))
+
+                if new_point == node2 :
+                    return new_cost
+        return -1
 
 # given ans
 
