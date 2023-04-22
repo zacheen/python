@@ -7,18 +7,15 @@ class TreeNode:
         self.left = left
         self.right = right
         
-# my 
+# my Beats 76.16%
 class Solution:
     def replaceValueInTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        mem_val = []
-        mem_node = [root]
-        
         root.val = 0
+        mem_node = [root]
         while(mem_node) :
             now_mem_node = []
             now_mem_sum = 0
             for node in mem_node :
-                inside_val = []
                 inside_mem_node = []
                 if node.left :
                     now_mem_sum += node.left.val
@@ -39,7 +36,33 @@ class Solution:
         return root
 
 # given ans
-
+# 他把 child 的 parents 存起來，到時候就去找 child_sum[parents] 就可以找到總和
+# 然後有優化不用判斷 left right
+class Solution:
+    def replaceValueInTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        queue = [(root, None)]
+        while queue:
+            next_queue = []
+            child_sum = defaultdict(int)
+            p = {}
+            curr = 0
+            
+            for node, parent in queue:
+                child_sum[parent] += node.val
+                p[node] = parent
+                curr += node.val
+                if node.left:
+                    next_queue.append((node.left, node))
+                if node.right:
+                    next_queue.append((node.right, node))
+            
+            for node in p:
+                node.val = curr - child_sum[p[node]]
+            
+            queue = next_queue
+        
+        return root
+    
 # s = Solution()
 # print(s.())
 
