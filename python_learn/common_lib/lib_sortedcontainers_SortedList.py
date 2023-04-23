@@ -36,7 +36,7 @@ sl.remove('g')
 print("after remove\'e\' :",sl)
 # sl.remove('g') # (刪除項目不存在時會報錯)
 # print("after remove\'e\'",sl)
-# 方法 3 remove (刪除項目不存在時"不"會報錯)
+# 方法 3 discard (刪除項目不存在時"不"會報錯)
 sl.discard('h') 
 print("after discard\'h\' :",sl)
 sl.discard('h') 
@@ -45,3 +45,7 @@ print("after discard\'h\' :",sl)
 # 查找項目位置
 print("\'d\' 的位置 :",sl.bisect_left('d'))
 
+# pop 取出最後面的項目
+# 如果是預設順序從小到大，就會取出最大的項目
+print(sl.pop())
+print(sl)

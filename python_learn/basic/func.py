@@ -54,4 +54,9 @@
 #     function_inside()
 # function_outside()
 
+# # Type hints (這個其實沒有硬性的規定 "所以不會跳錯!!")
+# def appoint_return_type(num : int) -> int :
+#     print("input num :", num)
+#     return 'a'
+# print(appoint_return_type(1.5))
 

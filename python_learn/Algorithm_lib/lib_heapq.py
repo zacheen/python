@@ -8,7 +8,7 @@ minheapList = [i for i in range(10,0,-1)]
 heapq.heapify(minheapList)
 print("heapify :", minheapList)
 
-# 加入項目      (加到最尾端後 sort 那一列)
+# 加入項目      (加到最尾端後 調整那一列的順序)
 heapq.heappush(minheapList, 3)
 print("heappush 3 :", minheapList)
 
