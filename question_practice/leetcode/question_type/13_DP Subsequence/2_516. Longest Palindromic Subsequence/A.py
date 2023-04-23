@@ -42,6 +42,28 @@ class Solution:
 
         return dp(0,len(s)-1)
 
+# 找到其他的 given ans
+# # given ans Beats 40%
+# # Memory Beats 74.67%
+# class Solution:
+#     def longestPalindromeSubseq(self, s: str) -> int:
+#         n = len(s)
+#         # dp[i][j] := LPS's length in s[i..j]
+#         dp = [[0] * n for _ in range(n)]
+
+#         for i in range(n):
+#             dp[i][i] = 1
+
+#         for d in range(1, n):
+#             for i in range(n - d):
+#                 j = i + d
+#                 if s[i] == s[j]:
+#                     dp[i][j] = 2 + dp[i + 1][j - 1]
+#                 else:
+#                     dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+        
+#         return dp[0][n - 1]
+    
 s = Solution()
 print(s.longestPalindromeSubseq("bbbab"))
 print(s.longestPalindromeSubseq("cbbd"))
