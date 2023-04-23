@@ -1,0 +1,10 @@
+.py 轉 .exe \ 編譯 
+
+1. 安裝 pyinstaller
+    pip install pyinstaller
+
+2. 執行 .exe 輸出
+    cd 到 .py 所在目錄
+    執行 pyinstaller --onefile XXX.py
+    
+3. 輸出的 exe 會放在 dist 資料夾裡面
