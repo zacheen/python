@@ -1,5 +1,7 @@
 # 注意 minheap 不能取出特定 item
 import heapq
+    # heapq 沒有辦法自訂排序(一定是從小到大)，也沒有辦法 reverse
+    # 所以如果要取出最大的，可以把 -item 放進去 (因為加負號最大的就會變最小的)
 
 minheapList = [i for i in range(10,0,-1)]
 
@@ -16,12 +18,12 @@ print("heappush 3 :", minheapList)
 print("get smallset item :",heapq.heappop(minheapList))
 print("heappop 1 :", minheapList)
 
-# 下面這兩個function 在n小的時候比較適合用
+# 下面這兩個function 不用先 heapify 就可以使用了
+    # 裡面會自動判斷 要用sort 還是用heap
 # 取出 前n個 最大的項目
 # heapq.nlargest(n, iterable, key=None)
 print("max n :",heapq.nlargest(3, minheapList))
 print(minheapList)  # 原本的不會動到
-
 # 取出 前n個 最小的項目
 # heapq.nsmallest(n, iterable, key=None)
 print("min n :",heapq.nsmallest(3, minheapList))  # [2, 3, 3]
