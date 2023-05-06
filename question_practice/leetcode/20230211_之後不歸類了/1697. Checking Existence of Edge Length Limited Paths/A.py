@@ -116,9 +116,7 @@ import functools
         # 所以失敗
 
 # # given ans (unionByRank) Beats 66.75%
-    # 不確定 unionByRank 作用
-    # 是因為比較快嗎 ?
-        # 好像也沒有
+# 看起來這個 case unionByRank 跟普通的 Union 差不多
 class UF:
     def __init__(self, n):
         self.id = list(range(n))
@@ -163,7 +161,7 @@ class Solution:
                 ans[q[3]] = True
         return ans
     
-# given ans Beats 70.76%
+# given ans (Normal Union) Beats 70.76%
 class UF:
     def __init__(self, n):
         self.id = list(range(n))
