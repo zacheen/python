@@ -57,11 +57,6 @@
 # end = time.time()
 # print(end - start)
 
-
-# # @lru_cache(None)
-# # 效果等同 @cache  不過會根據使用的次數  調整記憶體空間
-# # 比較常用的取用就會比較快
-
 # # -- @functools.wraps -----------------------------------------------------------
 # __module__, __name__, __qualname__, __doc__, and __annotations__
 # 上面這些資訊會印出 原本 function 的 而不是 @function 的
