@@ -1,3 +1,7 @@
+# 題目 : 
+    # 從字串中按照順序抽取字母排列，且每個字母都要有
+    # 排出最小的字串 "abc" < "acb"
+
 # my fail
 # class Solution:
 #     def removeDuplicateLetters(self, s):
@@ -37,7 +41,7 @@
 
 #         return ans
 
-# given ans 
+# given ans Beats 87.13%
 class Solution:
     def removeDuplicateLetters(self, s) :
         # 紀錄每個重復的字母 最後的位置
@@ -48,7 +52,8 @@ class Solution:
         seen = set()
         for i, c in enumerate(s):
             if c not in seen:
-                # 如果 stack 裡面有東西 && 這個字母小於目前stack最尾端的字 
+                # 如果 stack 裡面有東西 
+                # && 這個字母小於目前stack最尾端的字 
                 # && 目前stack最尾端的字母後面還有其他位置可以擺放
                 while stack and c < stack[-1] and i < last[stack[-1]]:
                     seen.remove(stack.pop())
@@ -57,8 +62,31 @@ class Solution:
                 stack.append(c)
                 print(stack)
         return ''.join(stack)
+    
+# # 20230426 重新練習
+# # 我會錯題目的意思... #我以為要找最短的包含全部字母的字串
+# class Solution:
+#     def removeDuplicateLetters(self, s: str) -> str:
+#         c = {}
+#         max_key = 0
+#         min_range = (0,0) # right include
+#         l = 0
+#         for right, ch in enumerate(s) :
+#             if ch in c.keys() :
+#                 c[ch]+=1
+#                 while c[s[l]] > 1 :
+#                     c[s[l]] -= 1
+#                     l += 1
+#                     if (min_range[1] - min_range[0]) > (right - l):
+#                         min_range = (l, right)
+#             else :
+#                 max_key += 1
+#                 c[ch] = 1
+#                 min_range = (l, right)
+#         # return "".join(set(s[min_range[0]: min_range[1]+1]))
+#         return s[min_range[0]: min_range[1]+1]
         
 s = Solution()
-# print(s.removeDuplicateLetters("cbacdcbc"))
-# print(s.removeDuplicateLetters("bcacb"))
+print(s.removeDuplicateLetters("cbacdcbc"))
+print(s.removeDuplicateLetters("bcacb"))
 print(s.removeDuplicateLetters("bcab"))
