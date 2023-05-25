@@ -21,6 +21,7 @@ print("heappop 1 :", minheapList)
 # 下面這兩個function 不用先 heapify 就可以使用了
     # 裡面會自動判斷 要用sort 還是用heap
 # 取出 前n個 最大的項目
+    # !! # 如果是 Counter 可以呼叫 most_common 替代(底層也是呼叫 nlargest)
 # heapq.nlargest(n, iterable, key=None)
 print("max n :",heapq.nlargest(3, minheapList))
 print(minheapList)  # 原本的不會動到

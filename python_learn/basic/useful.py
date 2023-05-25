@@ -39,5 +39,14 @@
 # mylist = [False, True, True]
 # print(all(mylist))
 
+# # 實驗 會不會for全部的項目 或 遇到False就停
+#     # ANS : 只要遇到False就停止 不會繼續
+#     # 因為下面 range(10)，但是 function 裡面 for 迴圈只有印到 3
+# def not_3(num):
+#     print("all for to",num)
+#     return num != 3
+# print("all result :", all(not_3(i) for i in range(10)))
+
+
 
 
