@@ -14,10 +14,14 @@ print("add :",s)
 s.remove(4)
 print("remove :",s)
 # # <不確定有沒有此值的刪除>
-try :
-    s.remove(100)
-except KeyError :
-    print("didnt have this value")
+remove_item = 100
+if remove_item in s:
+    s.remove(remove_item)
+# # try except 比較慢
+# try :
+#     s.remove(remove_item)
+# except KeyError :
+#     print("didnt have this value")
 print("remove didnt sure :",s)
 # # <判斷有沒有此項目>
 print("in s : ", 3 in s)

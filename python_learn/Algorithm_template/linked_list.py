@@ -65,14 +65,13 @@ def printNthFromEnd(head, n):
 # # 反轉 link list #############################################
 def reverseList(head):
     prev = None
-    curr = head
-
-    while curr:
-        next = curr.next
-        curr.next = prev
-        prev = curr
-        curr = next
-
+    while head:
+        # next = head.next
+        # head.next = prev
+        # prev = head
+        # head = next
+        ################## 優化 (不過我還不確定 上下哪個比較快)
+        prev, head.next, head = head, prev, head.next
     return prev
 
 # ll = create_linkList([1,2,3,4,5,6])
