@@ -15,6 +15,10 @@
 # for test in yield_test(3):
 #     print("i*i =", test)
 #     print("--------")
+# print("呼叫第二次")
+# for test in yield_test(3):
+#     print("i*i =", test)
+#     print("--------")
 
 # #  -------------------------------------
 # # next : 可以單獨呼叫 generator 的下一個值
@@ -32,6 +36,12 @@
 # print("-----------")
 # print("p.send(7) :",p.send(7))
 # print("-----------")
-# # # 如果沒有下一個 會丟出 StopIteration 的 Error
+# # 如果沒有下一個 會丟出 StopIteration 的 Error
+# try : 
+#     print("next(p) :",next(p))
+#     print("-----------")
+# except StopIteration :
+#     print("no next item!!!")
+
+# # 只能呼叫一次 如果要重頭 要在重新呼叫
 # # print("next(p) :",next(p))
-# # print("-----------")

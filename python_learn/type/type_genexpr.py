@@ -5,6 +5,7 @@
 # generator 有很多種
     # genexpr 請看 type_genexpr
     # 有 yeild 的 function
+    # 還有像 List 但是是使用的時候才會讀取的 class (通常是 training 記憶體不夠在用的)
 
 # # genexpr的完整語法 : 
     # # "(var_name [前判斷式] for var_name in iterable [後判斷式])"
