@@ -4,6 +4,7 @@ from collections import Counter
 # # # <<<語法>>>
 # # # <初始化>
 # c = Counter()                           # a new, empty counter
+# print(c["no this item"])                # 只要之前沒有使用過此 key 就會回傳 0
 # c = Counter('gallahad')                 # a new counter from an iterable
 # print(c)
 # c = Counter({'red': 4, 'blue': 2})      # a new counter from a mapping

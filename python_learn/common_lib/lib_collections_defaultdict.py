@@ -9,6 +9,10 @@ from collections import defaultdict
 # # 方法2
 # d = defaultdict(lambda: "Not Present")
 
+# # 如果是要雙層的 defaultdict
+# double_dd = defaultdict(lambda: defaultdict(int))
+# print(double_dd[1][1])
+
 # # < 使用方法跟 dict 一樣 >
 # d["a"] = 1
 # d["b"] = 2
