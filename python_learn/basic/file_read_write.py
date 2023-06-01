@@ -3,6 +3,7 @@
     # with open(FILE_NAME, "w") as fw 
 # 關檔 : close
 # 移動讀寫頭 : seek (移動單位是字元)
+# 讀寫頭位置 : tell
 
 import os
 
@@ -51,8 +52,11 @@ import struct
 # # seek 的單位是字元 (要注意 window 換行有兩個字元)
 # with open(file_path_txt) as fr : # 預設就是讀檔
 # # with open(file_path_txt, "r") as fr :
+#     print("tell 1 : ", fr.tell())
 #     fr.seek(5)
+#     print("tell 2 : ", fr.tell())
 #     print("after seek : ",fr.readline())
+#     print("tell 3 : ", fr.tell())
 
 # input("write successfully! press any key to continue")
 # os.remove(file_path_txt)
