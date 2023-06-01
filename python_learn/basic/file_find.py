@@ -52,7 +52,7 @@ count_indx = 0
 for dirPath, dirNames, fileNames in find_result :
     print("os.walk folder result " + str(count_indx) + " : " + dirPath)
     count_indx += 1
-    for f in fileNames:
+    for f in fileNames: # f 包含副檔名 EX:"file.txt"
         print("os.walk file result " + str(count_indx) + " : " + os.path.join(dirPath, f))
         count_indx += 1
 ####################################################################################

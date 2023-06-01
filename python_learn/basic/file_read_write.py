@@ -1,3 +1,9 @@
+# 開檔 : 
+    # fw = open(FILE_NAME, "w")
+    # with open(FILE_NAME, "w") as fw 
+# 關檔 : close
+# 移動讀寫頭 : seek (移動單位是字元)
+
 import os
 
 file_path_txt = r"D:\test_file.txt"
@@ -13,7 +19,7 @@ import struct
 
 # # 讀寫"字串" ###################################################
 
-# < 自己控制的 open >
+# # < 自己控制的 open >
 # # 寫檔
 # fw = open(file_path_txt, "w") # 刪除之前的紀錄 重新寫
 # fw = open(file_path_txt, "a") # append
@@ -39,7 +45,14 @@ import struct
 # # 讀檔
 # with open(file_path_txt) as fr : # 預設就是讀檔
 # # with open(file_path_txt, "r") as fr :
-#     print(fr.readline())
+#     print("whole line : ",fr.readline())
+
+# # 讀取特定位置 seek
+# # seek 的單位是字元 (要注意 window 換行有兩個字元)
+# with open(file_path_txt) as fr : # 預設就是讀檔
+# # with open(file_path_txt, "r") as fr :
+#     fr.seek(5)
+#     print("after seek : ",fr.readline())
 
 # input("write successfully! press any key to continue")
 # os.remove(file_path_txt)
