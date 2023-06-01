@@ -34,8 +34,8 @@ import bisect
 # print("bisect :",bisect.bisect(l, 5))
 
 # # 插入位置 #####################################
-# key python 3.10 版才有
-#indx 0,1,2,3,4,5,6,7,8
+# # key python 3.10 版才有
+# # indx 0,1,2,3,4,5,6,7,8
 # l =  [0,1,2,5,5,5,6,7,8]
 # bisect.insort_left(l, 5.1, key = lambda x: int(x))
 # print("insort_left :",l)

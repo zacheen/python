@@ -15,8 +15,24 @@ heapq.heappush(minheapList, 3)
 print("heappush 3 :", minheapList)
 
 # 取出最小的項目 (取出最頂點的項目)
-print("get smallset item :",heapq.heappop(minheapList))
-print("heappop 1 :", minheapList)
+# [0] 永遠會是最小的項目
+print("smallest     [0] :", minheapList[0])
+print("minheapList :", minheapList)
+# 取出最小的項目 同時pop
+print("smallest heappop :",heapq.heappop(minheapList))
+print("minheapList :", minheapList)
+
+# 先存進一個新的項目 再取出最小的項目 (跟 heapreplace 順序相反)
+print("heappushpop :",heapq.heappushpop(minheapList, -2))
+print("minheapList :", minheapList)
+print("heappushpop :",heapq.heappushpop(minheapList, 8))
+print("minheapList :", minheapList)
+
+# 先取出最小的項目 再存進一個新的項目 (跟 heappushpop 順序相反)
+print("heapreplace :",heapq.heapreplace(minheapList, -2)) # 不會回傳 -2 因為這個時候 list 裡面還沒有 -2
+print("minheapList :", minheapList)
+print("heapreplace :",heapq.heapreplace(minheapList, 8))
+print("minheapList :", minheapList)
 
 # 下面這兩個function 不用先 heapify 就可以使用了
     # 裡面會自動判斷 要用sort 還是用heap
@@ -41,5 +57,5 @@ def remove_num(value):
         heapq._siftdown(minheapList, 0, rm_indx)
 
 remove_num(4)
-print("remove 4 :",minheapList)  # 原本的不會動到
+print("remove 4 :", minheapList)
 
