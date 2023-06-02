@@ -207,6 +207,14 @@ np.set_printoptions(threshold=np.inf)
 # # zeros_like
 # print(np.zeros_like(array))
 
+# # < 擴張 array 的維度 > 
+#     # EX: (3, 4) -> (1, 3, 4) 或 (3, 1, 4) ... 反正就是插入一個 1 進來
+# # expand_dims
+# print(array.shape)
+# expand_dim_array = np.expand_dims(array, axis = 0)
+# print(expand_dim_array.shape)
+# print(expand_dim_array)
+
 # # # << 注意事項 >> ####################################################
 # # # numpy 的 type 一定要是數字
 # # import math
