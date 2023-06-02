@@ -1,4 +1,7 @@
+# lib_shutil.py
 import shutil
+    # https://steam.oxxostudio.tw/category/python/library/shutil.html
+# 高階檔案操作
 # 複製檔案用的 lib
 
 import os

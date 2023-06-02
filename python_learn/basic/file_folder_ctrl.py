@@ -1,5 +1,6 @@
 import os
-import shutil
+import shutil 
+# 高階檔案操作 請參考 lib_shutil
 
 # 單層資料夾
 path_one_folder = r'.\test_folder'
@@ -17,6 +18,7 @@ if not os.path.isdir(path_multi_folder_inside):
 # 檢查是否創建成功
 input()
 
+# 刪除整個資料夾 rmtree
 shutil.rmtree(path_one_folder)
 shutil.rmtree(path_multi_folder_outside)
 
