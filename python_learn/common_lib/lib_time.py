@@ -9,6 +9,7 @@ print(time.time())
 print(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time())))
 
 # 測試執行所花時間
+    # 如果要計時還有另外一個 lib 可以用 : timeit
 start = time.time()
 """ do something """
 time.sleep(2)
