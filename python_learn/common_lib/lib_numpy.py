@@ -91,6 +91,9 @@ np.set_printoptions(threshold=np.inf)
 # # 計算各個項目各有幾個
 # unique_item, counts = np.unique(array, return_counts=True)
 # print(dict(zip(unique_item, counts)))
+# # 計算符合條件的項目有幾個
+# condition_count = np.sum(array > 5)
+# print(condition_count)
 
 # # < 組合兩個 array >
 # array2 = array*2

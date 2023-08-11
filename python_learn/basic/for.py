@@ -20,6 +20,13 @@
 # for idx, val in enumerate(s):
 #     print(idx, val)
 
+# # enumerate 可以設定起始 index
+# s = "abcd"
+# s = ["a","b","c"]
+# s = [1,2,3]
+# for idx, val in enumerate(s ,1):
+#     print(idx, val)
+
 # #------------------------------------
 # # 坑 !! 不要對foreach的List進行改動  判斷結束會使用改動後的list進行判斷
 # # 錯誤 會進無窮迴圈

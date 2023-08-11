@@ -1,5 +1,19 @@
 import itertools
+# https://docs.python.org/3/library/itertools.html
 
+# # -----------------------------------------------
+# l1 = [1,2,3]
+# l2 = [1,2,3,4,5]
+# # < zip > (內建的 不過與下面的相關) 
+#     # zip 如果某一個已經到了盡頭，for 就會停止
+# for n1,n2 in zip(l1, l2) :
+#     print("zip",n1,n2)
+
+# # < zip_longest > 
+#     # 會 zip 到最長的結果
+#     # 如果某一個長度不夠，會用 None 去補充
+# for n1,n2 in itertools.zip_longest(l1, l2) :
+#     print("zip_longest",n1,n2)
 
 # # -----------------------------------------------
 from itertools import product

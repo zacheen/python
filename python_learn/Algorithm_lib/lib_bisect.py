@@ -1,4 +1,5 @@
 import bisect
+# https://docs.python.org/zh-tw/3/library/bisect.html
 # bisect 只能儲存數字
 
 # bisect.bisect_left(ll, x, lo=0, hi=len(ll), *, key=None)
