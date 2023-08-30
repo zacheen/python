@@ -27,6 +27,10 @@ import struct
 # fw.write("Now the file has more content!")
 # fw.close()
 
+# # 強制規定，寫檔編碼方法
+    # # 跟 "# coding:utf-8" 是不一樣的
+# fw = open(file_path_txt, "w", encoding='UTF-8')
+
 # # 讀檔
 # # fr = open(file_path_txt) # 預設就是讀檔
 # fr = open(file_path_txt, "r")
@@ -144,3 +148,7 @@ import struct
 # os.remove(file_path_bin)
 
 # 讀寫"byte" end ###################################################
+
+# Error
+# UnicodeEncodeError: 'cp950' codec can't encode character 
+    # 使用 encoding='UTF-8' 去寫檔通常就不會出錯了
