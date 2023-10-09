@@ -8,6 +8,6 @@ def my_sleep():
 
 # 測試執行所花時間
 # number 是執行次數
-print(timeit.timeit('time.sleep(2)', number=3))
-print(timeit.timeit(my_sleep, number=3))
+print("所花時間:", timeit.timeit('time.sleep(2)', number=3))
+print("所花時間:", timeit.timeit(my_sleep, number=3))
 
