@@ -2,6 +2,7 @@ from collections import deque
 # 特性是從頭或從尾巴新增或刪除東西 都是 O(1)
 # (只有操作比較快)
 # List 刪除頭是 O(n)
+# deque 的 pop 不能填 index !
 
 ## deque #######################################
 

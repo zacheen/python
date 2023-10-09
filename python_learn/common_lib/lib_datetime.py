@@ -12,8 +12,8 @@ import pytz  # 時區 / timezone
 # print(pytz.country_timezones("us"))
         
 # # 取得現在時間
-# now = datetime.now()
-# print("Without formatting :", now)
+now = datetime.now()
+print("Without formatting :", now)
 
 # # 印出各個屬性
 # print("年 :",now.year)
@@ -42,6 +42,12 @@ import pytz  # 時區 / timezone
 # print(time)
 
 #-----------------------------------------------
+# # 時間加上一天
+# print("bef add time : ", now)
+# add_time = now + timedelta(days=1)
+# print("aft add time : ", add_time)
+
+#-----------------------------------------------
 # # 時間相差秒數
 # def time_delta(t1, t2):
 #     # print(t1, t2)
@@ -60,17 +66,17 @@ import pytz  # 時區 / timezone
 # print("第",anniversary_days,"天")
 
 #-----------------------------------------------
-# timezone
-# timezone 只能用名稱指定一個時區，就是 +00:00 的時區
-tzinfo = timezone.utc
-print("tzinfo :",tzinfo)
-# 其他都是用 UTC 去表示
-tzinfo = timezone(timedelta(hours=8))
-print("tzinfo :",tzinfo)
+# # timezone
+# # timezone 只能用名稱指定一個時區，就是 +00:00 的時區
+# tzinfo = timezone.utc
+# print("tzinfo :",tzinfo)
+# # 其他都是用 UTC 去表示
+# tzinfo = timezone(timedelta(hours=8))
+# print("tzinfo :",tzinfo)
 
-# 目前想到最好的方法是 ??
-time_zone_num = datetime.now(pytz.timezone("America/Los_Angeles"))
-print(time_zone_num)
+# # 目前想到最好的方法是 ??
+# time_zone_num = datetime.now(pytz.timezone("America/Los_Angeles"))
+# print(time_zone_num)
 # #-----------------------------------------------
 # # 時區處理(指定時區)
 # dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)

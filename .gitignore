@@ -5,6 +5,9 @@
 # chromedriver 下載 : https://chromedriver.chromium.org/downloads
 chromedriver.exe
 
+# 憑證設定
+*key.json
+
 lena_std_2.tif
 
 # 尚未整理好的筆記

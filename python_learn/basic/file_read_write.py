@@ -22,9 +22,9 @@ import struct
 
 # # < 自己控制的 open >
 # # 寫檔
-# fw = open(file_path_txt, "w") # 刪除之前的紀錄 重新寫
+# # fw = open(file_path_txt, "w") # 刪除之前的紀錄 重新寫
 # fw = open(file_path_txt, "a") # append
-# fw.write("Now the file has more content!")
+# fw.write("Now the file has more content!\n")
 # fw.close()
 
 # # 強制規定，寫檔編碼方法
@@ -39,6 +39,13 @@ import struct
 
 # input("write successfully! press any key to continue")
 # os.remove(file_path_txt)
+
+# # < 一行一行讀取 > 
+# # 要注意讀取進來會有換行符號!!
+# fr = open(file_path_txt)
+# for read_lines in fr :
+#     print(read_lines.strip())
+# fr.close()
 
 # # < 使用 with 結束自動釋放資源 >
 # # with 結束會自動 close

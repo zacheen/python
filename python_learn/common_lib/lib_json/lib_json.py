@@ -24,6 +24,10 @@ print(dict_2_json)
 with open(test_file_path, 'w') as fw:
     json.dump(json_2_dict, fw, indent = 4)
 
+# ensure_ascii=False 可以解決寫入時中文變成編碼的問題
+with open(test_file_path, 'w', encoding='UTF-8') as fw:
+    json.dump(json_2_dict, fw, indent = 4, ensure_ascii=False)
+
 # 從 txt 讀取 json
 with open(test_file_path, encoding='UTF-8') as fr:
     read_json = json.load(fr)
