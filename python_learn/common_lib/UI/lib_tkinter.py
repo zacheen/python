@@ -1,6 +1,6 @@
 # 引入 tkinter 模組
 import tkinter as tk
-import tkinter.messagebox # 還不能用 tk.messagebox
+import tkinter.messagebox as messagebox # 還不能用 tk.messagebox
 
 # << 視窗設定 >> ######################################
 # 建立主視窗 Frame
@@ -92,7 +92,7 @@ button = tk.Button(window, text = '隱藏/顯示',
 button.pack()
 
 # # << 跳出視窗 >> ######################################
-# tkinter.messagebox.showinfo(title = 'Hello', # 視窗標題
+# messagebox.showinfo(title = 'Hello', # 視窗標題
 #                             message = 'pop')   # 訊息內容
 
 # # << 執行主程式 >>
