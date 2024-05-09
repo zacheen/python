@@ -111,6 +111,69 @@ class UF:
             self.id[u] = self.find(self.id[u])
         return self.id[u]
     
+# 全功能都有 修改set_member 因此可以查看所有相關的項目
+class UF_find_relate:
+    def __init__(self, n):
+        self.count = n
+        self.id = list(range(n))
+        self.set_member = [set([i]) for i in range(n)]
+        print("set_member :",self.set_member)
+
+    def union(self, u, v):
+        i = self.find(u)
+        j = self.find(v)
+        if i == j:
+            return
+        self.set_member[j] = self.set_member[j] | self.set_member[i]
+        self.set_member[i] = None
+        self.id[i] = j
+        self.count -= 1
+
+    def find(self, u):
+        if self.id[u] != u:
+            self.id[u] = self.find(self.id[u])
+        return self.id[u]
+    
+    def ger_related(self, u):
+        if self.id[u] != u:
+            self.id[u] = self.find(self.id[u])
+        return self.set_member[self.id[u]]
+
+# 可加入自訂義項目
+# 可查找此項目相關項目
+class UF_add_find_relate:
+    def __init__(self):
+        self.id = {}
+        self.set_member = {}
+    
+    def add_item(self, item):
+        try :
+            # 如果有找到此項目 就代表此項目已經存在
+            self.find(item)
+        except :
+            # 如果跳錯 代表沒有此項目
+            self.id[item] = item
+            self.set_member[item] = set([item])
+
+    def union(self, u, v):
+        i = self.find(u)
+        j = self.find(v)
+        if i == j:
+            return
+        self.set_member[j] = self.set_member[j] | self.set_member[i]
+        del(self.set_member[i])
+        self.id[i] = j
+
+    def find(self, u):
+        if self.id[u] != u:
+            self.id[u] = self.find(self.id[u])
+        return self.id[u]
+    
+    def ger_related(self, u):
+        if self.id[u] != u:
+            self.id[u] = self.find(self.id[u])
+        return self.set_member[self.id[u]]
+
 class Solution:
     def findCircleNum(self, M):
         n = len(M)
@@ -131,6 +194,19 @@ s = Solution()
 print(s.findCircleNum(M = [[1,1,0],[1,1,0],[0,0,1]]))
 print(s.findCircleNum(M = [[1,0,0],[0,1,0],[0,0,1]]))
 
+if __name__ == "__main__" :
+    # demo_find_related
+    relation = [(5,4),(11,12),(10,8),(6,7),(1,3),(4,6),(2,3),(8,9)]
+    # (1,3),(2,3),(6,7),(5,4),(4,6),(10,8),(8,9),(11,12)
+    uf = UF_find_relate(15)
+    for i,j in relation:
+        uf.union(i, j)
+    print(uf.set_member)
+
+    print(uf.find(1))
+    print(uf.ger_related(1))
+
+
 
 # 解釋 --------------------------------------------
 class UF:
@@ -144,6 +220,7 @@ class UF:
         if i == j:
             return
         # 如果不一樣的tree 就合併此兩個tree (就是root接到另一個root)
+            # 也就是說可以重複加入
         # v 對應的 tree root  會是新的 root
         self.id[i] = j
         self.count -= 1
