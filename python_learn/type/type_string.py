@@ -10,9 +10,24 @@
 
 # #------------------------------------
 # # 判斷是不是字母
-# print("sdjkfl".isalpha())
-# print("a1s".isalpha())
-# print("!a".isalpha())
+# print("sdjkfl".isalpha())     # True
+# print("a1s".isalpha())        # False
+# print("!a".isalpha())         # False
+# print("中文字".isalpha())     # True...
+
+# #------------------------------------
+# # 判斷是不是小寫字母
+# print("sdjkfl".islower())     # True
+# print("a1s".islower())        # True...
+# print("!a".islower())         # True...
+# print("中文字".islower())     # False
+
+# #------------------------------------
+# # 如果只想判斷是英文字母(排除中文字)
+print("sdjkfl".islower() and "sdjkfl".isalpha())    # True
+print("a1s".islower() and "a1s".isalpha())          # False
+print("!a".islower() and "!a".isalpha())            # False
+print("中文字".islower() and "中文字".isalpha())     # False
 
 # #------------------------------------
 # # 判斷是不是數字

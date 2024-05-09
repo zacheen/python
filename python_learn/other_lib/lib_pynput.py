@@ -1,5 +1,5 @@
 from pynput import keyboard
-
+# 就算 python 的畫面不是在最上方，也會觸發
 # key
     # 如果是特殊按鍵會有 : .name , .value
     # 如果是普通按鍵會有 : .char
