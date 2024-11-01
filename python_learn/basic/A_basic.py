@@ -83,19 +83,6 @@
 # print(x)
 # print(type(x))
 
-# # 查看是否有繼承關係
-# class A:
-#     pass
-# class B(A):
-#     pass
-
-# print(isinstance(A(), A))    # returns True
-# print(type(A()) == A)        # returns True
-# print(isinstance(B(), A))    # returns True
-# print(type(B()) == A)        # returns False
-# print(isinstance(A(), B))    # returns False
-# print(type(A()) == B)        # returns False
-
 # #------------------------------------
 # # 數學運算子 運算 加法 減法 乘法 除法 整除法 餘數 次方 執行優先順序
 # print("運算順序1 :",72 - 6 * 6 / 3 + 3 - 3)
