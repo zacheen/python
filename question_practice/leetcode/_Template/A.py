@@ -1,5 +1,4 @@
 # 
-# 
 
 from typing import List
 import functools
@@ -10,7 +9,7 @@ import functools
 # given ans
 
 s = Solution()
-print(s.())
+print("ans :",s.())
 
 
 

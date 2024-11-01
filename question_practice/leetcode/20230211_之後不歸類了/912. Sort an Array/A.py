@@ -5,7 +5,7 @@ class Solution(object):
         return nums
 
 # my 
-# 比 sort 還慢...
+# 比 sort 慢 795ms Beats79.81%
 from collections import Counter
 class Solution(object):
     def sortArray(self, nums):
