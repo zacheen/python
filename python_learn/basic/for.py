@@ -77,6 +77,10 @@
 # for key, val in m.items():
 #     print(key, val)
 
+# # 如果直接取 只會取到 key 職
+# for key in m:
+#     print(key)
+
 # print(list(range(5,-1)))
 
 

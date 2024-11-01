@@ -1,4 +1,5 @@
 from sortedcontainers import SortedSet
+# 存進去時就會自動排序好
 from operator import neg 
 
 ## SortedXX 系列的語法完全相同

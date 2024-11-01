@@ -6,7 +6,6 @@ import math
 #     # shape = (column, row)
 #     # dtype : float int
 # print(array)
-
 # # 初始化 方法2 類似range
 # array = np.arange(12, dtype=int)
 #     # np.arange(start = 3,stop = 10, step = 2, dtype=int)
@@ -83,6 +82,8 @@ np.set_printoptions(threshold=np.inf)
 # print("sort :\n",np.sort(array))
 # # 總和
 # print("sum  :",np.sum(array))
+# # 每個項目增加某個數字
+# print("add  :",array + 5)
 # # 平均 
 # print("mean :",np.mean(array))
 # # 平均 (nan 的值會去掉 )
@@ -173,6 +174,12 @@ np.set_printoptions(threshold=np.inf)
 
 # # < 轉 list >
 # print(array.tolist())
+
+# # << 一維專用 (=List) >> < 通常用 List 還是會比較快 > ####################################################
+# # 合併
+# one_dim = np.array([1,2,3], dtype=int)
+# one_dim = np.append(one_dim+10, [1,2])
+# print("append :",one_dim)
 
 # # << 較不常用到 >> ####################################################
 # # < 百分位數 percentile >

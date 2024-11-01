@@ -42,8 +42,12 @@ from collections import Counter
 # print(c.most_common(1)) # 如果有一樣多的就隨機回傳其中一個
 # print(c.most_common(2))
 
-
-
+# # # <比較>
+# l1 = [1,2,3]
+# l2 = [2,3,1]
+# l3 = [1,2,4]
+# print("same :",Counter(l1) == Counter(l2))
+# print("diff :",Counter(l1) == Counter(l3))
 
 
 ## Counter end #######################################

@@ -33,10 +33,17 @@ print('set  :',mm)
 # #------------------------------------
 # # 單獨取出 key 值
 print(mm.keys())
+# # 確認有沒有此 key 值
+print("check key :", 1 in mm) # 跟下面的功能相同
+print("check key :", 1 in mm.keys())
+print("check key :", 2 in mm.keys())
 
 # #------------------------------------
 # # 單獨取出 value 值
 print(mm.values())
+# # 確認有沒有此 value 值
+print("check value :", 123 in mm.values())
+print("check value :", 124 in mm.values())
 
 # #------------------------------------
 # # 使用 map 轉型
