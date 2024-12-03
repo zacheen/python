@@ -229,3 +229,12 @@ print("init :",ll)
 # ll = [1,2,3]
 # print(ll*2)
 # # 是 [1, 2, 3, 1, 2, 3]，不是 [2,4,6]
+
+# # --- special ---------------------------------
+# # pairwise 
+# from itertools import pairwise
+# s = "abcdefghijklmnop"
+# indx_list = [3,4,6,9,10,12]
+# # 不規則split很好用
+# indx_list = [0]+indx_list+[len(s)]
+# print([s[f:b] for f,b in pairwise(indx_list)])
