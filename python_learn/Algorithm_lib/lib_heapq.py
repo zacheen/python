@@ -3,6 +3,8 @@ import heapq
     # heapq 沒有辦法自訂排序(一定是從小到大)，也沒有辦法 reverse
     # 所以如果要取出最大的，可以把 -item 放進去 (因為加負號最大的就會變最小的)
 
+    # Building heap takes O(n) time complexity
+
 minheapList = [i for i in range(10,0,-1)]
 
 # 把 此list sort成 minheap

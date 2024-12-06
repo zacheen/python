@@ -4,10 +4,10 @@
 # # # <初始化> list
 ll = [1,2,3,5,6,7,8,9,8]
 print("init :",ll)
-# # # <增加項目>
+# # # <增加項目> O(1)
 # ll.append(4)
 # print("append :",ll)
-# # # <插入項目> insert(位置, val)
+# # # <插入項目> insert(位置, val) O(n)
 # ll.insert(3,10)
 # print("insert :",ll)
 # # # <刪除多個或一個>
@@ -230,11 +230,3 @@ print("init :",ll)
 # print(ll*2)
 # # 是 [1, 2, 3, 1, 2, 3]，不是 [2,4,6]
 
-# # --- special ---------------------------------
-# # pairwise 
-# from itertools import pairwise
-# s = "abcdefghijklmnop"
-# indx_list = [3,4,6,9,10,12]
-# # 不規則split很好用
-# indx_list = [0]+indx_list+[len(s)]
-# print([s[f:b] for f,b in pairwise(indx_list)])
