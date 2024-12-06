@@ -1,22 +1,20 @@
-# 如果前面幾個沒有要跑 
-    # ll[開始位置:]
-    # range(開始位置, 長度)
-
+# 一個項目一個項目加進來 但是後面加入的要放在前面
+# 結論 :
+    # 用 append 先加在後面，再整個 reverse 比較快
 import time
 ll1 = []
 ll2 = []
 
+# 加在後面 比較快
 start = time.time()
-# 比較快
-for i in range(100000) :
+for i in range(200000) :
     ll1.append(i)
 ll1.reverse()
 end = time.time()
 print("reverse :",end - start)
 
 start = time.time()
-# 如果可以不要創造新的list最快
-for i in range(100000) :
+for i in range(200000) :
     ll2.insert(0,i)
 end = time.time()
 print("insert 0 :",end - start)

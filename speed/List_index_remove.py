@@ -9,6 +9,7 @@ import time
 # ret = ll[9000]
 
 # # 不知道為什麼第一次比較慢
+#     # 所以第一個 for 迴圈是為了抵銷誤差
 # # 取第一個的值
 # start = time.time()
 # for i in range(1000000) : 
