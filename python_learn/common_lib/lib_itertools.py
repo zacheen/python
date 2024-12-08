@@ -35,3 +35,16 @@ from itertools import permutations
 # print(list(permutations([1,2,3],2)))
 # print(list(permutations([1,1,2])))
 # print(list(set(permutations([1,1,2]))))
+
+# # -----------------------------------------------
+from itertools import pairwise  # 前一個與後一個 同時取出
+# s = "abcdefghijklmnop"
+# indx_list = [3,4,6,9,10,12]
+# # 不規則split很好用
+# indx_list = [0]+indx_list+[len(s)]
+# print([s[f:b] for f,b in pairwise(indx_list)])
+
+# # -----------------------------------------------
+from itertools import accumulate  # 到此 index 的總和
+num_list = [1,3,6,2,100]
+print(list(accumulate(num_list)))

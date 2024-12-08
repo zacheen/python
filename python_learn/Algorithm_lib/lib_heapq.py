@@ -1,3 +1,4 @@
+# priority queue : 通常使用heap實現
 # 注意 minheap 不能取出特定 item
 import heapq
     # heapq 沒有辦法自訂排序(一定是從小到大)，也沒有辦法 reverse

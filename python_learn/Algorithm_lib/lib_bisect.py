@@ -1,6 +1,6 @@
 import bisect
 # https://docs.python.org/zh-tw/3/library/bisect.html
-# bisect 只能儲存數字
+# bisect 只能儲存數字 且 預設是從小到大
 
 # bisect.bisect_left(ll, x, lo=0, hi=len(ll), *, key=None)
     # 回傳此項目在相同項目中第一個位置

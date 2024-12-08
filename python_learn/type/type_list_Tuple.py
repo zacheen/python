@@ -54,6 +54,12 @@ print("init :",ll)
 # print(ll[2::2])
 # print(ll[10::-1])
 
+# # 數字可以取到最後一項 甚至可以超出
+# print(ll[5:])
+# print(ll[5:len(ll)])
+# print(ll[5:12])
+# print(ll[5:13]) # 超出範圍
+
 # #------------------------------------
 # # list 排序 sort
 # ll = [1,3,6,4,0,2]
@@ -205,11 +211,11 @@ print("init :",ll)
 # # 不可使用 * 初始化 List 多維陣列
 # len_x = 4
 # len_y = 3
-# ll = [[False]*len_y]*len_x # 二維的
+# ll = [[False]*len_y]*len_x 
 # ll[0][0] = True  
 # # 每個list的第一個 都變成 True 了  因為不是用 copy
 # print(ll)
-# # <<正確>>
+# # <<正確>> # 二維的 2D
 # ll = [[False]*len_y for _ in range(len_x)] # <- 要用 for 迴圈 (目前最快的方法)
 # ll[0][0] = True  
 # print(ll)
