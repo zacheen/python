@@ -18,8 +18,9 @@ import itertools
 # # -----------------------------------------------
 from itertools import product
 # # # product 會回傳全部的組合
-# # 1. repeat 自己跟自己組合
+# # 1. repeat 是自己跟自己組合
 # print(list(product([1,2,3],repeat = 2)))
+# print(list(product([1,1,2],repeat = 2)))
 # # 2. list 之間的組合
 # print(list(product([1,2,3],[3,4])))
 # # 如果傳入兩層 list 就會是裡面的各個 list 組合
@@ -30,11 +31,23 @@ from itertools import product
 
 # # -----------------------------------------------
 from itertools import permutations
-# permutations 從list中挑兩個出來
-# 跟 product 不同的是 "不會挑到同樣的項目"
-# print(list(permutations([1,2,3],2)))
-# print(list(permutations([1,1,2])))
-# print(list(set(permutations([1,1,2]))))
+# # combinations 從list中挑n個出來(會重複)
+#     # [1,2,3] 挑過 (1,2) 還會有 (2,1)
+# # 跟 product 不同的是 "不會挑到同樣的項目"
+# # 沒有選擇要挑 n 個出來 : 預設為 len(n)
+# print("perm : ",list(permutations([1,2,3],2)))
+# print("perm : ",list(permutations([1,2,3])))
+# print("perm : ",list(permutations([1,1,2])))
+# print("perm : ",list(set(permutations([1,1,2]))))
+
+# # -----------------------------------------------
+from itertools import combinations
+# # combinations 從list中挑n個出來(不會重複)
+#     # [1,2,3] 挑過 (1,2) 就不會有 (2,1)
+# # 一定要選擇要挑 n 個出來
+# print("comb : ",list(combinations([1,2,3],2)))
+# print("comb : ",list(combinations([1,1,2],2)))
+# print("comb : ",list(set(combinations([1,1,2],2))))
 
 # # -----------------------------------------------
 from itertools import pairwise  # 前一個與後一個 同時取出
@@ -46,5 +59,5 @@ from itertools import pairwise  # 前一個與後一個 同時取出
 
 # # -----------------------------------------------
 from itertools import accumulate  # 到此 index 的總和
-num_list = [1,3,6,2,100]
-print(list(accumulate(num_list)))
+# num_list = [1,3,6,2,100]
+# print(list(accumulate(num_list)))

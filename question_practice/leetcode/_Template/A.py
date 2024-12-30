@@ -10,7 +10,7 @@ import functools
 # given ans
 
 s = Solution()
-print("ans :",s.())
+print("ans :",s.()) # 
 
 
 

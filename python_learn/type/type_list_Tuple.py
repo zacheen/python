@@ -52,7 +52,7 @@ print("init :",ll)
 # ll = [1,2,3,4,5,6,7,8,9,10,11,12]
 # print(ll[3:-2:2])
 # print(ll[2::2])
-# print(ll[10::-1])
+# print(ll[8::-1])
 
 # # 數字可以取到最後一項 甚至可以超出
 # print(ll[5:])
@@ -79,12 +79,18 @@ print("init :",ll)
 
 # #------------------------------------
 # # list 排序 sort 使用自定義function ( key )
-# # 如果是一樣的順序就會按照原本的排序 ?? (看起來是這樣還沒驗證)
+# # 如果是一樣的順序就會按照原本的排序
+
+# # 1. 使用 function
 # def myFunc(e):
 #     return len(e)
-
-# cars = ['Ford', 'Mitsubishi', 'ABC', 'BMW', 'VW']
+# cars = ['Ford', 'EMW', 'Mitsubishi', 'ABC', 'BMW', 'VW', 'DMW', 'CMW']
 # cars.sort(reverse=True, key=myFunc)
+# print(cars)
+
+# # 2. 使用 lambda
+# cars = ['Ford', 'EMW', 'Mitsubishi', 'ABC', 'BMW', 'VW', 'DMW', 'CMW']
+# cars.sort(reverse=True, key = lambda x : (len(x), x) )
 # print(cars)
 
 # #------------------------------------

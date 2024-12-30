@@ -38,8 +38,23 @@ import math
 # print("round",round(5.5))
 # print("round",round(-5.5))
 
-# #------------------------------------
-# < sqrt > 平方根
-print("sqrt(4)",math.sqrt(4))
-print("sqrt(16)",math.sqrt(16))
-print("sqrt(17)",math.sqrt(17))
+# # #------------------------------------
+# # < sqrt > 平方根,開根號
+# print("sqrt(4)",math.sqrt(4))
+# print("sqrt(16)",math.sqrt(16))
+# print("sqrt(17)",math.sqrt(17))
+
+# # #------------------------------------
+# # 排列組合 Permutation and Combination
+# # < perm > 排列 : P N 取 K
+# print("math.perm(6,3)",math.perm(6,3))
+# # < comb > 組合 : C N 取 K
+# print("math.comb(6,3)",math.comb(6,3))
+
+# # # 特殊(很少用到) #####################################################
+# # #------------------------------------
+# # < isqrt > 平方根,開根號 + floor
+# print("isqrt(4)",math.isqrt(4))
+# print("isqrt(16)",math.isqrt(15))
+# print("isqrt(16)",math.isqrt(16))
+# print("isqrt(17)",math.isqrt(17))
