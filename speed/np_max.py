@@ -18,8 +18,8 @@ long_array[-1] = 2000000000 # 最後才是答案
 start = time.time()
 pos = np.unravel_index(np.argmax(long_array),long_array.shape)
 end = time.time()
-print("max : ", long_array[pos[0]])
 print(end - start) # 0.502655029296875
+print("max : ", long_array[pos[0]])
 
 start = time.time()
 max = np.max(long_array)

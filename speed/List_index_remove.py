@@ -1,9 +1,61 @@
 # 結論 
+# del vs pop : del好像快一點
 # 取第幾個項目的值 是 O(1)  (速度會不一樣應該是誤差)
 # 不管是刪除或新增 愈後面的項目愈快 O(n)
 
 import time
 
+# # del vs pop ######################################################
+# # 前
+# # pop
+# ll = list(range(10000000))
+# start = time.time()
+# for i in range(1000) : 
+#     ll.pop(0)
+# end = time.time()
+# print("pop 前 :",end - start) # 7.736309051513672
+# # del
+# ll = list(range(10000000))
+# start = time.time()
+# for i in range(1000) : 
+#     del(ll[0])
+# end = time.time()
+# print("del 前 :",end - start) # 8.08120846748352
+
+# # 中
+# # pop
+# ll = list(range(10000000))
+# start = time.time()
+# for i in range(1000) : 
+#     ll.pop(len(ll)//2)
+# end = time.time()
+# print("pop 中 :",end - start) # 3.849705696105957
+# # del
+# ll = list(range(10000000))
+# start = time.time()
+# for i in range(1000) : 
+#     del(ll[len(ll)//2])
+# end = time.time()
+# print("del 中 :",end - start) # 4.04122519493103
+
+# # 後
+# # pop
+# ll = list(range(10000000))
+# start = time.time()
+# for i in range(1000) : 
+#     ll.pop(len(ll)-1)
+# end = time.time()
+# print("pop :",end - start) # 0.000997781753540039
+# # del
+# ll = list(range(10000000))
+# start = time.time()
+# for i in range(1000) : 
+#     del(ll[len(ll)-1])
+# end = time.time()
+# print("del :",end - start) # 0.000997304916381836
+
+
+# ######################################################
 # ll = list(range(10000000))
 # ret = ll[0]
 # ret = ll[9000]
