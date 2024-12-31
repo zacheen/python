@@ -1,4 +1,5 @@
-# 300. https://leetcode.com/problems/longest-increasing-subsequence/
+# 300. Longest Increasing Subsequence
+# https://leetcode.com/problems/longest-increasing-subsequence/
 
 import math
 # my Runtime: 3470 ms, faster than 62.73% of Python3
@@ -61,7 +62,9 @@ class Solution:
         return len(tail)
 
 s = Solution()
-# print(s.lengthOfLIS([10,9,2,5,3,7,101,18]))
+print(s.lengthOfLIS([1,2,3]))
+# print(s.lengthOfLIS([3,2,1]))
+# print(s.lengthOfLIS([10,9,2,5,6,3,7,101,18]))
 # print(s.lengthOfLIS([0,1,0,3,2,3]))
 # print(s.lengthOfLIS([7,7,7,7,7,7,7]))
 # print(s.lengthOfLIS([1,3,6,7,9,4,10,5,6,8,9]))
