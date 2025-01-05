@@ -27,6 +27,8 @@ class Solution:
         return ans
                 
 # given ans
+# same as No.1
+# someone uses number as indx (so don't have to create mirr map)
 
 s = Solution()
 print("ans :",s.calculateScore(s = "aczzx")) # 5
