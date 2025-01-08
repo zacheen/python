@@ -1,4 +1,7 @@
-# my 
+# 2270. Number of Ways to Split Array
+# https://leetcode.com/problems/number-of-ways-to-split-array/description
+
+# my 38ms Beats98.11%
 class Solution:
     def waysToSplitArray(self, nums):
         total = sum(nums)
@@ -18,7 +21,7 @@ class Solution:
 # 但 * 應該比較慢
 
 s = Solution()
-print(s.())
+print(s.waysToSplitArray())
 
 
 
