@@ -1,5 +1,4 @@
 from collections import Counter
-## Counter #######################################
 
 # # # <<<語法>>>
 # # # <初始化>
@@ -49,7 +48,45 @@ from collections import Counter
 # print("same :",Counter(l1) == Counter(l2))
 # print("diff :",Counter(l1) == Counter(l3))
 
+# # # < operator > ###################################
+# # # <and> <&>
+# # # 合併兩個 Counter 取小值
+# comb1 = Counter({"a":3, "b":10, "c":9})
+# comb2 = Counter({"a":5, "b":6,  "d":2})
+# print("& :", comb1 & comb2)
 
-## Counter end #######################################
+# # # <or> <|>
+# # # 合併兩個 Counter 取大值 (跟Map結果不相同)
+# comb1 = Counter({"a":3, "b":10, "c":9})
+# comb2 = Counter({"a":5, "b":6,  "d":2})
+# print("| :", comb1 | comb2)
 
+# # # <大於等於> < >= >
+# # # 判斷每個項目是否大於等於另一個
+# comb1 = Counter({"a":5, "b":6, "c":2}) 
+# comb2 = Counter({"a":5, "b":6, "c":2})
+# print(">= :", comb1 >= comb2)
+# comb1 = Counter({"a":5, "b":7, "c":2}) # "b":7
+# comb2 = Counter({"a":5, "b":6, "c":2})
+# print(">= :", comb1 >= comb2)
+# comb1 = Counter({"a":5, "b":6, "d":2}) # "d"
+# comb2 = Counter({"a":5, "b":6, "c":2})
+# print(">= :", comb1 >= comb2)
+# comb1 = Counter({"a":5, "b":6, "c":2, "d":2})
+# comb2 = Counter({"a":5, "b":6, "c":2})
+# print(">= :", comb1 >= comb2)
 
+# # # <大於> < > >
+# # # 同等 '>='，但其中一個項目要超過另一個
+# comb1 = Counter({"a":5, "b":6, "c":2})
+# comb2 = Counter({"a":5, "b":6, "c":2})
+# print("> :", comb1 > comb2)
+# comb1 = Counter({"a":5, "b":7, "c":2}) # "b":7
+# comb2 = Counter({"a":5, "b":6, "c":2})
+# print("> :", comb1 > comb2)
+# comb1 = Counter({"a":5, "b":6, "d":2}) # "d"
+# comb2 = Counter({"a":5, "b":6, "c":2})
+# print("> :", comb1 > comb2)
+# comb1 = Counter({"a":5, "b":6, "c":2, "d":2})
+# comb2 = Counter({"a":5, "b":6, "c":2})
+# print("> :", comb1 > comb2)

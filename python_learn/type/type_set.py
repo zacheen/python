@@ -2,7 +2,7 @@
 # #------------------------------------
 # # <初始化> set
 # 方法1 從list轉型
-ll = [3,4,5,6]
+ll = [3,6,5,4]
 s = set(ll)
 # 方法2 使用指定項目
 # s = {3,4,5,6}
@@ -25,11 +25,28 @@ if remove_item in s:
 print("remove didnt sure :",s)
 # # <判斷有沒有此項目>
 print("in s : ", 3 in s)
+# # <sorted> set 也可以 sort 變成 list
+print("sort_set :", sorted(s, key=lambda x:-x))
 
 # #------------------------------------
-# << set 操作 >>
-# 聯集
+# << set operator >>
+# <and or>
 s1 = {1,2,3,4}
 s2 = {3,4,6,7}
 print("s1 | s2 :", s1 | s2)
+print("s1 & s2 :", s1 & s2)
+# <大於等於 '>='>
+# 包含另一個全部的項目
+s1 = {1,2,3,4}
+s2 = {3,4,6,7}
+print("s1 >= s2 :", s1 >= s2) # False
+s1 = {1,3,4}
+s2 = {3,4}
+print("s1 >= s2 :", s1 >= s2) # True
+s1 = {3,4}
+s2 = {3,4}
+print("s1 >= s2 :", s1 >= s2) # True
+# <大於 '>'>
+# 等同大於等於'>=' 但是得要多一個項目
+print("s1 > s2 :", s1 > s2) # False
 
