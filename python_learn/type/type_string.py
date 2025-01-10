@@ -44,11 +44,22 @@ print("中文字".islower() and "中文字".isalpha())     # False
 # print("1235 in 01234 :", "01234".__contains__("1235"))
 
 # #------------------------------------
-# # 找出 subString 的位置 (如果沒有回傳 -1)
+# # find(str, beg=0, end=len(string))
+# # 找出 subString 的開頭位置 (如果沒有回傳 -1)
 # print("01234 find 123 :", "01234".find("123"))
 # print("1234 find 123 :", "1234".find("123"))
 # print("01234 find 1235 :", "01234".find("1235"))
 
+# # 限制範圍 
+# print("limit", "00123456".find("123",2,4)) # end位置不包含
+# print("limit", "00123456".find("123",2,5))
+
+# # rfind(str, beg=0, end=len(string))
+# # 回傳最右邊先找到的項目
+# print("12002378490012434  find 00 :", "12002378490012434".find("00"))
+# print("12002378490012434 rfind 00 :", "12002378490012434".rfind("00"))
+
+# # 如果只是要判斷有沒有存在用 in 就好
 # print("1235 in 01234 :", "1235" in "01234")
 
 # #------------------------------------
@@ -96,13 +107,6 @@ print("中文字".islower() and "中文字".isalpha())     # False
 # # 大寫換小寫 大小寫轉換
 # print("AeG!eT".lower())
 # print("AeG!eT".upper())
-
-
-# # << 奇怪的用法 >>
-# # <尋找有沒有某個字串> 會回傳開頭的位置 不存在回傳 -1
-# txt = "Hello, welcome to my world."
-# print(txt.find("welcome"))
-# print(txt.find("welcome",8,len(txt)))  # 指定尋找範圍
 
 # # <比較 >
 # print("ZZ" < "Z")
