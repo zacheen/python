@@ -1,3 +1,6 @@
+# 53. Maximum Subarray
+# https://leetcode.com/problems/maximum-subarray/
+
 import math
 # my 原本想要用for迴圈DP 不過好像沒辦法
 # Time Limit Exceeded
@@ -47,7 +50,7 @@ import math
 #         rec(len(nums)-1)
 #         return before_max
 
-# # given ans greedy
+# # given ans : Kadane's Algorithm
 # 2022 05 20 再次練習
 class Solution:
     def maxSubArray(self, nums):
