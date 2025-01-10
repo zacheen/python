@@ -1,4 +1,5 @@
-# 
+# 3355. Zero Array Transformation I
+# https://leetcode.com/problems/zero-array-transformation-i/
 
 from typing import List
 import functools

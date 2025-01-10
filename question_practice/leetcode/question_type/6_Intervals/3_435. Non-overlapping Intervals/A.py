@@ -1,17 +1,18 @@
-# my Runtime: 1732 ms, faster than 66.19% of Python3
+# 435. Non-overlapping Intervals
+# https://leetcode.com/problems/non-overlapping-intervals/description/
+
+# my 67ms Beats84.72%
 class Solution:
     def eraseOverlapIntervals(self, intervals):
-        intervals.sort(key=lambda x : x[1])  # 目前有點抓不到要用 x[0] sort 還是 x[0] ??
-        print(intervals)
-        last = [intervals[0][0]-1, intervals[0][0]-1]   
-        ans = 0
-        for each in intervals :
-            if last[1] > each[0] :
-                print(last, each)
-                ans += 1
-                continue
-            last = each
-        return ans
+        intervals.sort(key = lambda x : x[1]) # only needed sorted by x[1], not (x[1], x[0])
+        ans_cou = 0
+        end = intervals[0][0]
+        for inter in intervals :
+            if end > inter[0] :
+                ans_cou += 1
+            else :
+                end = inter[1]
+        return ans_cou
 
 s = Solution()
 print(s.eraseOverlapIntervals([[-52,31],[-73,-26],[82,97],[-65,-11],[-62,-49],[95,99],[58,95],[-31,49],[66,98],[-63,2],[30,47],[-40,-26]]))
