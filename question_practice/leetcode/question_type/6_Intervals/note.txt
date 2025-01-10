@@ -1,0 +1,15 @@
+Merge Intervals :
+    sort by start_indx
+    for all :
+        if last_end >= new_start :
+            merge > update end
+        else :
+            new segement
+
+Erase Overlap  :
+    sort by end_indx
+    for all :
+        if last_end >= new_start :
+            del this
+        else :
+            update end
