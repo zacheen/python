@@ -33,7 +33,7 @@ class Solution:
 s = Solution()
 # print("ans :",s.countNonDecreasingSubarrays(nums = [6,3,1,2,4,4], k = 7)) # 17
 # print("ans :",s.countNonDecreasingSubarrays(nums = [6,3,1,3,6], k = 4)) # 12
-# print("ans :",s.countNonDecreasingSubarrays([10,16,11,16],3)) # 6
+# print("ans :",s.countNonDecreasingSubarrays([10,15,11,16],3)) # 6
 # print("ans :",s.countNonDecreasingSubarrays([5,2,3,4],4)) # 6
 print("ans :",s.countNonDecreasingSubarrays([6,5,4,5,4,5,4],6)) # 6
 

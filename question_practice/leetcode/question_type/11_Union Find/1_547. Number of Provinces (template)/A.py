@@ -1,6 +1,7 @@
-# my 
+# 547. Number of Provinces
+# https://leetcode.com/problems/number-of-provinces/description/
 
-# given ans
+# my 3ms Beats90.07%
 class UF:
     def __init__(self, n):
         self.count = n
@@ -19,20 +20,15 @@ class UF:
             self.id[u] = self.find(self.id[u])
         return self.id[u]
 
-
 class Solution:
-    def findCircleNum(self, M):
-        n = len(M)
-        uf = UF(n)
-
-        for i in range(n):
-            for j in range(i, n):
-                if M[i][j] == 1:
-                    uf.union(i, j)
-
+    def findCircleNum(self, isConnected):
+        n_len = len(isConnected)
+        uf = UF(n_len)
+        for n1 in range(n_len) :
+            for n2 in range(n1+1, n_len) :
+                if isConnected[n1][n2] :
+                    uf.union(n1,n2)
         return uf.count
-
-
 
 s = Solution()
 # M[i][j] 代表 點i與點j有相連
