@@ -1,9 +1,12 @@
-subset, subarray [1,2,3]
-    subset
-        可以是 [1,3] [1,2]
-    subarray
-        只能是連續的 像 [1,2] [2,3]
-    
+subarray, subsequence, subset of [1,2,3]
+    subarray    : 截取數組中"連續"的一段子數組
+        只能是連續的 像 [1,2] [2,3] 不能是 [1,3]
+    subsequence : 挑取 序列"不連續"的一段子序列
+        包含 subarray 和 [1,3]
+    subset      : 挑取序列中的任何項目 形成set
+        包含所有的 subsequence 且裡面的順序可以調換(因為是 set)
+        包含 {1,3} 也包含 {3,1}
+
 substrings 
     
     

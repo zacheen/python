@@ -94,7 +94,7 @@ class Solution:
 
         return ans
 
-# given ans : 1940ms
+# given ans No1. : 1940ms
 class Solution(object):
     def minMaxSubarraySum(self, nums, k):
         # same as my cal_comb, add_to_1
@@ -155,9 +155,9 @@ class Solution(object):
 s = Solution()
 # print("ans :",s.minMaxSubarraySum(nums = [1,2,3], k = 2)) # 9 +  = 20
 # print("ans :",s.minMaxSubarraySum(nums = [1,2,3,4,2,1], k = 3))
-print("ans :",s.minMaxSubarraySum(nums = [1,4,2,3,5,0], k = 3))
+# print("ans :",s.minMaxSubarraySum(nums = [1,4,2,3,5,0], k = 3))
+print("ans :",s.minMaxSubarraySum(nums = [1,0,0,2,0,0,0], k = 2))
 # print("ans :",s.minMaxSubarraySum(nums = [1,-3,1], k = 2)) # -7 +  = -6
-# print("ans :",s.minMaxSubarraySum(nums = [-4,-17,17], k = 1))
-
+# print("ans :",s.minMaxSubarraySum(nums = [-4,-17,17], k = 1)) # -8
 # print("ans :",s.minMaxSubarraySum(nums = [15,-3,-11], k = 3)) 
 

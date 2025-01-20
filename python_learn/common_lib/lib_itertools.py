@@ -22,7 +22,8 @@ from itertools import product
 # print(list(product([1,2,3],repeat = 2)))
 # print(list(product([1,1,2],repeat = 2)))
 # # 2. list 之間的組合
-# print(list(product([1,2,3],[3,4])))
+# print(list( (n1,n2) for n1 in [1,2,3] for n2 in [3,4])) # method 1
+# print(list(product([1,2,3],[3,4])))                     # method 2
 # # 如果傳入兩層 list 就會是裡面的各個 list 組合
 # A = [[1,2,3],[3,4]]
 # print(list(product(*A)))
@@ -60,4 +61,4 @@ from itertools import pairwise  # 前一個與後一個 同時取出
 # # -----------------------------------------------
 from itertools import accumulate  # 到此 index 的總和
 # num_list = [1,3,6,2,100]
-# print(list(accumulate(num_list)))
+# print(list(accumulate(num_list))) # [1, 4, 10, 12, 112]
