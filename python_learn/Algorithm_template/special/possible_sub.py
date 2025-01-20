@@ -1,3 +1,6 @@
+# 經典題型
+    # 2444. Count Subarrays With Fixed Bounds
+    # https://leetcode.com/problems/count-subarrays-with-fixed-bounds/
 
 # 這個演算法是用來計算一些很多種可能的組合 
 # 但其實可以簡化成 for 每個結束的點 計算這個結束的點 有幾個開始的點符合需求
