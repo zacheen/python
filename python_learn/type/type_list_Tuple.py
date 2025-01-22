@@ -88,10 +88,23 @@ print("init :",ll)
 # cars.sort(reverse=True, key=myFunc)
 # print(cars)
 
-# # 2. 使用 lambda
+# # 2. 使用 lambda : 計算出單一數值
 # cars = ['Ford', 'EMW', 'Mitsubishi', 'ABC', 'BMW', 'VW', 'DMW', 'CMW']
 # cars.sort(reverse=True, key = lambda x : (len(x), x) )
 # print(cars)
+
+# # 2. 使用 lambda : 比較項目彼此(非線性)
+# class CompClass(int):
+#     def __lt__(x, y): # 按照個位數排序
+#         x_r = x%10
+#         y_r = y%10
+#         if x_r == y_r :
+#             return x > y
+#         else :
+#             return x_r > y_r
+# nums = [19,16,12,18,36,76,96,56, 99, 91, 51, 33, 55, 22]
+# nums.sort(reverse=True, key = CompClass )
+# print(nums)
 
 # #------------------------------------
 # # list 排序 sort 使用自定義function ( compare )
