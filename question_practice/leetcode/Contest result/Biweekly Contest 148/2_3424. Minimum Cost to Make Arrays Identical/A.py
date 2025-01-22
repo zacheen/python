@@ -4,7 +4,7 @@
 from typing import List
 import functools
 
-# fail : did see "into any number" ...
+# fail : didn't see "into any number" ...
 # my 229ms Beats100.00%
 class Solution:
     def minCost(self, arr: List[int], brr: List[int], k: int) -> int:
