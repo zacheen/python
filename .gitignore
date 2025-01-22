@@ -1,6 +1,6 @@
 # 測試的結果
 *test_result.*
-*_Template*
+# *_Template* # 會覆蓋到 Algorithm_template
 
 # chromedriver 下載 : https://chromedriver.chromium.org/downloads
 chromedriver.exe

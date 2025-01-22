@@ -1,3 +1,6 @@
+# 2444. Count Subarrays With Fixed Bounds
+# https://leetcode.com/problems/count-subarrays-with-fixed-bounds/
+
 # my 
 # class Solution:
 #     def countSubarrays(self, nums, minK, maxK):

@@ -1,0 +1,5 @@
+# 316. Remove Duplicate Letters
+# https://leetcode.com/problems/remove-duplicate-letters/description/
+
+# 1192. Critical Connections in a Network
+# https://leetcode.com/problems/critical-connections-in-a-network/description/
