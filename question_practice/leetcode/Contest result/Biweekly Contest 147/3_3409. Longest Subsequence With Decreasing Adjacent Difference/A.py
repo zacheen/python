@@ -5,7 +5,6 @@ from typing import List
 import functools
 
 # my 8943ms Beats65.10% # Ref No.1
-from collections import defaultdict,Counter
 max_n = 300
 class Solution:
     def longestSubsequence(self, nums: List[int]) -> int:
@@ -30,7 +29,6 @@ class Solution:
 
 # given ans (combine two for loop)
 # 5827ms Beats91.43%
-from collections import defaultdict,Counter
 max_n = 300
 class Solution:
     def longestSubsequence(self, nums: List[int]) -> int:

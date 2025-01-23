@@ -4,13 +4,20 @@
 from typing import List
 import functools
 
-# my 沒想到
+# my practice again : 131ms Beats86.54%
+from bisect import bisect_right
 class Solution:
     def longestObstacleCourseAtEachPosition(self, obstacles: List[int]) -> List[int]:
-        pass
-        # 如果限制是 n，我可以使用 n-1 的結果去判斷 n 最長的長度嗎?
-            # 不行 133332 3
-        # 
+        stack = []
+        ans = []
+        for n in obstacles :
+            ret = bisect_right(stack,n)
+            ans.append(ret+1)
+            if ret == len(stack) :
+                stack.append(n)
+            else :
+                stack[ret] = n
+        return ans
 
 # given ans Beats 100%
 from bisect import bisect_right
