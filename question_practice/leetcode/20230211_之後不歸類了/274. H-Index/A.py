@@ -1,10 +1,13 @@
-# my Beats 83.76%
-class Solution(object):
+# 274. H-Index
+# https://leetcode.com/problems/h-index/description/
+
+# my practice again : 0ms Beats100.00%
+class Solution:
     def hIndex(self, citations):
         citations.sort(reverse = True)
-        for indx, num in enumerate(citations):
-            if (indx + 1) > num :
-                return int(indx)
+        for i,n in zip(range(1,len(citations)+1), citations) :
+            if n < i :
+                return i-1
         return len(citations)
 
 # given ans 

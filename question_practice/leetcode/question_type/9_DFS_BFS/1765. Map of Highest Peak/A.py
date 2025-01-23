@@ -4,7 +4,7 @@
 from typing import List
 import functools
 
-# my 
+# my 952ms Beats58.59%
 from itertools import pairwise
 class Solution:
     def highestPeak(self, isWater: List[List[int]]) -> List[List[int]]:
