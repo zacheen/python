@@ -1,4 +1,0 @@
-
-s = Solution()
-print(s.())
-

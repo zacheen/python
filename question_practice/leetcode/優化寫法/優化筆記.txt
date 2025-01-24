@@ -1,7 +1,0 @@
-647. Palindromic Substrings
-    合併code 可以用function 會方便許多
-    
-387. First Unique Character in a String
-    找符合條件的第一個項目
-        先找好條件 在從頭 for item in list : 找每個item有沒有符合條件
-        
