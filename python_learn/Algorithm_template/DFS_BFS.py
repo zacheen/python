@@ -1,40 +1,40 @@
 # DFS
+# <template> ####################
+# n1_len = len(grid)
+# n2_len = len(grid[0])
+# dir_list = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+# def dfs(n1, n2):
+#     grid[n1][n2] = STATE
+#     for d1,d2 in dir_list: 
+#         nei1, nei2 = n1 + d1, n2 + d2
+#         if 0 <= nei1 < n1_len and 0 <= nei2 < n2_len and grid[nei1][nei2] != STATE: 
+#             ?? = dfs(nei1, nei2) 
+#     return s
+# <template> ####################
+
+# classic
+# 2658. Maximum Number of Fish in a Grid
+# https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/description
 class Solution:
-    # 尋找相鄰的區域 有幾個
-    def numIslands(self, grid):
-        m = len(grid)
-        n = len(grid[0])
+    def findMaxFish(self, grid):
+        n1_len = len(grid)
+        n2_len = len(grid[0])
+        dir_list = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        def dfs(n1, n2):
+            s = grid[n1][n2] 
+            grid[n1][n2] = 0
+            for d1,d2 in dir_list: 
+                nei1, nei2 = n1 + d1, n2 + d2
+                if 0 <= nei1 < n1_len and 0 <= nei2 < n2_len and grid[nei1][nei2] != 0: 
+                    s += dfs(nei1, nei2) 
+            return s
 
-        def dfs(i, j):
-            # 他是丟給下一個 dfs 再判斷這一點是否存在
-            # 這種寫法比較簡單整齊 
-            # 但其實可以在判斷 +1 的時候就先判斷有沒有超過長度
-            # 就不用四個邊都判斷
-            if i < 0 or i == m or j < 0 or j == n:
-                return
-            if grid[i][j] != '1':
-                return
-
-            grid[i][j] = '2'  # mark '2' as visited
-            dfs(i + 1, j)
-            dfs(i - 1, j)
-            dfs(i, j + 1)
-            dfs(i, j - 1)
-
-        ans = 0
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] == '1':
-                    dfs(i, j)
-                    ans += 1
-        return ans
+        return max([dfs(i1, i2) for i1 in range(n1_len) for i2 in range(n2_len) if grid[i1][i2] != 0] + [0])
 
 s = Solution()
-print(s.numIslands([
-    ["1","1","1","1","0"],
-    ["1","1","0","1","0"],
-    ["1","1","0","0","0"],
-    ["0","0","0","1","0"]]))
+print("ans :",s.findMaxFish([[0,2,1,0],[4,0,0,3],[1,0,0,4],[0,3,2,0]])) # 7
+print("ans :",s.findMaxFish([[1,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,1]])) # 1
+print("ans :",s.findMaxFish([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])) # 0
 
 
 # BFS 
