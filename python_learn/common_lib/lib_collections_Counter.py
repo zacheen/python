@@ -35,7 +35,8 @@ from collections import Counter
 # print(c)
 
 # # # <取得數量最多的> 參數N 代表 要回傳前幾個多的
-# 要注意"回傳格式"為 : [(key, 數量),(key, 數量)]
+# # # 要注意"回傳格式"為 : [(key, 數量),(key, 數量)]
+# c = Counter()
 # c["max1"] = 100
 # c["max2"] = 100 
 # print(c.most_common(1)) # 如果有一樣多的就隨機回傳其中一個

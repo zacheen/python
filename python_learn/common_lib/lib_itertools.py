@@ -50,6 +50,18 @@ from itertools import combinations
 # print("comb : ",list(combinations([1,1,2],2)))
 # print("comb : ",list(set(combinations([1,1,2],2))))
 
+# # <全部有可能的組合> -----------------------------------------------
+len_n = 5
+all_comb = []
+for mask in range(1, 1 << len_n): # 如果要加入空的就從 0 開始
+    l = []
+    for i in range(len_n):
+        if mask & (1 << i):
+            l.append(i)
+    all_comb.append(l)
+print("all_comb len:", len(all_comb),"\n",all_comb)
+    
+
 # # -----------------------------------------------
 from itertools import pairwise  # 前一個與後一個 同時取出
 # s = "abcdefghijklmnop"

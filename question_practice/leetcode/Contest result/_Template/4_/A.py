@@ -2,12 +2,13 @@
 # 
 
 from typing import List
-import functools
+from math import inf
 
 # my 
 
 
 # given ans
+
 
 s = Solution()
 print("ans :",s.()) # 
