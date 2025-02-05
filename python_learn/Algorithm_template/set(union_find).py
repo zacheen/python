@@ -21,9 +21,17 @@ class UF:
         if self.id[u] != u:
             self.id[u] = self.find(self.id[u])
         return self.id[u]
+    
+    # 不是遞迴的寫法，有遇到再用題目測試速度
+    # def find(self, u):
+    #     id = self.id[u]
+    #     while id != self.id[id]:
+    #         self.id[id] = self.id[self.id[id]]
+    #         id = self.id[id]
+    #     return id
 
 # <計算目前總共分成幾個 set>
-class UF:
+class UF_count:
     def __init__(self, n):
         self.count = n              # <計算目前總共分成幾個 set> 多的
         self.id = list(range(n))
@@ -42,9 +50,8 @@ class UF:
         return self.id[u]
     
 # <計算各個 set 的個數> 
-# "u" 這個項目的 set 有幾個項目 : uf.id[uf.find(u)] 
-# (尚未驗證)
-class UF:
+# "ID" 這個項目的 set 有幾個項目 : uf.set_member[uf.find(ID)] 
+class UF_each_set_count:
     def __init__(self, n):
         self.id = list(range(n))
         self.set_member = [1]*n  # <計算各個 set 的個數> 多的
@@ -67,8 +74,7 @@ class UF:
         # 不過也因為多了一些判斷 所以不一定會比較快
     # 原理是把小的 set 歸類到 大的 set 中
         # 所以就是把 有計算各個 set 的個數 再加上判斷變更 union 的方向
-# (尚未驗證)
-class UF:
+class UF_by_size:
     def __init__(self, n):
         self.id = list(range(n))
         self.set_member = [1]*n    # <計算各個 set 的個數> 多的
@@ -88,8 +94,28 @@ class UF:
             self.id[u] = self.find(self.id[u])
         return self.id[u]
 
-# 全功能都有
-class UF:
+# 讓 union 每次都指到最小的數字
+class UF_by_min:
+    def __init__(self, n):
+        self.id = list(range(n))
+
+    def union(self, u, v):
+        i = self.find(u)
+        j = self.find(v)
+        if i == j:
+            return
+        if i < j :           # union 的時候比較數字大小
+            self.id[j] = i
+        else :
+            self.id[i] = j
+
+    def find(self, u):
+        if self.id[u] != u:
+            self.id[u] = self.find(self.id[u])
+        return self.id[u]
+
+# 全功能都有 (除了 "讓 union 每次都指到最小的數字")
+class UF_all:
     def __init__(self, n):
         self.count = n
         self.id = list(range(n))
@@ -111,13 +137,14 @@ class UF:
             self.id[u] = self.find(self.id[u])
         return self.id[u]
     
-# 全功能都有 修改set_member 因此可以查看所有相關的項目
+# 全功能都有 
+    # 但set_member 改成紀錄相關的成員
+    # 因此可以透過 uf.set_member[uf.find(ID)] 查詢相關成員
 class UF_find_relate:
     def __init__(self, n):
         self.count = n
         self.id = list(range(n))
         self.set_member = [set([i]) for i in range(n)]
-        print("set_member :",self.set_member)
 
     def union(self, u, v):
         i = self.find(u)
@@ -139,8 +166,8 @@ class UF_find_relate:
             self.id[u] = self.find(self.id[u])
         return self.set_member[self.id[u]]
 
-# 可加入自訂義項目
-# 可查找此項目相關項目
+# 從 UF_find_relate 修改而來
+# 新增功能 : 一開始不用指定大小
 class UF_add_find_relate:
     def __init__(self):
         self.id = {}
@@ -174,19 +201,20 @@ class UF_add_find_relate:
             self.id[u] = self.find(self.id[u])
         return self.set_member[self.id[u]]
 
+# classic question : 計算目前總共分成幾個 set
+# 547. Number of Provinces
+# https://leetcode.com/problems/number-of-provinces/description/
 class Solution:
     def findCircleNum(self, M):
         n = len(M)
-        uf = UF(n)
+        uf = UF_all(n)
 
         # 加入連結
         for i in range(n):
             for j in range(i, n):
                 if M[i][j] == 1:
                     uf.union(i, j)
-
         print("u have linked point :", uf.set_member[uf.find(0)])
-
         return uf.count
 # M[i][j] 代表 點i與點j有相連
 # 請問總共有幾區 (若兩點之前有相連代表是同一區)
@@ -201,12 +229,9 @@ if __name__ == "__main__" :
     uf = UF_find_relate(15)
     for i,j in relation:
         uf.union(i, j)
-    print(uf.set_member)
-
-    print(uf.find(1))
-    print(uf.ger_related(1))
-
-
+    print("find :", uf.find(1))
+    print("set_member :", uf.set_member)
+    print("related :",uf.ger_related(1))
 
 # 解釋 --------------------------------------------
 class UF:
