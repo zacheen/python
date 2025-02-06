@@ -1,13 +1,14 @@
-# my Runtime: 35 ms, faster than 72.13% of Python3
+# 70. Climbing Stairs
+# https://leetcode.com/problems/climbing-stairs/description/
+
+# my practice again : 0ms Beats100.00%
 class Solution:
-    def climbStairs(self, n):
-        mem = [0,1,2]
-        
-        # 我可以選擇走到第n-1格  或是走到第n-2格
-        for n in range(3, n+1):
-            mem.append( mem[n-1] + mem[n-2] )
-             
-        return mem[n]
+    def climbStairs(self, n: int) -> int:
+        if n == 1 : return 1
+        dp = [1,2]
+        for i in range(2,n) :
+            dp.append(dp[-1] + dp[-2])
+        return dp[-1]
 
 # given ans 一樣
 
