@@ -1,4 +1,4 @@
-# calculate all result / permutation amount
+# cou_comb / calculate all result / permutation amount
 # this mostly fit counting items has the same result, with one for loop
     # like how many pairs, has the same result after % target
 
