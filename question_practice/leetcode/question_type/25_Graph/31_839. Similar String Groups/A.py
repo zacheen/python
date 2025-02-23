@@ -1,11 +1,16 @@
+# 839. Similar String Groups
+# https://leetcode.com/problems/similar-string-groups
+
 from typing import List
 import functools
 
-# my Beats Beats 81.97%
+# my 119ms Beats93.33%
 # O(N) : (len(N)^2)*len(s) : 300*300*300 
 # UF 會比較快的前提是我已經知道全部點之間的關係
     # 如果不知道 DFS 會比較快
-class UF:
+
+# 這裡不能用 UF_no_init，因為有相同的項目
+class UF_count:
     def __init__(self, n):
         self.count = n
         self.id = list(range(n))
@@ -38,14 +43,12 @@ class Solution:
                         return False
             return True
 
-        uf = UF(len(strs))
+        uf = UF_count(len(strs))
         for i, s1 in enumerate(strs) :
             for j in range(i+1, len(strs)) :
                 if is_similar(s1,strs[j]) :
                     uf.union(i,j)
         return uf.count
-    
-        
 
 # given ans Beats 90.16%
     # 反正都是要兩兩比較 乾脆直接全部都做
@@ -76,8 +79,6 @@ class Solution:
                 dfs(i)
                 ans+=1
         return ans
-
-        
 
 s = Solution()
 print(s.numSimilarGroups(["tars","rats","arts","star"])) # {"tars", "rats", "arts"} and {"star"}

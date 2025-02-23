@@ -1,20 +1,18 @@
 # 1557. Minimum Number of Vertices to Reach All Nodes
-# 
+# https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-node
 
 from typing import List
 import functools
 
-# my Beats 81.2%
+# my practice again : pick the node with in degree == 0 (must pick, otherwise no can travel it)
 class Solution:
     def findSmallestSetOfVertices(self, n: int, edges: List[List[int]]) -> List[int]:
-        not_been_pointed = set(range(n)) # 沒有被指到的點
-        for n1, n2 in edges :
-            if n2 in not_been_pointed :
-                not_been_pointed.remove(n2)
-        return not_been_pointed
+        in_degree_0 = set( i for i in range(n) )
+        for _,n2 in edges :
+            in_degree_0.discard(n2)
+        return list(in_degree_0)
 
-# given ans
-    # 速度差不多 : Beats 71.40%
+# given ans : Beats 71.40%
 # 用 mem 紀錄 哪些點走過了
 class Solution:
     def findSmallestSetOfVertices(self, n: int, edges: List[List[int]]) -> List[int]:
