@@ -6,10 +6,9 @@
 # # # -- @cache -----------------------------------------------------------
 # import time
 # # @cache 會記錄之前計算的結果 如果代入相同的變數 會從cache裡面撈資料 
-# # cache是要自己實作的 
-#         # 但是leetcode有內建
-#         # https://docs.python.org/3/library/functools.html
-#         # 裡面說 python3.9 好像有內建 可是我試了失敗
+# # 方法0 從 Lib import 
+from functools import cache
+from functools import lru_cache
 # # 方法1 使用function實作
 # # def cache(func):
 # #     data = {}

@@ -50,17 +50,45 @@ from itertools import combinations
 # print("comb : ",list(combinations([1,1,2],2)))
 # print("comb : ",list(set(combinations([1,1,2],2))))
 
-# # <全部有可能的組合> -----------------------------------------------
-len_n = 5
-all_comb = []
-for mask in range(1, 1 << len_n): # 如果要加入空的就從 0 開始
-    l = []
-    for i in range(len_n):
-        if mask & (1 << i):
-            l.append(i)
-    all_comb.append(l)
-print("all_comb len:", len(all_comb),"\n",all_comb)
-    
+# # <全部有可能的組合> <all subset> -----------------------------------------------
+# <從全部的項目中 組合所有的可能組合>
+def all_subsets(arr):
+    len_n = len(arr)
+    all_comb = []
+    for mask in range(0, 1 << len_n): # 如果要加入空的就從 0 開始
+        l = []
+        for i,n in enumerate(arr):
+            if mask & (1 << i):
+                l.append(n)
+        all_comb.append(l)
+    return all_comb
+
+# # classic : 78. Subsets
+# # https://leetcode.com/problems/subsets/description/
+# print(all_subsets([1,2,3]))
+# print(all_subsets(['a','b']))
+
+# <從特定的項目中 組合所有的可能組合>
+import operator
+from functools import reduce
+def certain_subsets(arr, indexs):
+    all_mask = reduce(operator.or_, [1<<i for i in indexs])
+    mask = all_mask
+    all_comb = []
+    while True:
+        # print(bin(mask))
+        l = []
+        for i,n in enumerate(arr):
+            if mask & (1 << i):
+                l.append(n)
+        all_comb.append(l)
+
+        mask = (mask - 1) & all_mask
+        if mask == all_mask:
+            break
+    return all_comb
+
+# print(certain_subsets(["a","b","c","d","e"],[0,2]))
 
 # # -----------------------------------------------
 from itertools import pairwise  # 前一個與後一個 同時取出
@@ -74,3 +102,23 @@ from itertools import pairwise  # 前一個與後一個 同時取出
 from itertools import accumulate  # 到此 index 的總和
 # num_list = [1,3,6,2,100]
 # print(list(accumulate(num_list))) # [1, 4, 10, 12, 112]
+
+# # -----------------------------------------------
+from itertools import cycle  # 會一直循環取出
+# num_list = [1,3,6,2,100]
+# count = 0
+# l = []
+# for n in cycle(num_list) :
+#     l.append(n)
+#     count += 1
+#     if count >= 13 :
+#         break
+# print(l) # [1, 3, 6, 2, 100, 1, 3, 6, 2, 100, 1, 3, 6]
+
+# # cycle 可搭配 zip 使用
+# num_list1 = list(i for i in range(10))
+# num_list2 = [1,3,6,2]
+# l = []
+# for info in zip(num_list1, cycle(num_list2)) :
+#     l.append(info)
+# print(l) # [(0, 1), (1, 3), (2, 6), (3, 2), (4, 1), (5, 3), (6, 6), (7, 2), (8, 1), (9, 3)]

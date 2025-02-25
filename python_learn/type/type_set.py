@@ -10,21 +10,14 @@ print("init :",s)
 # # <增加項目>
 s.add(8) # 如果增加已經存在的項目不會做任何事
 print("add :",s)
-# # <刪除某個值>
+# # <刪除某個值 (不存在會跳錯) >
 s.remove(4)
 print("remove :",s)
-# # <不確定有沒有此值的刪除>
-remove_item = 100
-if remove_item in s:
-    s.remove(remove_item)
-# # try except 比較慢
-# try :
-#     s.remove(remove_item)
-# except KeyError :
-#     print("didnt have this value")
-print("remove didnt sure :",s)
+# # <刪除某個值 (不存在不會跳錯) >
+s.discard(100)
+print("discard:",s)
 # # <判斷有沒有此項目>
-print("in s : ", 3 in s)
+print("in s :", 3 in s)
 # # <sorted> set 也可以 sort 變成 list
 print("sort_set :", sorted(s, key=lambda x:-x))
 

@@ -141,6 +141,12 @@ print("init :",ll)
 # print("reverse region :", ll)
 
 # #------------------------------------
+# # 區間取代
+# l = [i for i in range(20,-1,-1)]
+# l[5:15] = sorted(l[5:15])
+# print(l)
+
+# #------------------------------------
 # # 隨機 隨機list的順序
 # import random
 # random.shuffle(ll)

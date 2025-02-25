@@ -50,9 +50,7 @@ class Solution:
             ans_list.appendleft(segTree.query(n))
             segTree.update(n)
         return list(ans_list)
-
-# given ans
-
+    
 s = Solution()
 print("ans :",s.countSmaller(nums = [5,2,6,1])) # [2,1,1,0]
 print("ans :",s.countSmaller(nums = [-1])) # [0]

@@ -62,3 +62,10 @@ def remove_num(value):
 remove_num(4)
 print("remove 4 :", minheapList)
 
+## <heapq.merge> #########################################
+# merge 兩個 sorted list
+# 時間複雜度是 O(n)
+l1 = [1,3,5,8]
+l2 = [2,4,9,10]
+l3 = [0,6,7,11]
+print("heapq.merge :", list(heapq.merge(l1,l2,l3)))

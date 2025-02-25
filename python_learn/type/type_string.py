@@ -1,13 +1,19 @@
 # #------------------------------------
 # # str 轉 int
 # print(int("12"))
+# # int 轉 str
+# print(str(12))
 
-# # ascii
-# # # char 轉 int
+# # char 轉 int (ascii)
 # print(ord("A"))
 # # # int 轉 char
 # print(chr(65))
 
+# # bit 轉 str
+# print(f'{17:0>{6}b}')
+# print(f'{17:b}')
+# # str 轉 bit(int)
+# print(int("10001", 2))
 # #------------------------------------
 # # 判斷是不是字母
 # print("sdjkfl".isalpha())     # True
@@ -24,10 +30,10 @@
 
 # #------------------------------------
 # # 如果只想判斷是英文字母(排除中文字)
-print("sdjkfl".islower() and "sdjkfl".isalpha())    # True
-print("a1s".islower() and "a1s".isalpha())          # False
-print("!a".islower() and "!a".isalpha())            # False
-print("中文字".islower() and "中文字".isalpha())     # False
+# print("sdjkfl".islower() and "sdjkfl".isalpha())    # True
+# print("a1s".islower() and "a1s".isalpha())          # False
+# print("!a".islower() and "!a".isalpha())            # False
+# print("中文字".islower() and "中文字".isalpha())     # False
 
 # #------------------------------------
 # # 判斷是不是數字
