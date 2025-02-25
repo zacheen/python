@@ -6,6 +6,7 @@
 
 # 最基本的版本
     # find 有做路徑壓縮 (下一次搜尋的時候就不需要這麼久的時間)
+    # 如果是字串 其實可以比較字串是否有關連 union index 位置 (union(i1,i2))
 class UF:
     def __init__(self, n):
         self.id = list(range(n))
@@ -29,6 +30,26 @@ class UF:
     #         self.id[id] = self.id[self.id[id]]
     #         id = self.id[id]
     #     return id
+
+# <不需要初始化 且適用各種type(str, tuple)>
+    # !! 有相同的項目不能用 > 可以改成用項目位置
+class UF_no_init:
+    def __init__(self):
+        self.id = {}                # <適用各種type> 多的
+
+    def union(self, u, v):
+        i = self.find(u)
+        j = self.find(v)
+        if i == j:
+            return
+        self.id[i] = j
+
+    def find(self, u):
+        if u not in self.id :       # <適用各種type> 多的
+            return u
+        elif self.id[u] != u:
+            self.id[u] = self.find(self.id[u])
+        return self.id[u]
 
 # <計算目前總共分成幾個 set>
 class UF_count:
@@ -54,7 +75,7 @@ class UF_count:
 class UF_each_set_count:
     def __init__(self, n):
         self.id = list(range(n))
-        self.set_member = [1]*n  # <計算各個 set 的個數> 多的
+        self.set_member = [1]*n     # <計算各個 set 的個數> 多的
 
     def union(self, u, v):
         i = self.find(u)
@@ -62,6 +83,7 @@ class UF_each_set_count:
         if i == j:
             return
         self.set_member[j] += self.set_member[i]  # <計算各個 set 的個數> 多的
+        self.set_member[i] = 0                    # 0 代表被合併了 (非必要)
         self.id[i] = j 
 
     def find(self, u):
@@ -166,9 +188,9 @@ class UF_find_relate:
             self.id[u] = self.find(self.id[u])
         return self.set_member[self.id[u]]
 
-# 從 UF_find_relate 修改而來
-# 新增功能 : 一開始不用指定大小
-class UF_add_find_relate:
+# 從 UF_find_relate 修改而來 + UF_no_init
+# 新增功能 : 一開始不用指定大小 且適用 char
+class UF_find_relate_no_init_v1:
     def __init__(self):
         self.id = {}
         self.set_member = {}
@@ -192,6 +214,34 @@ class UF_add_find_relate:
         self.id[i] = j
 
     def find(self, u):
+        if self.id[u] != u:
+            self.id[u] = self.find(self.id[u])
+        return self.id[u]
+    
+    def ger_related(self, u):
+        if self.id[u] != u:
+            self.id[u] = self.find(self.id[u])
+        return self.set_member[self.id[u]]
+    
+from collections import defaultdict
+class UF_find_relate_no_init_v2: # 尚未驗證
+    def __init__(self):
+        self.id = {}
+        self.set_member = defaultdict(lambda x : x)
+
+    def union(self, u, v):
+        i = self.find(u)
+        j = self.find(v)
+        if i == j:
+            return
+        self.set_member[j] = self.set_member[j] | self.set_member[i]
+        del(self.set_member[i])
+        self.id[i] = j
+
+    def find(self, u):
+        # 多了這個
+        if u not in self.id :
+            return u
         if self.id[u] != u:
             self.id[u] = self.find(self.id[u])
         return self.id[u]
