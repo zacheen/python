@@ -1,17 +1,30 @@
+# my practice again
+class Solution:
+    def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root == None : return None
+        
+        def dfs(node, right_s):
+            if node.right != None :
+                node.val += dfs(node.right, right_s)
+            else :
+                node.val += right_s
+            if node.left != None :
+                return dfs(node.left, node.val)
+            else :
+                return node.val
+        dfs(root, 0)
+        return root 
+
 # my Runtime: 82 ms, faster than 89.47% of Python3
-# 不能跑
 class Solution:
     def convertBST(self, root):
         if root == None :
             return root
            
         def recur(now_node, parent_total):
-            ret_total = now_node.val
-            
             if now_node.right != None :
                 now_node.val += recur(now_node.right, parent_total)
-                ret_total = now_node.val
-                
+            ret_total = now_node.val
             now_node.val += parent_total
             if now_node.left != None :
                 ret_total += recur(now_node.left, now_node.val)
