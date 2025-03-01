@@ -1,6 +1,7 @@
 MAX_n = 10
 MAX_PICK = 5
 MOD = 10**9+7
+# MOD 要是比 MAX_n 大的質數 !!
 
 # method 1 #########################################################
 # 適合稀疏取用
@@ -36,6 +37,10 @@ class Factorial:
     def inv(self, n):
         return self.fact[n-1] * self.invfact[n] % self.MOD
 
+# print(Factorial(MAX_n, MOD).combi(9, 3)) 
+# print(Factorial(MAX_n, 19).combi(9, 3))
+# print(Factorial(MAX_n, 5).combi(9, 3)) # Wrong : 5 is smaller than MAX_n
+
 # method 2 #########################################################
 # 適合緊密取用
 n = MAX_n
@@ -46,10 +51,10 @@ for i in range(n + 1):
     for j in range(1, min(i, k) + 1):
         combi[i][j] = (combi[i - 1][j - 1] + combi[i - 1][j]) % MOD
 
-# test ########################################################
-fact = Factorial(MAX_n, MOD)
-for from_total in range(MAX_n) :
-    for pick_n in range(MAX_PICK) :
-        if combi[from_total][pick_n] != fact.combi(from_total, pick_n) :
-            print("not the same :",combi[from_total][pick_n], fact.combi(from_total, pick_n))
-print("finish")
+# # test same ########################################################
+# fact = Factorial(MAX_n, MOD)
+# for from_total in range(MAX_n) :
+#     for pick_n in range(MAX_PICK) :
+#         if combi[from_total][pick_n] != fact.combi(from_total, pick_n) :
+#             print("not the same :",combi[from_total][pick_n], fact.combi(from_total, pick_n))
+# print("finish")
