@@ -14,8 +14,7 @@ class Solution:
         path = {}
         ans = []
         def dfs(now_n, prev_n) :
-            if now_n in path :
-                # form a circle
+            if now_n in path : # form a circle
                 return path[now_n]
             path[now_n] = len(path)
             min_ret = len(path)

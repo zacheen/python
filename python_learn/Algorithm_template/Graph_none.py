@@ -52,10 +52,17 @@ def has_cycle(links, len_n): # ?? 有問題
 # print(has_cycle([(0, 1), (2, 0)], 3)) # 0 > 1 > 0 
 # print(has_cycle([(0, 1), (1, 2), (2, 0), (1, 3), (3, 0)], 4))
 
-def cut_all_branch(links, len_n): # 尚未驗證!!
-    li = link(links)
+# this two version speed almost the same
+def cut_all_branch(links, len_n): # 驗證 tree
     deg = [0] * len_n
-    end_point = [i for i, d in enumerate(deg) if d == 1]
+    li = [[] for _ in range(len_n)]
+    for n1,n2 in links :
+        li[n1].append(n2)
+        li[n2].append(n1)
+        deg[n1] += 1
+        deg[n2] += 1
+
+    end_point = [i for i, d in enumerate(deg) if d <= 1]
     # print("end_point", end_point)
     seen = set()
     while end_point:  # 拓樸排序，剪掉圖上所有樹枝
@@ -67,9 +74,22 @@ def cut_all_branch(links, len_n): # 尚未驗證!!
                 if deg[nei_n] == 1:
                     end_point.append(nei_n)
 
-def circle_path(links, len_n) : # path_in_circle 尚未驗證!!
-    li = link(links, len_n)
+def cut_all_branch_set_li(links, len_n): # 驗證 tree
+    li = [set() for _ in range(len_n)]
+    for n1,n2 in links :
+        li[n1].add(n2)
+        li[n2].add(n1)
     
+    end_point = [i for i, nei in enumerate(li) if len(nei) <= 1]
+    while end_point :
+        now_n = end_point.pop()
+        for nei_n in li[now_n] :
+            li[nei_n].remove(now_n)
+            if len(li[nei_n]) == 1:
+                end_point.append(nei_n)
+
+def circle_path(links, len_n) : # 目前驗證一題
+    li = link(links, len_n)
     path = {}
     path_no_circle = []
     path_in_circle = set()
@@ -91,8 +111,8 @@ def circle_path(links, len_n) : # path_in_circle 尚未驗證!!
     dfs(0,-1)
     return path_no_circle, path_in_circle
 
-print(circle_path([[0,1],[1,2],[2,0],[1,3]], 4))
-print(circle_path([[0,1],[1,2],[2,0],[1,3],[3,4],[4,5],[5,3]], 6))
+# print(circle_path([[0,1],[1,2],[2,0],[1,3]], 4))
+# print(circle_path([[0,1],[1,2],[2,0],[1,3],[3,4],[4,5],[5,3]], 6))
 
 # # 1192. Critical Connections in a Network
 # https://leetcode.com/problems/critical-connections-in-a-network/description/
