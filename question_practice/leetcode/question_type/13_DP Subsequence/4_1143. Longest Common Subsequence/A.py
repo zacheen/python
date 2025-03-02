@@ -1,3 +1,5 @@
+# 1143. Longest Common Subsequence
+# https://leetcode.com/problems/longest-common-subsequence
 
 # given ans
 class Solution:
@@ -10,7 +12,7 @@ class Solution:
                     dp[i][j] = 1 + dp[i-1][j-1]
                 else :
                     dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-            print(dp)
+            # print(dp)
         return dp[len(text1)][len(text2)]
 
 # my 參考 given ans 寫成 recursive
@@ -32,6 +34,7 @@ class Solution:
 
 s = Solution()
 print(s.longestCommonSubsequence(text1 = "abcde", text2 = "deabc" ))
+print(s.longestCommonSubsequence(text1 = "abac", text2 = "cab" ))
 # print(s.longestCommonSubsequence(text1 = "abcde", text2 = "ace" ))
 # print(s.longestCommonSubsequence(text1 = "abc", text2 = "def" ))
 
