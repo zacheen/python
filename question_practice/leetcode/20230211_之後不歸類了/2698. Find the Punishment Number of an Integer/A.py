@@ -41,6 +41,7 @@ def isPossible( accumulate, running, numChars, i, target):
 class Solution:
     def punishmentNumber(self, n: int) -> int:
         return sum(squ for i in range(1, n + 1) if isPossible(0, 0, str(squ := i*i), 0, i))
+
 s = Solution()
 print("ans :",s.punishmentNumber(10)) # 182 = 1 + 81 + 100 = 182
 print("ans :",s.punishmentNumber(37)) # 1478

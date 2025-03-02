@@ -2,7 +2,7 @@
 # #------------------------------------
 # # <初始化> set
 # 方法1 從list轉型
-ll = [3,6,5,4]
+ll = [3,6,5,4,201,202,203]
 s = set(ll)
 # 方法2 使用指定項目
 # s = {3,4,5,6}
@@ -16,6 +16,10 @@ print("remove :",s)
 # # <刪除某個值 (不存在不會跳錯) >
 s.discard(100)
 print("discard:",s)
+# # <隨機取出某個值 (set為空會跳錯) >
+print("before pop:",s)
+print("pop out :",s.pop())
+print("before pop:",s)
 # # <判斷有沒有此項目>
 print("in s :", 3 in s)
 # # <sorted> set 也可以 sort 變成 list

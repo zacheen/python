@@ -51,6 +51,17 @@ import math
 # # < comb > 組合 : C N 取 K
 # print("math.comb(6,3)",math.comb(6,3))
 
+# # #------------------------------------
+# # 階乘 factorial
+mem_fact = [1,1]
+def fact(n) :
+    while len(mem_fact) <= n :
+        mem_fact.append( mem_fact[-1]*(len(mem_fact)) )
+    return mem_fact[n]
+print("fact(5)",fact(5))
+print("fact(6)",fact(6))
+
+
 # # # 特殊(很少用到) #####################################################
 # # #------------------------------------
 # # < isqrt > 平方根,開根號 + floor

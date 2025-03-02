@@ -41,6 +41,12 @@ print("init :",ll)
 # except ValueError :
 #     print("didnt have this value")
 # print("remove2 :",ll)
+# # # <串連其他 list> (這兩個速度差不多)
+# print("extend bef", ll)
+# ll.extend([1,2,3])
+# print("extend aft", ll)
+# ll += [4,5,6]
+# print("    += aft", ll)
 
 # #------------------------------------
 # # 初始化 Tuple 基本上用法跟 list 一樣 只是不能更改

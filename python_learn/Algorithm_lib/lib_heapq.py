@@ -69,3 +69,5 @@ l1 = [1,3,5,8]
 l2 = [2,4,9,10]
 l3 = [0,6,7,11]
 print("heapq.merge :", list(heapq.merge(l1,l2,l3)))
+print("heapq.merge :", list(heapq.merge([l1, l2, l3]))) # fail merging
+print("heapq.merge :", list(heapq.merge(*[l1, l2, l3])))
