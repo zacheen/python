@@ -1,4 +1,4 @@
-# Maximum Subarray Sum – Kadane’s Algorithm
+# Maximum Subarray Sum – Kadane's Algorithm
 # classic
     # 53. Maximum Subarray
     # https://leetcode.com/problems/maximum-subarray/
