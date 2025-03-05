@@ -29,11 +29,11 @@ def knapsack_01_for_target(nums, target):
 # print([knapsack_01_for_target([1,2,4,8,16], i) for i in range(1,32)])
 # print(knapsack_01_for_target([1,2,5], 11))
 
-## take any amount ################################################################
+## take multi ################################################################
 # classic : 322. Coin Change
 # https://leetcode.com/problems/coin-change/description/
 
-def knapsack_several(nums, target):
+def knapsack_multi(nums, target):
     dp=[0] + [inf]*target
     for n in nums:
         for i in range(n, len(dp)):  # 從小到大
@@ -44,4 +44,8 @@ def knapsack_several(nums, target):
     else :
         return dp[target]
     
-# def knapsack_several_sort(nums, target): # not correct
+# def knapsack_multi_sort(nums, target): # not correct
+
+## take multi with limit ################################################################
+# classic : 2585. Number of Ways to Earn Points
+# https://leetcode.com/problems/number-of-ways-to-earn-points/
