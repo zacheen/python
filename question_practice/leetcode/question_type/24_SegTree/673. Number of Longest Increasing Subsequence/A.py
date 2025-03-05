@@ -5,7 +5,7 @@ from typing import List
 import functools
 from collections import Counter
 
-# my SegTree version 36ms Beats96.48%
+# my SegTree version 34ms Beats95.76%
 class SegTree:
     def __init__(self, nums):
         self.n = len(nums)
@@ -64,15 +64,14 @@ class SegTree:
 
 class Solution:
     def findNumberOfLIS(self, nums):
-        rank = { x : i for i, x in enumerate(sorted(list(set(nums)))) } # 各個數字的大小排行
+        rank = { x : i for i, x in enumerate(sorted(set(nums))) } # 各個數字的大小排行
         sg = SegTree(rank)
         for num in nums:
-            prev, comb = sg.query(0, rank[num] - 1) # 判斷在這個數字之前(0~(rank[num] - 1)) 各自數字最長的結果,以及其對應的組合
+            prev, comb = sg.query(0, rank[num] - 1) # 判斷在這個數字之前 有幾個數字大於他
             sg.update(rank[num], prev + 1, comb) 
         return sg.query(0, len(rank)-1)[1]
 
 # my 43ms Beats96.38%
-# from collections import deque
 import bisect
 class Solution:
     def findNumberOfLIS(self, nums):
