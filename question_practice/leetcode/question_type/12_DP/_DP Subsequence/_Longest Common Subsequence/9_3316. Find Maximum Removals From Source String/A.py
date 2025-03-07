@@ -29,29 +29,26 @@ class Solution:
             if s_i in set_tar_i :
                 if (r := dfs(s_i+1, p_i) + 1) > ret :
                     ret = r
-                
             return ret
         return dfs(0,0)
 
-# # my optimized ??
-# class Solution:
-#     def maxRemovals(self, source: str, pattern: str, targetIndices: List[int]) -> int:
-#         set_tar_i = set(targetIndices)
-#         dp = [0]*(len(source)+1) # dp[到這個位置] = 最多可以刪除幾個項目
-#         dp[0] = 0
-#         for c1 in pattern :
-#             new_dp = [-inf] # 通常可以跳過某個項目用 0, 若不要跳過用 -inf
-#             for j, c2 in enumerate(source) :
-#                 # dont del s_i
-#                 if c1 == c2 :
-#                     new_dp.append(dp[j])
-#                 else :
-#                     new_dp.append(dp[j+1])
-#                 # del s_i
-#                 if j in set_tar_i :
-#                     new_dp[-1] = max(new_dp[-1], new_dp[j+1]+1)
-#             dp = new_dp
-#         return dp[-1]
+# my (for version) : 1242ms Beats90.37%
+from itertools import zip_longest  
+class Solution:
+    def maxRemovals(self, source: str, pattern: str, targetIndices: List[int]) -> int:
+        set_tar_i = set(targetIndices)
+        dp = [-inf]*len(pattern) + [0]
+        for s_i in range(len(source)-1,-1,-1) :
+            can_del = s_i in set_tar_i 
+            s_c = source[s_i]
+            for p_i, p_c in enumerate(pattern):
+                if can_del :
+                    dp[p_i] += 1
+                if p_c == s_c :
+                    dp[p_i] = max(dp[p_i], dp[p_i+1])
+            if can_del :
+                dp[-1] += 1
+        return dp[0]
 
 s = Solution()
 print("ans :",s.maxRemovals(source = "abbaa", pattern = "aba", targetIndices = [0,1,2])) # 1

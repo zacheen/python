@@ -4,40 +4,22 @@
 from typing import List
 import functools
 
-# my practice again : 131ms Beats86.54%
+# my practice again : 127ms Beats93.48%
+    # using template LIS_nonstrict
 from bisect import bisect_right
+from math import inf
 class Solution:
-    def longestObstacleCourseAtEachPosition(self, obstacles: List[int]) -> List[int]:
-        stack = []
+    def longestObstacleCourseAtEachPosition(self, obstacles):
+        stack = [inf]
         ans = []
         for n in obstacles :
-            ret = bisect_right(stack,n)
-            ans.append(ret+1)
-            if ret == len(stack) :
+            if n >= stack[-1] :
                 stack.append(n)
+                ans.append(len(stack))
             else :
-                stack[ret] = n
-        return ans
-
-# given ans Beats 100%
-from bisect import bisect_right
-class Solution:
-    def longestObstacleCourseAtEachPosition(self, obstacles: List[int]) -> List[int]:
-        ans = []
-        # tail[i] := the minimum tail of all increasing subseqs having length i + 1
-        # it's easy to see that tail must be an increasing array
-        tail = []
-
-        for obstacle in obstacles:
-            if not tail or obstacle >= tail[-1]:
-                tail.append(obstacle)
-                ans.append(len(tail))
-            else:
-                # 每次都把相對位置的數字替換成現在最小的數字
-                index = bisect_right(tail, obstacle)
-                tail[index] = obstacle
-                ans.append(index + 1)
-            # print(tail)
+                ins_i = bisect_right(stack,n)
+                stack[ins_i] = n
+                ans.append(ins_i+1)
         return ans
 
 s = Solution()

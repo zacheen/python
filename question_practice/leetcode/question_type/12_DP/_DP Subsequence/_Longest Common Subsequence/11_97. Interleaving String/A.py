@@ -22,9 +22,6 @@ class Solution:
             return False
         return dfs(0,0)
 
-# given ans
-
-
 s = Solution()
 print("ans :",s.isInterleave(s1 = "aabcc", s2 = "dbbca", s3 = "aadbbcbcac")) # T
 print("ans :",s.isInterleave(s1 = "aabcc", s2 = "dbbca", s3 = "aadbbbaccc")) # F
