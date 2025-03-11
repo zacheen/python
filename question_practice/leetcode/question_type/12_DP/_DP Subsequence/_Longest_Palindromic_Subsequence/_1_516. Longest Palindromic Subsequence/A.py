@@ -1,3 +1,5 @@
+
+
 # given ans Runtime: 862 ms, faster than 98.31% of Python3
 # 用包圍的 好像有一些位置甚至不會跑 所以還比較快
 class Solution:
