@@ -58,9 +58,8 @@ def fact(n) :
     while len(mem_fact) <= n :
         mem_fact.append( mem_fact[-1]*(len(mem_fact)) )
     return mem_fact[n]
-print("fact(5)",fact(5))
-print("fact(6)",fact(6))
-
+# print("fact(5)",fact(5))
+# print("fact(6)",fact(6))
 
 # # # 特殊(很少用到) #####################################################
 # # #------------------------------------
@@ -69,3 +68,22 @@ print("fact(6)",fact(6))
 # print("isqrt(16)",math.isqrt(15))
 # print("isqrt(16)",math.isqrt(16))
 # print("isqrt(17)",math.isqrt(17))
+
+# 有關數學自己實作 ##################################################
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n == 2:
+        return True  # 2 is the only even prime number
+    if n % 2 == 0:
+        return False  # other even numbers are not prime
+    
+    sqrt_n = int(math.sqrt(n)) + 1
+    for i in range(3, sqrt_n, 2):  # check odd numbers only
+        if n % i == 0:
+            return False
+    return True
+
+# print(is_prime(5))
+# print(is_prime(10))
+# print(is_prime(97))

@@ -1,6 +1,9 @@
-# "Z-algorithm" "longest common prefix"
+# "Z-algorithm" "longest common prefix" O(n)
 # 可以用較快的速度找到每個位置的'自己的'prefix長度
 # 詳細教學 : https://www.youtube.com/watch?v=2EqYY0c--QI
+
+# classic : 14. Longest Common Prefix
+# https://leetcode.com/problems/longest-common-prefix/
 
 # 詳解
 # return[i] 是起始為 i 的最大長度prefix

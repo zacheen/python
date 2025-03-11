@@ -10,9 +10,12 @@ import itertools
 #     print("zip",n1,n2)
 
 # # < zip_longest > 
-#     # 會 zip 到最長的結果
-#     # 如果某一個長度不夠，會用 None 去補充
+# #     會 zip 到最長的結果
+# #     如果某一個長度不夠，會用 None 去補充
+# #     或使用 fillvalue 指定數值
 # for n1,n2 in itertools.zip_longest(l1, l2) :
+#     print("zip_longest",n1,n2)
+# for n1,n2 in itertools.zip_longest(l1, l2, fillvalue=100) :
 #     print("zip_longest",n1,n2)
 
 # # -----------------------------------------------
