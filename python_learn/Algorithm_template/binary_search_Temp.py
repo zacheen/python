@@ -1,8 +1,19 @@
+# binarySearch
+    # 需要注意計算 check 的時候，能不能中途 return 結果
+
+# # 最快 : 可以直接丟入 bisect
+# from bisect import bisect_left
+# def check(mid: int) -> bool:
+#     return RESULT >= THRESHOLD
+# ret = bisect_left(range(MAX_POSS+1), True, key=check)
+
+# classic 2560. House Robber IV
+# https://leetcode.com/problems/house-robber-iv
+
 # 好像是泛用型 (binarySearch2 變形而來的)
     # 最後的 l 為插入的位置 (所以 l 有可能最後會超出 list 的長度)
         # 要注意如果有相同的項目，插入的位置是相同的項目"之前"
     # 只有通過與不通過
-# 可以嘗試用這個看看 (看起來好像更簡潔了)
 # 這個方法就是一定要做到最後 就算中間有找到答案 還是會做到 l == r
 def binarySearch_adv2(nums, target):
     left, right = 0, len(nums) # right 通常會超出界線(因為執行的時候不會執行到這個數字) # 但是最後 l 有可能會超出範圍
