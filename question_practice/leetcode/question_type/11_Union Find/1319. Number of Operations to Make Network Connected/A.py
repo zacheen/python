@@ -1,7 +1,7 @@
 # 1319. Number of Operations to Make Network Connected
 # https://leetcode.com/problems/number-of-operations-to-make-network-connected/description/
 
-# my 31ms Beats92.59%
+# my 27ms Beats98.32%
 class UF_count:
     def __init__(self, n):
         self.count = n              # <計算目前總共分成幾個 set> 多的
@@ -15,10 +15,10 @@ class UF_count:
         self.id[i] = j
         self.count -= 1             # <計算目前總共分成幾個 set> 多的
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
 
 class Solution:
     def makeConnected(self, n: int, connections) -> int:

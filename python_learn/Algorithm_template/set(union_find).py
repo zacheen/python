@@ -18,18 +18,15 @@ class UF:
             return
         self.id[i] = j
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
-    
-    # 不是遞迴的寫法，有遇到再用題目測試速度
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
+    # recursive version (slower)
     # def find(self, u):
-    #     id = self.id[u]
-    #     while id != self.id[id]:
-    #         self.id[id] = self.id[self.id[id]]
-    #         id = self.id[id]
-    #     return id
+    #     if self.id[u] != u:
+    #         self.id[u] = self.find(self.id[u])
+    #     return self.id[u]
 
 # <不需要初始化 且適用各種type(str, tuple)>
     # !! 有相同的項目不能用 > 可以改成用項目位置
@@ -47,9 +44,9 @@ class UF_no_init:
     def find(self, u):
         if u not in self.id :       # <適用各種type> 多的
             return u
-        elif self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
 
 # <計算目前總共分成幾個 set>
 class UF_count:
@@ -65,10 +62,10 @@ class UF_count:
         self.id[i] = j
         self.count -= 1             # <計算目前總共分成幾個 set> 多的
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
     
 # <計算各個 set 的個數> 
 # "ID" 這個項目的 set 有幾個項目 : uf.set_member[uf.find(ID)] 
@@ -86,10 +83,10 @@ class UF_each_set_count:
         self.set_member[i] = 0                    # 0 代表被合併了 (非必要)
         self.id[i] = j 
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
 
 # Union by size 
     # 可助於減少 新增union時 find需要查找與修改代表的時間
@@ -111,10 +108,10 @@ class UF_by_size:
         self.set_member[j] += self.set_member[i]  # <計算各個 set 的個數> 多的
         self.id[i] = j
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
 
 # 讓 union 每次都指到最小的數字
 class UF_by_min:
@@ -131,10 +128,10 @@ class UF_by_min:
         else :
             self.id[i] = j
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
 
 # 全功能都有 (除了 "讓 union 每次都指到最小的數字")
 class UF_all:
@@ -154,10 +151,10 @@ class UF_all:
         self.id[i] = j
         self.count -= 1
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
     
 # 全功能都有 
     # 但set_member 改成紀錄相關的成員
@@ -178,10 +175,10 @@ class UF_find_relate:
         self.id[i] = j
         self.count -= 1
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
     
     def ger_related(self, u):
         if self.id[u] != u:
@@ -213,10 +210,10 @@ class UF_find_relate_no_init_v1:
         del(self.set_member[i])
         self.id[i] = j
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
     
     def ger_related(self, u):
         if self.id[u] != u:

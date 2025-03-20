@@ -1,7 +1,7 @@
 # 2316. Count Unreachable Pairs of Nodes in an Undirected Graph
 # https://leetcode.com/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/description/
 
-# my practice again : 143ms Beats97.33%
+# my practice again : 123ms Beats100.00%
 class UF_each_set_count:
     def __init__(self, n):
         self.id = list(range(n))
@@ -16,10 +16,10 @@ class UF_each_set_count:
         self.set_member[i] = 0
         self.id[i] = j 
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
 
 class Solution:
     def countPairs(self, n: int, edges) -> int:

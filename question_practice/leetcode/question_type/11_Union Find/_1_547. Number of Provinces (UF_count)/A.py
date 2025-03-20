@@ -2,9 +2,9 @@
 # https://leetcode.com/problems/number-of-provinces/description/
 
 # my 3ms Beats90.07%
-class UF:
+class UF_count:
     def __init__(self, n):
-        self.count = n
+        self.count = n              # <計算目前總共分成幾個 set> 多的
         self.id = list(range(n))
 
     def union(self, u, v):
@@ -13,17 +13,17 @@ class UF:
         if i == j:
             return
         self.id[i] = j
-        self.count -= 1
+        self.count -= 1             # <計算目前總共分成幾個 set> 多的
 
-    def find(self, u):
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while (up:=self.id[up]) != (deep:=self.id[up]):
+            self.id[up] = self.id[deep]
+        return up
 
 class Solution:
     def findCircleNum(self, isConnected):
         n_len = len(isConnected)
-        uf = UF(n_len)
+        uf = UF_count(n_len)
         for n1 in range(n_len) :
             for n2 in range(n1+1, n_len) :
                 if isConnected[n1][n2] :
