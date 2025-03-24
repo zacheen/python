@@ -7,7 +7,7 @@
 # 1092. Shortest Common Supersequence 
 # https://leetcode.com/problems/shortest-common-supersequence
 
-def lcs(str1: str, str2: str) -> str:
+def LCS(str1: str, str2: str) -> str:
     # # 0 finding longest common subsequence length
         # # but optimized to 1D array, and can't backtrack
     # dp = [0]*(len(str2)+1)
@@ -67,8 +67,8 @@ def lcs(str1: str, str2: str) -> str:
 
     return dp[-1][-1], act_lcs, act_scs
 
-print(lcs("abcde", "deabc")) # 3, abc, deabcde
-print(lcs("abcde", "ace")) # 3, ace, abcde
-print(lcs("abac", "cab")) # 2, ab, cabac
-print(lcs("abcd", "acbd")) # (3, 'acd', 'abcbd')
-print(lcs("acbd", "abcd")) # (3, 'abd', 'acbcd')
+print(LCS("abcde", "deabc")) # 3, abc, deabcde
+print(LCS("abcde", "ace")) # 3, ace, abcde
+print(LCS("abac", "cab")) # 2, ab, cabac
+print(LCS("abcd", "acbd")) # (3, 'acd', 'abcbd')
+print(LCS("acbd", "abcd")) # (3, 'abd', 'acbcd')

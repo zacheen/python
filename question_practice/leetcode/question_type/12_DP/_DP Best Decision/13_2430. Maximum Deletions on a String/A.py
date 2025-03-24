@@ -48,7 +48,6 @@ class Solution:
 #             for i, cou in enumerate(pre_cou) :
 #                 if i != 0 and cou >= i and new_cou > dp[st+i] :
 #                     dp[st+i] = new_cou
-#             _ = ""
 #         return max(dp)+1
 
 # given ans

@@ -1,3 +1,6 @@
+# 14. Longest Common Prefix
+# https://leetcode.com/problems/longest-common-prefix/description/
+
 # my Runtime: 38 ms, faster than 77.33% of Python3
 class Solution:
     def longestCommonPrefix(self, strs):
