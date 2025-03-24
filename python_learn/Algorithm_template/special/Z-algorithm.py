@@ -1,13 +1,11 @@
 # "Z-algorithm" "longest common prefix" O(n)
 # 可以用較快的速度找到每個位置的'自己的'prefix長度
 # 詳細教學 : https://www.youtube.com/watch?v=2EqYY0c--QI
-
-# classic : 14. Longest Common Prefix
-# https://leetcode.com/problems/longest-common-prefix/
+#            https://personal.utdallas.edu/~besp/demo/John2010/z-algorithm.htm
 
 # 詳解
 # return[i] 是起始為 i 的最大長度prefix
-def lcp(arr) :
+def LCP(arr) :
     len_arr = len(arr)
     z = [0]*len_arr
     z_box_l = z_box_r = 0
@@ -25,14 +23,25 @@ def lcp(arr) :
             same_len += 1
         z[i] = same_len
     return z
-        
-print(lcp("abababzabababab"))
-print(lcp("aabab")) # 第三個a的 prefix 其實只有1
-print(lcp("aaabaab"))
-print(lcp([1,1,1,2,1,1,2]))
+   
+# print(LCP("abababzabababab"))
+print(LCP("azbazbzaz"))
+# print(LCP("aabab")) # 第三個a的 prefix 其實只有1
+# print(LCP("aaabaab"))
+# print(LCP([1,1,1,2,1,1,2]))
 
-# 雙層
-def lcp_2D(arr) :
+# 回傳 pattern 在 arr 中各個位置 相同prefix的長度
+def prefix_len(arr, pattern) :
+    concat = pattern + "$" + arr  # 使用 "$" 避免 pattern 影響 arr
+    Z = LCP(concat)
+    return Z[len(pattern) + 1:]
+
+# classic # 796. Rotate String
+# https://leetcode.com/problems/rotate-string/description/
+
+# 雙層 (以各自位置為開頭 做lcp)
+    # ret[以i為開頭][位置j] 的 prefix 有多長
+def LCP_2D(arr) :
     len_num = len(arr)
     z = [[0]*len_num for _ in range(len_num)]
     for n1, this_z in enumerate(z):
@@ -48,5 +57,5 @@ def lcp_2D(arr) :
                 same_len += 1
             this_z[n2] = same_len
     return z
+# print(LCP_2D([1,1,1,2,1,1,2]))
 
-# # print(lcp_2D([1,1,1,2,1,1,2]))

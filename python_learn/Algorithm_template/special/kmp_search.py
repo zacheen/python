@@ -2,7 +2,8 @@
     
 # generate Longest Prefix Suffix Table
     # LPST == Longest Prefix Suffix Table == Parital match table == fail table
-# 回傳的是 以i為尾端 Prefix 跟 Suffix 最長重複長度
+# 回傳的是 區間arr[:i+1] Prefix 跟 Suffix 最長重複長度 (不包含自己)
+    # 也就是如果下一個字不一樣 我可以跳過多少字不比較
 def cal_LPST(s): 
     len_s = len(s)
     lps = [0] * len_s
@@ -47,39 +48,6 @@ def kmp_search(arr, pattern):
 # print(kmp_search("aaabaabab", "ab"))
 # print(kmp_search("aaabcaababcabcababac", "abc"))
 # print(kmp_search("aaabcabababcabcabcabac", "abcab"))
-# print(kmp_search("aaabcabababcabcabcabac", "abcabd"))
 
-# 回傳 pattern 在 arr 中各個位置的相同長度 (要全部 pattern 符合)
-def kmp_search_pre_l(arr, pattern):
-    if not pattern: # pattern == ""
-        return [0]*len(arr)
-    len_a = len(arr)
-    len_p = len(pattern)
-
-    # Precompute the LPS array
-    lps = cal_LPST(pattern)
-    
-    # Search for the pattern in arr
-    pre_l = [0]*len_a
-    p_i = 0
-    for a_i, a_c in enumerate(arr + '*'*len_a):
-        while p_i > 0 and a_c != pattern[p_i]: # two pointer are not the same word
-            pre_l[a_i-p_i] = p_i
-            p_i = lps[p_i - 1]
-        if a_c == pattern[p_i]: # two pointer are the same word
-            p_i += 1
-            if p_i == len_p: # Match found
-                front_indx = a_i-p_i+1
-                pre_l[front_indx] = p_i
-                p_i = lps[p_i - 1]
-    return pre_l
-
-# print(kmp_search_pre_l("abcde", "cdeab"))
-# print(kmp_search_pre_l("abcde", "abe"))
-# print(kmp_search_pre_l("baaabaabab", "ab"))
-# print(kmp_search_pre_l("aaabcaababcabcababac", "abc"))
-# print(kmp_search_pre_l("aaabcabababcabcabcabac", "abcab"))
-# print(kmp_search_pre_l("aaabcabababcabcabcabac", "abcabd"))
-
-# classic # 796. Rotate String
-# https://leetcode.com/problems/rotate-string/description/
+# 回傳 pattern 在 arr 中各個位置 相同prefix的長度
+# 查看 "Z-algorithm" 的 prefix_len
