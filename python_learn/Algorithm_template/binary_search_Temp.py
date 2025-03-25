@@ -2,10 +2,26 @@
     # 需要注意計算 check 的時候，能不能中途 return 結果
 
 # # 最快 : 可以直接丟入 bisect
+    # 限制 : 一定要從 0 開始
+# < mid 往右愈容易達成 >
 # from bisect import bisect_left
-# def check(mid: int) -> bool:
+# def mid_too_small(mid):
+#     if mid == 0 : return True
 #     return RESULT >= THRESHOLD
-# ret = bisect_left(range(MAX_POSS+1), True, key=check)
+# ret = bisect_left(range(MAX_POSS+1), True, key=mid_too_small)
+
+# < mid 往右愈難達成 >
+# from bisect import bisect_left
+# def mid_too_small(mid):
+#     if mid == 0 : return True
+#     return RESULT >= THRESHOLD
+# return bisect_left(range(MAX_POSS+1), True, key= lambda x : not mid_too_small(x))-1
+# < ver 2 >
+# from bisect import bisect_left
+# def mid_too_big(mid):
+#     if mid == 0 : return False
+#     return RESULT < THRESHOLD
+# return bisect_left(range(max(candies)+1), True, key=mid_too_big)-1
 
 # classic 2560. House Robber IV
 # https://leetcode.com/problems/house-robber-iv
