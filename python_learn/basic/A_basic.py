@@ -66,12 +66,12 @@
 
 # #------------------------------------
 # # Assign := 記得要用括號!
-x = 5
-y = 6
-max_n = 8
-if (t:=x+y) > max_n :
-    max_n = t
-print(max_n)
+# x = 5
+# y = 6
+# max_n = 8
+# if (t:=x+y) > max_n :
+#     max_n = t
+# print(max_n)
 
 # # 各種型態 type 1 
 # #------------------------------------
@@ -358,10 +358,28 @@ print(max_n)
 # # while
 # x = 1
 # while True :
-#     x = x+1
 #     print(x)
-# # ctrl + c 終止程式
+#     x = x+1
 
+# #------------------------------------
+# # # while else
+#     # 若 while 迴圈是用 break 跳出, else不會執行
+# x = 0
+# while x < 3 :
+#     print(x)
+#     x = x+1
+# else :
+#     print("in else")
+
+# print("-- compare ------------------")
+# x = 0
+# while x < 3 :
+#     print(x)
+#     x = x+1
+#     if x == 2 :
+#         break
+# else :
+#     print("in else")
 # #------------------------------------
 # # while break 不夠
 # while True:

@@ -47,6 +47,8 @@ print("init :",ll)
 # print("extend aft", ll)
 # ll += [4,5,6]
 # print("    += aft", ll)
+# # 注意!! < list 相加不要用 reduce, 慢很多 >
+# # all_num = reduce(operator.add, grid)
 
 # #------------------------------------
 # # 初始化 Tuple 基本上用法跟 list 一樣 只是不能更改
