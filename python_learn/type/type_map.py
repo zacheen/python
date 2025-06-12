@@ -7,6 +7,11 @@
 # # # 賦值 (value 可以是不同型別)
 # mm[1] = 123
 # print('set  :',mm)
+# # setdefault
+# mm.setdefault(1, "setdefault_value") # 已經有值不會更新
+# print('set  :',mm)
+# mm.setdefault(5, "setdefault_value")
+# print('set  :',mm)
 # # # 刪除
 # del(mm[1])
 # print(mm)
@@ -44,23 +49,6 @@
 # # # 確認有沒有此 value 值
 # print("check value :", 123 in mm.values())
 # print("check value :", 124 in mm.values())
-
-# #------------------------------------
-# # 使用 map 轉型
-# nums = [1,3,5]
-# # nums = ["1","3","5"]
-# mm = map((str), nums)
-# for each in mm:
-#     print(each)
-# # 不能直接取值 
-# # print(mm[1])
-
-# # map((str), nums) 功能等同下面三行
-# def change(x):
-#     return str(x)
-# ll = [change(x) for x in nums]
-# print("list comprehensive : ",ll)
-# #------------------------------------
 
 # 特殊用法 ###########################################
 # # # <or> ------------------------------------

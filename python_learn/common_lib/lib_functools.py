@@ -40,3 +40,6 @@ print("max :",reduce(lambda n1,n2 : max(n1,n2), l))
 import operator
 print("sum :",reduce(operator.add, l))
 print("max :",reduce(max, l))
+
+# 注意!! < list 相加不要用 reduce, 慢很多 >
+# all_num = reduce(operator.add, grid)

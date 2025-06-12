@@ -47,11 +47,14 @@ print("\'d\' 的位置 :",sl.bisect_left('d'))
 # 方法 1 del
 del sl[0]
 print("after del sl[0] :\n\t",sl)
+
 # 方法 2 remove (刪除項目不存在時會報錯)
 sl.remove('g')
 print("after remove\'e\' :\n\t",sl)
 # sl.remove('g') # (刪除項目不存在時會報錯)
 # print("after remove\'e\'",sl)
+    # remove 的時間複雜度應該是 O(log n)
+
 # 方法 3 discard (刪除項目不存在時"不"會報錯)
 sl.discard('h') 
 print("after discard\'h\' :\n\t",sl)

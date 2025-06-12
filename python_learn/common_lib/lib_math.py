@@ -45,6 +45,13 @@ import math
 # print("sqrt(17)",math.sqrt(17))
 
 # # #------------------------------------
+# # < log > log
+# print("log(10,10)",math.log(10,10))
+# print("log(100,10)",math.log(100,10))
+# print("log(1000,10)",math.log(1000,10)) # 不是整數3
+# print("log(8,2)",math.log(8,2))
+
+# # #------------------------------------
 # # 排列組合 Permutation and Combination
 # # < perm > 排列 : P N 取 K
 # print("math.perm(6,3)",math.perm(6,3))

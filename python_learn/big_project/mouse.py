@@ -1,14 +1,16 @@
-# 修飾器   好處是可以在不改動原function的情況下 新增功能
+# mouse 修飾器   好處是可以在不改動原function的情況下 新增功能
 # @funcA
 # def funcB():
 # 執行funcB時 效果等同執行 funcA(funcB)
 
+import time
+
 # # # -- @cache -----------------------------------------------------------
-# import time
 # # @cache 會記錄之前計算的結果 如果代入相同的變數 會從cache裡面撈資料 
 # # 方法0 從 Lib import 
 from functools import cache
 from functools import lru_cache
+
 # # 方法1 使用function實作
 # # def cache(func):
 # #     data = {}
@@ -43,7 +45,7 @@ from functools import lru_cache
 #         return result
 
 # # < 使用範例 >
-# # @cache # 可以註解這行 看第二次的 use_cache(1,2) 會不會執行
+# @cache # 可以註解這行 看第二次的 use_cache(1,2) 會不會執行
 # def use_cache(a,b):
 #     ret = a+b
 #     print(a,b,ret)
@@ -55,6 +57,10 @@ from functools import lru_cache
 # use_cache(1,2)
 # end = time.time()
 # print(end - start)
+
+# # 如果要清除 cache 的記憶體
+# # FUNCTION_NAME..cache_clear()
+# use_cache.cache_clear()
 
 # # -- @functools.wraps -----------------------------------------------------------
 # __module__, __name__, __qualname__, __doc__, and __annotations__
