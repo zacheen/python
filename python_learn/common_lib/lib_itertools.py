@@ -107,6 +107,16 @@ from itertools import accumulate  # 到此 index 的總和
 # print(list(accumulate(num_list))) # [1, 4, 10, 12, 112]
 
 # # -----------------------------------------------
+from itertools import groupby  # 把 key 值相同的項目分組
+# # 預設的 key 就是值本身
+# s = "1000110111001100001"
+# print([(key_value, len(list(group))) for key_value, group in groupby(s)])
+# # 也可以設定 key 如何計算
+# l = ['c', 'bb', 'b', 'cc', 'aa', 'a']
+# print([(key_value, list(group)) for key_value, group in groupby(l, key=len)])
+# #      (key_value 長度, 包含什麼項目)
+
+# # -----------------------------------------------
 from itertools import cycle  # 會一直循環取出
 # num_list = [1,3,6,2,100]
 # count = 0
