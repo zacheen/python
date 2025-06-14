@@ -18,11 +18,17 @@ class UF:
             return
         self.id[i] = j
 
+    # 這個方法會跳著更新link (但更新整個link最多花 log2 次)
     def find(self, up):
         while (up:=self.id[up]) != (deep:=self.id[up]):
             self.id[up] = self.id[deep]
         return up
-    # recursive version (slower)
+    # # 照理比較快，但不確定(且易讀性較差)
+    # def find(self, up):
+    #     while up != (deep:=self.id[up]):
+    #         self.id[up] = up = self.id[deep]
+    #     return up
+    # # recursive version (slower, might because recursive needs a lot of mem)
     # def find(self, u):
     #     if self.id[u] != u:
     #         self.id[u] = self.find(self.id[u])
@@ -41,12 +47,16 @@ class UF_no_init:
             return
         self.id[i] = j
 
-    def find(self, u):
-        if u not in self.id :       # <適用各種type> 多的
-            return u
-        while (up:=self.id[up]) != (deep:=self.id[up]):
-            self.id[up] = self.id[deep]
+    def find(self, up):
+        while up in self.id and up != (deep:=self.id[up]):
+            self.id[up] = up = self.id[deep] if deep in self.id else deep
         return up
+    # # recursive version (slower)
+    # def find(self, u):
+    #     if u not in self.id : return u
+    #     if self.id[u] != u:
+    #         self.id[u] = self.find(self.id[u])
+    #     return self.id[u]
 
 # <計算目前總共分成幾個 set>
 class UF_count:
@@ -211,8 +221,8 @@ class UF_find_relate_no_init_v1:
         self.id[i] = j
 
     def find(self, up):
-        while (up:=self.id[up]) != (deep:=self.id[up]):
-            self.id[up] = self.id[deep]
+        while up in self.id and up != (deep:=self.id[up]):
+            self.id[up] = up = self.id[deep] if deep in self.id else deep
         return up
     
     def ger_related(self, u):
@@ -221,6 +231,7 @@ class UF_find_relate_no_init_v1:
         return self.set_member[self.id[u]]
     
 from collections import defaultdict
+# 跟 UF_find_relate_no_init_v1 差在這裡用 defaultdict
 class UF_find_relate_no_init_v2: # 尚未驗證
     def __init__(self):
         self.id = {}
@@ -235,13 +246,10 @@ class UF_find_relate_no_init_v2: # 尚未驗證
         del(self.set_member[i])
         self.id[i] = j
 
-    def find(self, u):
-        # 多了這個
-        if u not in self.id :
-            return u
-        if self.id[u] != u:
-            self.id[u] = self.find(self.id[u])
-        return self.id[u]
+    def find(self, up):
+        while up in self.id and up != (deep:=self.id[up]):
+            self.id[up] = up = self.id[deep] if deep in self.id else deep
+        return up
     
     def ger_related(self, u):
         if self.id[u] != u:
@@ -293,7 +301,7 @@ class UF:
             return
         # 如果不一樣的tree 就合併此兩個tree (就是root接到另一個root)
             # 也就是說可以重複加入
-        # v 對應的 tree root  會是新的 root
+        # v 對應的 tree root 會是新的 root
         self.id[i] = j
         self.count -= 1
 
