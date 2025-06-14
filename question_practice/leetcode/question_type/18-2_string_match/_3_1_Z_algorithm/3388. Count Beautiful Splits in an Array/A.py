@@ -51,7 +51,7 @@ import functools
 
 # given ans 1
 # similar to my concept, but optimized : 7633ms Beats58.46%
-# using my template to speed up
+    # using my template to speed up
 def lcp(arr) :
     len_arr = len(arr)
     z = [0]*len_arr

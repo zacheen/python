@@ -60,3 +60,25 @@ def LCP_2D(arr) :
     return z
 # print(LCP_2D([1,1,1,2,1,1,2]))
 
+# 如果要全部位置的 lcp, 要用 dp 會比較快
+# 2430. Maximum Deletions on a String
+# https://leetcode.com/problems/maximum-deletions-on-a-string/description/
+def LCP_all(arr) :
+    len_n = len(arr)
+    lcp = [[0]*(len_n+1) for _ in range(len_n+1)]
+    for i in range(len_n-1,-1,-1):
+        for j in range(i + 1, len_n):
+            if arr[i] == arr[j]:
+                lcp[i][j] = lcp[i + 1][j + 1] + 1
+    return lcp
+
+test_s = "aaabaab"
+ret = LCP_all(test_s)
+for i, LCP_all_lcp in enumerate(ret) :
+    LCP_all_lcp.pop() # 移除防止 index out of bound 的 0
+    LCP_func = LCP(test_s[i:])
+    LCP_func = [0]*i + LCP_func
+    print(i, LCP_all_lcp)
+    print(i, LCP_func)
+    if LCP_all_lcp != LCP_func :
+        print("not same")

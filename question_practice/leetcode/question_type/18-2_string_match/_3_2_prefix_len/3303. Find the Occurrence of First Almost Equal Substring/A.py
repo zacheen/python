@@ -4,7 +4,7 @@
 from typing import List
 from math import inf
 
-# my 1557ms Beats87.25%
+# my inspire by given ans : 1557ms Beats87.25%
 def LCP(arr) :
     len_arr = len(arr)
     z = [0]*len_arr
@@ -24,37 +24,6 @@ def LCP(arr) :
             z_box_l = i
             z_box_r = r_p
     return z
-
-# 回傳 pattern 在 arr 中各個位置 相同prefix的長度
-def prefix_len(arr, pattern) :
-    concat = pattern + "$" + arr  # 使用 "$" 避免 pattern 影響 arr
-    Z = LCP(concat)
-    return Z[len(pattern) + 1:]
-
-class Solution:
-    def minStartingIndex(self, s: str, pattern: str) -> int:
-        if len(pattern) == 1 : return 0
-        
-        len_p = len(pattern)
-        len_s = len(s)
-        front_l = prefix_len(s, pattern)
-        min_ans = inf
-        # change 0 character 
-        for i, l in enumerate(front_l) :
-            if l == len_p :
-                min_ans = i
-                break
-
-        # change 1 character
-        back_l = prefix_len(s[::-1], pattern[::-1])[::-1]
-        len_p_m1 = len_p-1
-        for i, l in enumerate(front_l[:len_s-len_p_m1]) :
-            if back_l[i+len_p_m1] + l == len_p_m1 :
-                return min(min_ans, i)
-        
-        return -1 if min_ans == inf else min_ans
-
-# given ans
 class Solution:
     def minStartingIndex(self, s: str, pattern: str) -> int:
         f_l = LCP(pattern + s)
