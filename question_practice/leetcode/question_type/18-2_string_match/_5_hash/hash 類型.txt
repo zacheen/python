@@ -1,0 +1,17 @@
+https://leetcode.cn/discuss/post/3144832/fen-xiang-gun-ti-dan-zi-fu-chuan-kmpzhan-ugt4/
+四、字符串哈希 尚未學習??
+
+教學
+	https://zhuanlan.zhihu.com/p/819988759
+
+Open addressing
+	Linear probing : 
+		放 : 如果此位置已經有東西，那就往後找第一個空位
+		找 : 如果此位置不是 target，那就往後繼續找
+	Plus 3 rehash
+	Quadratic probing 
+	Double hashing
+Closed addressing
+	chaining : (有點像 bucket sort)
+		放 : 計算 hash value，然後放入對應的 list 中
+		找 : 用 hash value，找到相對應的 list，然後一個一個找
