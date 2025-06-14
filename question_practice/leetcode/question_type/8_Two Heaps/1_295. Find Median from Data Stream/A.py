@@ -1,4 +1,4 @@
-#295. Find Median from Data Stream
+# 295. Find Median from Data Stream
 # https://leetcode.com/problems/find-median-from-data-stream/
 
 # my practice again : 112ms Beats90.07%

@@ -1,95 +1,107 @@
-# my Runtime: 151 ms, faster than 86.33% of Python3
-# 我覺得這個情況應該是 list 比較快
-# 因為 刪除是 O(log n) 如果是heap是O(n) 
-from bisect import bisect_left
-from bisect import insort_right
-class Solution:
-    def medianSlidingWindow(self, nums, k):
-        now_list = nums[:k]
-        now_list.sort()
+# 480. Sliding Window Median
+# https://leetcode.com/problems/sliding-window-median/description/
+from typing import List
+
+# my template Median_twoHeap: 83ms Beats87.45%
+from heapq import heappush, heappop, heapify
+from collections import Counter
+class Median_twoHeap:
+    def __init__(self, nums):
+        nums.sort()
+        self.small = [-n for n in nums[:len(nums)//2]]
+        heapify(self.small)
+        self.big = nums[len(nums)//2:]
+        heapify(self.big)
+        self.bal = len(self.big)-len(self.small) # 看 big 比 small 多多少
+        self.removals = Counter()
+
+    def balance(self):
+        while self.bal > 1:
+            heappush(self.small, -heappop(self.big))
+            self.bal -= 2
+        while self.bal < 0:
+            heappush(self.big, -heappop(self.small))
+            self.bal += 2
+
+        # 因為我 remove 的時候預設是放到 self.big 裡面，所以要先扣 self.big 的
+        while self.big and self.removals[self.big[0]]:
+            self.removals[self.big[0]] -= 1
+            heappop(self.big)
         
-        is_even = (k % 2) == 0
-        mid_indx = (k // 2)
-        mid_even_indx = mid_indx-1
-        def get_medi():
-            if is_even :
-                return (now_list[mid_even_indx] + now_list[mid_indx])/2
-            else :
-                return now_list[mid_indx]
+        while self.small and self.removals[-self.small[0]]:
+            self.removals[-self.small[0]] -= 1
+            heappop(self.small)
+
+    def add(self, num):
+        if self.big and num >= self.big[0] :
+            self.bal += 1
+            heappush(self.big, num)
+        else:
+            self.bal -= 1
+            heappush(self.small, -num)
                 
+    def remove(self, num):
+        self.removals[num] += 1
+        if num >= self.big[0] :
+            self.bal -= 1
+        else :
+            self.bal += 1
+    
+    # 找中位數
+    def get_median(self):
+        self.balance()
+        if self.bal :
+            return self.big[0]
+        else :
+            return (self.big[0] - self.small[0])/2
+
+class Solution:
+    def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:
         ans = []
-        ans.append(get_medi())
-        for i, next_num in enumerate(nums[k:]):
-            rm_idx = bisect_left(now_list, nums[i])
-            del(now_list[rm_idx])
-            insort_right(now_list, next_num)
-            ans.append(get_medi())
+        med = Median_twoHeap(nums[:k])
+        ans.append(med.get_median())
+        for i, new_n in enumerate(nums[k:]) :
+            med.add(new_n)
+            med.remove(nums[i])
+            ans.append(med.get_median())
         return ans
 
-# my (two heap version)
-# 的確比較慢
-# Runtime: 335 ms, faster than 46.60% of Python3 
-# 概念跟題目 295 一樣
-# 只是要自己實作 remove
-# import heapq
-# class Solution:
-#     def medianSlidingWindow(self, nums, k):
-#         maxHeap = []
-#         minHeap = []
+from sortedcontainers import SortedList
+# my template Median_SortedList : 237ms Beats39.75%
+class Median_SortedList:
+    def __init__(self, nums):
+        self.nums = SortedList(nums)
+        self.med_i = len(nums)//2
+        self.med_e_i = self.med_i-1
+        self.odd_f = (len(nums)&1)
 
-#         def balance():
-#             # balance two heaps s.t.
-#             if len(maxHeap) < len(minHeap):
-#                 heapq.heappush(maxHeap, -heapq.heappop(minHeap))
-#             elif len(maxHeap) - len(minHeap) > 1:
-#                 heapq.heappush(minHeap, -heapq.heappop(maxHeap))
+    def get_med(self):
+        if self.odd_f :
+            return self.nums[self.med_i]
+        else :
+            return (self.nums[self.med_e_i] + self.nums[self.med_i])/2
+    
+    def add(self, add_n):
+        self.nums.add(add_n)
 
-#         def addNum(num):
-#             if not maxHeap or num <= -maxHeap[0]:
-#                 heapq.heappush(maxHeap, -num)
-#             else:
-#                 heapq.heappush(minHeap, num)
-#             balance()
+    def remove(self, remove_n):
+        self.nums.remove(remove_n)
 
-#         def remove_num(value):
-#             # print("in remove_num :", minHeap, maxHeap)
-#             if value <= -maxHeap[0] :
-#                 rm_indx = maxHeap.index(-value)
-#                 remove_from_num(maxHeap, rm_indx)
-#             else :
-#                 rm_indx = minHeap.index(value)
-#                 remove_from_num(minHeap, rm_indx)
-#             balance()
-        
-#         def remove_from_num(h, rm_indx):
-#             h[rm_indx] = h[-1]
-#             h.pop()
-#             if rm_indx < len(h):
-#                 heapq._siftup(h, rm_indx)
-#                 heapq._siftdown(h, 0, rm_indx)
-
-#         is_even = (k % 2) == 0
-#         def get_medi():
-#             if is_even:
-#                 # print(minHeap, maxHeap, (-maxHeap[0] + minHeap[0]) / 2.0)
-#                 return (-maxHeap[0] + minHeap[0]) / 2.0
-#             return -maxHeap[0]
-
-#         for num in nums[:k]:
-#             addNum(num)
-
-#         ans = []
-#         ans.append(get_medi())
-#         for i, next_num in enumerate(nums[k:]):
-#             remove_num(nums[i])
-#             addNum(next_num)
-#             ans.append(get_medi())
-#         return ans
-
-# given ans
+class Solution:
+    def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:
+        ans = []
+        med = Median_SortedList(nums[:k])
+        ans.append(med.get_med())
+        for i, new_n in enumerate(nums[k:]) :
+            med.add(new_n)
+            med.remove(nums[i])
+            ans.append(med.get_med())
+        return ans
 
 s = Solution()
-print(s.medianSlidingWindow([1,3,-1,-3,5,3,6,7],4))
+print(s.medianSlidingWindow([1,3,-1,-3,5,3,6,7],3)) # [1, -1, -1, 3, 5, 6]
+print(s.medianSlidingWindow([1,4,2,3], 4)) # [2.50000]
+print(s.medianSlidingWindow([1,1,1,1], 2)) # [1.0, 1.0, 1.0]
 
 
 
