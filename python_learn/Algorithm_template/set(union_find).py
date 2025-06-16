@@ -12,11 +12,11 @@ class UF:
         self.id = list(range(n))
 
     def union(self, u, v):
-        i = self.find(u)
-        j = self.find(v)
-        if i == j:
+        u = self.find(u)
+        v = self.find(v)
+        if u == v:
             return
-        self.id[i] = j
+        self.id[u] = v
 
     # 這個方法會跳著更新link (但更新整個link最多花 log2 次)
     def find(self, up):
@@ -41,11 +41,11 @@ class UF_no_init:
         self.id = {}                # <適用各種type> 多的
 
     def union(self, u, v):
-        i = self.find(u)
-        j = self.find(v)
-        if i == j:
+        u = self.find(u)
+        v = self.find(v)
+        if u == v:
             return
-        self.id[i] = j
+        self.id[u] = v
 
     def find(self, up):
         while up in self.id and up != (deep:=self.id[up]):
@@ -65,11 +65,11 @@ class UF_count:
         self.id = list(range(n))
 
     def union(self, u, v):
-        i = self.find(u)
-        j = self.find(v)
-        if i == j:
+        u = self.find(u)
+        v = self.find(v)
+        if u == v:
             return
-        self.id[i] = j
+        self.id[u] = v
         self.count -= 1             # <計算目前總共分成幾個 set> 多的
 
     def find(self, up):
