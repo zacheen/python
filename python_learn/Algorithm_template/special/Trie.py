@@ -59,23 +59,6 @@ class Trie:
             now_n = now_n[c]
         return now_n
     
-    def find_end_dfs(self, prefix) :
-        def dfs(now_n, now_i, STATUS):
-            if now_i == len(prefix) :
-                return (STATUS and None in now_n)
-        
-            now_c = prefix[now_i]
-            # not same 
-            if STATUS :
-                for c, next_n in now_n.items() :
-                    if c == now_c : continue
-                    if next_n != None and dfs(next_n, now_i+1, STATUS):
-                        return True
-            # same
-            if now_c in now_n :
-                return dfs(now_n[now_c], now_i+1, STATUS)
-            return False
-    
     ## not necessary ####################################
     def search(self, word: str) -> bool:
         ret = self.find_end(word)

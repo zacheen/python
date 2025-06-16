@@ -1,0 +1,10 @@
+其他練題網站
+
+https://cses.fi/problemset/
+    解答:
+    Google CSES problem editorial l就可以找到幾乎每一題的題解
+
+周赛稳定3题那种，再去打codeforces
+    https://codeforces.com/blog/entry/83343
+
+Codechef每周三晚上和AtCoder週六晚上也都會有熱騰騰的比賽

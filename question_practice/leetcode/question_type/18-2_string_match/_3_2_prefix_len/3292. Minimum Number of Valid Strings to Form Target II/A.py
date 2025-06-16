@@ -30,7 +30,7 @@ def prefix_len(arr, pattern) :
     Z = LCP(concat)
     return Z[len(pattern) + 1:]
 
-# my : 2860ms Beats24.56%
+# my using template LCP: 2860ms Beats24.56%
 class Solution:
     def minValidStrings(self, words: List[str], target: str) -> int:
         min_pre_l = [0]*len(target)
@@ -70,45 +70,6 @@ class Solution:
                 ans += 1
                 max_l = next_l
         return ans
-    
-from collections import defaultdict, deque
-# given ans 
-class Trie:
-    def __init__(self):
-        self.c=defaultdict(Trie)
-        self.i=0
-        self.prev=None
-    def add(self, w):
-        cur=self
-        for i,ch in enumerate(w):
-            cur=cur.c[ch]
-            cur.i=i+1
-    def next(self, ch):
-        if ch in self.c: return self.c[ch]
-        if not self.prev: return self
-        return self.prev.next(ch)
-    def aho_corasick(self):
-        dq=deque((self, y) for y in self.c.values())
-        while dq:
-            x,y = dq.popleft()
-            y.prev=x
-            for ch in y.c: dq.append((x.next(ch), y.c[ch]))
-class Solution:
-    def minValidStrings(self, words: List[str], target: str) -> int:
-        trie=Trie()
-        for w in words: trie.add(w)
-        trie.aho_corasick()
-        n=len(target)
-        pre=[0]*n
-        for i,ch in enumerate(target):
-            trie=trie.next(ch)
-            pre[i]=trie.i
-        res,i=0, n-1
-        while i>=0:
-            if pre[i]==0: return -1
-            res,i=res+1, i-pre[i]
-        return res
-        
 
 s = Solution()
 print("ans :",s.minValidStrings(words = ["abc","aaaaa","bcdef"], target = "aabcdabc")) # 3

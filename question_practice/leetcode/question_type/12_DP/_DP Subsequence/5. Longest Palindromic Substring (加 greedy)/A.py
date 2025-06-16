@@ -1,3 +1,6 @@
+# 5. Longest Palindromic Substring
+# https://leetcode.com/problems/longest-palindromic-substring/description/
+
 # my Runtime: 119 ms, faster than 98.88% of Python3
 # 比較次數 O(2n) = 每個位置 + P有可能的長度
 # 但我的 is_p 每次是比較 兩個s
@@ -48,7 +51,7 @@
 #         return now_max_str
 
 # 加入 given ans 的概念再優化
-# Runtime: 89 ms, faster than 99.47% of Python3
+# Runtime: 20ms Beats99.73%
 class Solution:
     def longestPalindrome(self, s):
         if s == "" :
@@ -63,15 +66,15 @@ class Solution:
         
         # even
         now_min_len = 1 # 左右的長度
-        for l in range(1,len(s)+1) : # mid
-            r = l + now_min_len
-            l = l - now_min_len
+        for mid in range(1,len(s)+1) :
+            r = mid + now_min_len
+            l = mid - now_min_len
             if l >= 0 and r <= len(s) and is_p(s[l:r]) :
                 now_min_len += 1
                 now_max_str_l = l
                 now_max_str_r = r
                 l -= 1
-                # r += 1 因為 while 是比位置
+                # 不用 r += 1 因為 while 是比位置
                 while l >= 0 and r < len(s) and s[l] == s[r] :
                     now_max_str_l = l
                     l -= 1
@@ -82,9 +85,9 @@ class Solution:
                     
         # odd
         now_min_len -= 1 # 左右的長度(不包括中間)
-        for l in range(len(s)) : # mid
-            r = l + now_min_len + 1
-            l = l - now_min_len
+        for mid in range(len(s)) : # mid
+            r = mid + now_min_len + 1
+            l = mid - now_min_len
             if l >= 0 and r <= len(s) and is_p(s[l:r]) :
                 now_min_len += 1
                 now_max_str_l = l

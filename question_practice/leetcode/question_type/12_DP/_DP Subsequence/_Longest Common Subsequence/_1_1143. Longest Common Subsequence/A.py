@@ -1,4 +1,4 @@
-# 1143. Longest Common Subsequence
+# 1143. Longest Common Subsequence (Subsequence 可以不相連)
 # https://leetcode.com/problems/longest-common-subsequence
 
 # template 1D array : 319ms Beats97.26%
@@ -30,10 +30,10 @@ class Solution:
         return dp[-1][-1]
 
 s = Solution()
-print(s.longestCommonSubsequence(text1 = "abcde", text2 = "deabc" ))
-print(s.longestCommonSubsequence(text1 = "abac", text2 = "cab" ))
-# print(s.longestCommonSubsequence(text1 = "abcde", text2 = "ace" ))
-# print(s.longestCommonSubsequence(text1 = "abc", text2 = "def" ))
+print(s.longestCommonSubsequence("abcde", "deabc" )) # 3, abc
+print(s.longestCommonSubsequence("abac", "cab" )) # 2, ab
+print(s.longestCommonSubsequence("abcde", "ace" )) # 3, ace
+print(s.longestCommonSubsequence("abc", "def" )) # 0
 
 
 

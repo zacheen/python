@@ -44,10 +44,6 @@
 611. Valid Triangle Number
     沒想到速度可以再優化 所以 time out
 
-211. Design Add and Search Words Data Structure
-    defaultdict(None) 就沒有 defaultdict 的作用
-    List 跟 defaultdict 的 type 不一樣
-
 605. Can Place Flowers
     要找出 n 個東西塞不塞的下
     我用 n -= 1 去扣除

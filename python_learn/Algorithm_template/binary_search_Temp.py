@@ -6,14 +6,14 @@
 # < mid 往右愈容易達成 >
 # from bisect import bisect_left
 # def mid_too_small(mid):
-#     if mid == 0 : return True
+#     # if mid == 0 : return False
 #     return RESULT >= THRESHOLD
 # ret = bisect_left(range(MAX_POSS+1), True, key=mid_too_small)
 
 # < mid 往右愈難達成 >
 # from bisect import bisect_left
 # def mid_too_small(mid):
-#     if mid == 0 : return True
+#     # if mid == 0 : return True
 #     return RESULT >= THRESHOLD
 # return bisect_left(range(MAX_POSS+1), True, key= lambda x : not mid_too_small(x))-1
 # < ver 2 >

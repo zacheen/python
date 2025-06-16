@@ -1,0 +1,16 @@
+DP (Dynamic Programming)
+    1. Make it work.
+        visualize the problem as a tree
+        implement the tree using recursion
+        test it
+    2. Make it efficient
+        add a memo object
+        add a base case to return memo values
+        store return values into the memo
+        
+觀念糾正
+    如果是要回傳可能的組合
+        base case 應該是要 return []  再recursion組合回去
+            比較好 memery
+        而不是把現在已經組好的list copy 傳到下一個recursion
+            很耗記憶體
