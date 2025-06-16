@@ -1,4 +1,4 @@
-# "Z-algorithm" "longest common prefix" O(n)
+# "Z-algorithm" "longest common prefix" "LCP" O(n)
 # 可以用較快的速度找到每個位置的'自己的'prefix長度
 # 詳細教學 : https://www.youtube.com/watch?v=2EqYY0c--QI
 #            https://personal.utdallas.edu/~besp/demo/John2010/z-algorithm.htm
