@@ -1,8 +1,9 @@
-# my 
+# 2616. Minimize the Maximum Difference of Pairs
+# https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs
 from typing import List
 import functools
+from bisect import bisect_left
 
-# given ans Beats 40%
 # binary search :
     # 檢測 c 這個距離，能不能夠有足夠的 distance 可以符合條件
         # 因為已經 sort ，所以可以 greedy
@@ -10,30 +11,51 @@ import functools
             # 不知道 (n2-n1) ? (n3-n2)
             # 但是絕對 (n2-n1) < (n3-n1)
             # 所以如果 (n2-n1) 符合條件，絕對就可以符合
+# my using bisect template : 308ms Beats92.71%
 class Solution:
     def minimizeMax(self, nums: List[int], p: int) -> int:
         nums.sort()
-        a = 0
-        b = nums[-1]-nums[0]
-        while a < b :
-            c = (a + b) // 2
-            ct = 0
+        for_lim_i = len(nums)-1
+        # 使用二分法 找到最小可能的 diff
+        def mid_too_small(mid):
+            cou = 0
             i = 0
-            while i < len(nums)-1 :
-                if (nums[i + 1] - nums[i]) <= c :
-                    ct += 1
-                    # 這個是因為符合條件 所以 i 跟 i+1 都取用了
-                    i  += 1
-                i += 1
-            if ct >= p : 
-                b = c
-            else : 
-                a = c + 1
-        return a
+            while i < for_lim_i :
+                if (nums[i+1] - nums[i]) <= mid :
+                    cou += 1
+                    i += 2
+                else :
+                    i += 1
+            return cou >= p
+        ret = bisect_left(range(nums[-1]-nums[0]+1), True, key=mid_too_small)
+        return ret
     
-# OK 我發現問題了 原來用過的 index 不能夠再使用
-# [3,5,2,2,2,2]
-    # (2,3) (4,5) 不能夠再 (2,4)
+# my v2 opt : 293ms Beats95.14%
+class Solution:
+    def minimizeMax(self, nums: List[int], p: int) -> int:
+        if p == 0 : return 0
+        nums.sort()
+        for_lim_i = len(nums)-1
+        # 使用二分法 找到最小可能的 diff
+        def mid_too_small(mid):
+            cou = 0
+            i = 0
+            while i < for_lim_i :
+                if (nums[i+1] - nums[i]) <= mid :
+                    cou += 1
+                    if cou >= p :
+                        return True
+                    i += 2
+                else :
+                    i += 1
+            return False
+        ret = bisect_left(range(nums[-1]-nums[0]+1), True, key=mid_too_small)
+        return ret
+
+# heappop > check valid > merge (fail)
+# 1,3,3,5 > 3,3 would pop first > 1,5 pop next > min diff 4
+    # but acutally 1,3 , 3,5 is available, so 2 is min diff
+# 如果可以重複使用 用 heap 應該比較快
 
 s = Solution()
 print(s.minimizeMax(nums = [10,1,2,7,1,3], p = 2))

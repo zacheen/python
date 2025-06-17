@@ -1,3 +1,65 @@
+# 2222. Number of Ways to Select Buildings
+# https://leetcode.com/problems/number-of-ways-to-select-buildings/
+
+# given ans : 203ms
+    # 直接為各個dp狀態命一個變數
+class Solution:
+    def numberOfWays(self, s: str) -> int:
+        ways = 0
+        one = zero = zero_one = one_zero = 0
+        for c in s:
+            if c == '0':
+                zero += 1
+                one_zero += one
+                ways += zero_one
+            else:
+                one += 1    
+                zero_one += zero 
+                ways += one_zero
+        return ways
+
+# my optimized by given ans : 985ms Beats18.53%
+class Solution:
+    def numberOfWays(self, s: str) -> int:
+        dp = [[0,0,0] for _ in range(2)] # dp[type][remain]
+        for c in s :
+            if c == "0" :
+                dp[0][0] +=1
+                for i in range(1, 3) :
+                    dp[0][i] += dp[1][i-1]
+            else :
+                dp[1][0] +=1
+                for i in range(1, 3) :
+                    dp[1][i] += dp[0][i-1]
+        return dp[0][-1] + dp[1][-1]
+
+# my practice again (for dp version)
+class Solution:
+    def numberOfWays(self, s: str) -> int:
+        # for version
+        dp = [[1,0,0,0] for _ in range(2)] # dp[type][remain]
+        for c in s :
+            if c == "0" :
+                dp[0] = [1] + [c1+c2 for c1,c2 in zip(dp[1][:-1], dp[0][1:])]
+            else :
+                dp[1] = [1] + [c1+c2 for c1,c2 in zip(dp[0][:-1], dp[1][1:])]
+        return dp[0][-1] + dp[1][-1]
+        
+
+        # recursive version would be Time Limit Exceeded
+        # @cache
+        # def dp(now_i, remain, prev_c):
+        #     if remain == 0 :
+        #         return 1
+        #     if now_i == len(s):
+        #         return 0
+        #     ret = 0
+        #     for new_st in range(now_i, len(s)) :
+        #         if s[new_st] != prev_c :
+        #             ret += dp(new_st+1, remain-1, s[new_st])
+        #     return ret
+        # return dp(0,3,"-")
+
 # given ans
 # 通用 template
 class Solution:
