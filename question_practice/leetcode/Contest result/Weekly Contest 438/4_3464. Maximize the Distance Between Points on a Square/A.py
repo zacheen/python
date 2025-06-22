@@ -16,12 +16,10 @@ class Solution:
 
         points = [-sum(x)+total_len if x[0] > x[1] else sum(x) for x in points]
         points.sort()
-        print(points)
-            
+        # print(points)
+
+        # O(k^2)
         def check_valid(dis_thresh):
-            # 如果k大於25，則需要引入倍增演算法。倍增時需要根據dis_thresh，求距離>=dis_thresh的下一個點的位置，建構倍增訊息
-            # 然後針對每個點，計算k個點後的位置，確定最後一個點是否合法
-            
             # 為什麼只需要計算 從第一個點開始 就可以知道是否會 return False ??
                 # 這裡只有判斷 第一個點 到 最後一個點 是否有在限制之內
                     # 沒有判斷最後一個點到第一個點的距離是否合規則
@@ -51,6 +49,45 @@ class Solution:
                     return True
             return False
 
+        # 如果k大於25，則需要引入倍增演算法 : 303ms Beats93.75% 
+        # (雖然比較慢，但是 k 大的時候會比較快) O(klogk)
+        #     倍增時需要根據dis_thresh，求距離>=dis_thresh的下一個點的位置，建構倍增訊息
+        #     然後針對每個點，計算k個點後的位置，確定最後一個點是否合法
+        #         此方法較快的原因是 建立倍增訊息 就找出每個點跳k之後的點了
+        # max_bit_len = k.bit_length()  
+        # k -= 1 # 跳 k-1 格就好 最後一格 
+        # def check_valid(dis_thresh):
+        #     # # 建構 parents (一個 child 只能有一個 father)
+        #     next_node = [len_n]*len_n
+        #     r = 0
+        #     for l in range(len_n):
+        #         while r < len_n and points[r] - points[l] < dis_thresh:
+        #             r += 1
+        #         next_node[l] = r
+                
+        #     # 建構 倍增演算法(binary lifting)
+        #     bin_lift = [next_node]+[[len_n]*len_n for _ in range(max_bit_len)]
+        #     # bin_lift[parent_lv][node]
+        #     now_lv = bin_lift[0]
+        #     for lv in range(1, max_bit_len+1):
+        #         next_lv = bin_lift[lv]
+        #         for node in range(len_n):
+        #             if (par:=now_lv[node]) == len_n: continue
+        #             next_lv[node] = now_lv[par]
+
+        #     # check all possible start point 
+        #     for poss_st in range(0, next_node[0]) :
+        #         en_node = poss_st
+        #         for shift in range(max_bit_len):
+        #             if k >> shift & 1:
+        #                 en_node = bin_lift[shift][en_node]
+        #                 if en_node == len_n:
+        #                     break
+        #         else :
+        #             if total_len - (points[en_node] - points[poss_st]) >= dis_thresh:
+        #                 return True
+        #     return False
+
         left = 1
         right = side
         while left + 1 < right:
@@ -66,116 +103,6 @@ class Solution:
         # End Condition: left + 1 == right
         if check_valid(right): return right # right 先做，如果希望結果愈大愈好!
         return left
-
-# # optimized by given ans : 606ms Beats61.47%
-# class Solution:
-#     def maxDistance(self, side: int, points: List[List[int]], k: int) -> int:
-#         # points = [-sum(x) if x[0] > x[1] else sum(x) for x in points]
-#         len_n = len(points)
-#         total_len = side*4
-
-#         points = [-sum(x)+total_len if x[0] > x[1] else sum(x) for x in points]
-#         points.sort()
-#         points += [n+total_len for n in points]
-#         # print(points)
-
-#         # no needed, since max distance is side
-#         # def cal_len(n1,n2):
-#         #     if (t:=abs(n1-n2)) > half_len :
-#         #         return total_len - t
-#         #     else :
-#         #         return t
-            
-#         def check_valid(dis_thresh):
-#             r = 1
-#             # find the nearest point is the best decision
-#             find_next_node = []
-#             for p in points :
-#                 while r < len(points) and points[r] - p < dis_thresh : # actually total time complexity is O(n)
-#                     r += 1
-#                 if r == len(points) :
-#                     break
-#                 find_next_node.append(r)
-#             find_next_node += [inf]*(len(points)-len(find_next_node))
-            
-#             def dfs(i, d):
-#                 count = 1
-#                 cur = i
-#                 limit = points[i] + total_len - dis_thresh
-#                 while count < k:
-#                     cur = find_next_node[cur]
-#                     if cur == inf:
-#                         return False
-#                     if points[cur] > limit:
-#                         return False
-#                     count += 1
-#                 return True
-            
-#             for start_n in range(len_n):
-#                 if dfs(start_n, k) :
-#                     return True
-#             return False
-
-#         left = 1
-#         right = side
-#         while left + 1 < right:
-#             mid = (left + right) // 2
-#             # 這裡我移除 少一次判斷
-#             # if nums[mid] == target:
-#             #     return mid
-#             if check_valid(mid):
-#                 left = mid
-#             else:
-#                 right = mid
-
-#         # End Condition: left + 1 == right
-#         if check_valid(right): return right # right 先做，如果希望結果愈大愈好!
-#         return left
-
-# my 744ms Beats53.19%
-    # fast forward is actually slower
-    # mine might be faster when limitation of k is bigger 
-# def check_valid(dis_thresh):
-#     r = 1
-#     # find the nearest point is the best decision
-#     find_next_node = []
-#     for p in points :
-#         while r < len(points) and points[r] - p < dis_thresh : # actually total time complexity is O(n)
-#             r += 1
-#         if r == len(points) :
-#             break
-#         find_next_node.append(r)
-#     find_next_node += [inf]*(len(points)-len(find_next_node))
-    
-#     ff = {} # ff[node] = [ff_num, final_node]
-#     def dfs(now_node_i, remain) :
-#         nonlocal ff
-#         if remain == 0 :
-#             return 0, now_node_i
-#         if now_node_i in ff :
-#             ff_num, final_node = ff[now_node_i]
-#             if final_node == inf :
-#                 return -inf, inf
-#             ret_f_num, final_node = dfs(final_node, remain-ff_num)
-#             ret_f_num += ff_num
-#             res = (ret_f_num, final_node)
-#             ff[now_node_i] = res
-#             return res
-        
-#         next_node = find_next_node[now_node_i]
-#         if next_node == inf :
-#             return -inf, inf
-#         cou, final_node = dfs(next_node, remain-1)
-#         cou += 1
-#         res = (cou, final_node)
-#         ff[now_node_i] = res
-#         return res
-    
-#     for start_n in range(len_n):
-#         _, final_node = dfs(start_n, k)
-#         if final_node - len_n <= start_n :
-#             return True
-#     return False
 
 s = Solution()
 print("ans :",s.maxDistance(side = 2, points = [[0,2],[2,0],[2,2],[0,0]], k = 4)) # 2

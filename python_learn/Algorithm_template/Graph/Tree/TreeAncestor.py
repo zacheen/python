@@ -38,14 +38,14 @@ class TreeAncestor:
 
         self.depth = depth
         self.dist = dist
-        self.fa_list = [parent]+[[-1]*len_n for _ in range(max_bit_len)]
-        # fa_list[parent_lv][node]
+        self.bin_lift = [parent]+[[-1]*len_n for _ in range(max_bit_len)]
+        # bin_lift[parent_lv][node]
 		# 用來記錄 [父節點, 父節點的父節點, (父節點)**4, (父節點)**8...] 是誰
             # 這樣找 kth_ancestor 就可以在 O(logn) 的時間內做到
                 # 例如 k = 13 = 往上1+往上4+往上8
-        now_lv = self.fa_list[0]
+        now_lv = self.bin_lift[0]
         for lv in range(1, max_bit_len+1):
-            next_lv = self.fa_list[lv]
+            next_lv = self.bin_lift[lv]
             for node in range(len_n):
                 if (par:=now_lv[node]) == -1: continue
                 next_lv[node] = now_lv[par]
@@ -54,7 +54,7 @@ class TreeAncestor:
     def get_kth_ancestor(self, node: int, k: int) -> int:
         for shift in range(k.bit_length()):
             if k >> shift & 1:
-                node = self.fa_list[shift][node]
+                node = self.bin_lift[shift][node]
                 # if node == -1: # 如果常常超出再開
                 #     break
         return node
@@ -67,10 +67,10 @@ class TreeAncestor:
         if y == x:
             return x
         for i in range(self.depth[y].bit_length()-1, -1, -1):
-            px, py = self.fa_list[i][x], self.fa_list[i][y]
+            px, py = self.bin_lift[i][x], self.bin_lift[i][y]
             if px != py:
                 x, y = px, py  # 同時往上找前 2**i 個父node
-        return self.fa_list[0][x]
+        return self.bin_lift[0][x]
 
     # # 如果已經知道 x和y 在同一條路徑上，不應該呼叫此function，而是直接在程式中計算
     def get_dist(self, x: int, y: int, lca = None) -> int:
@@ -80,7 +80,7 @@ class TreeAncestor:
     def upto_dist_in(self, st, dist): # include
         dist_2_st = self.dist[st]
         for shift in range(self.depth[st].bit_length()-1,-1,-1):
-            next_node = self.fa_list[shift][st]
+            next_node = self.bin_lift[shift][st]
             if next_node != -1 and (dist_2_st-self.dist[next_node]) <= dist:
                 st = next_node
         return st
@@ -88,13 +88,13 @@ class TreeAncestor:
     def upto_dist_not_in(self, st, dist): # include
         dist_2_st = self.dist[st]
         for shift in range(self.depth[st].bit_length()-1,-1,-1):
-            next_node = self.fa_list[shift][st]
+            next_node = self.bin_lift[shift][st]
             if next_node != -1 and (dist_2_st-self.dist[next_node]) < dist:
                 st = next_node
         return st
     
     def over_dist(self, st, dist): # 要 over 所以當然不包含此點
-        return self.fa_list[0][self.upto_dist_not_in(st, dist)]
+        return self.bin_lift[0][self.upto_dist_not_in(st, dist)]
 
 # 點跟點之間沒有 weight 或 cost
 class TreeAncestor_no_weight:
@@ -119,24 +119,24 @@ class TreeAncestor_no_weight:
                 stack.append(v)
 
         self.depth = depth
-        self.fa_list = [parent]+[[-1]*len_n for _ in range(max_bit_len)]
-        # fa_list[parent_lv][node]
+        self.bin_lift = [parent]+[[-1]*len_n for _ in range(max_bit_len)]
+        # bin_lift[parent_lv][node]
 		# 用來記錄 [父節點, 父節點的父節點, (父節點)**4, (父節點)**8...] 是誰
             # 這樣找 kth_ancestor 就可以在 O(logn) 的時間內做到
                 # 例如 k = 13 = 往上1+往上4+往上8
-        now_lv = self.fa_list[0]
+        now_lv = self.bin_lift[0]
         for lv in range(1, max_bit_len+1):
-            next_lv = self.fa_list[lv]
+            next_lv = self.bin_lift[lv]
             for node in range(len_n):
                 if (par:=now_lv[node]) == -1: continue
                 next_lv[node] = now_lv[par]
             now_lv = next_lv
 
-    # def __init__(self, parent_rela):
-    #     len_n = len(parent_rela)
+    # def __init__(self, parent):
+    #     len_n = len(parent)
     #     self.max_bit_len = max_bit_len = len_n.bit_length()
     #     li = [[] for _ in range(len_n)]
-    #     for x, y in enumerate(parent_rela) :
+    #     for x, y in enumerate(parent) :
     #         if y == -1 : continue
     #         li[x].append(y)
     #         li[y].append(x)
@@ -147,16 +147,16 @@ class TreeAncestor_no_weight:
     #     while stack:
     #         u = stack.pop()
     #         for v in li[u]:
-    #             if v == parent_rela[u]: continue
+    #             if v == parent[u]: continue
     #             depth[v] = depth[u]+1
     #             stack.append(v)
 
     #     self.depth = depth
-    #     self.fa_list = [parent_rela]+[[-1]*len_n for _ in range(max_bit_len)]
+    #     self.bin_lift = [parent]+[[-1]*len_n for _ in range(max_bit_len)]
 
-    #     now_lv = self.fa_list[0]
+    #     now_lv = self.bin_lift[0]
     #     for lv in range(1, max_bit_len+1):
-    #         next_lv = self.fa_list[lv]
+    #         next_lv = self.bin_lift[lv]
     #         for node in range(len_n):
     #             if (par:=now_lv[node]) == -1: continue
     #             next_lv[node] = now_lv[par]
@@ -165,7 +165,7 @@ class TreeAncestor_no_weight:
     def get_kth_ancestor(self, node: int, k: int) -> int:
         for shift in range(k.bit_length()):
             if k >> shift & 1:
-                node = self.fa_list[shift][node]
+                node = self.bin_lift[shift][node]
                 if node == -1: # 如果常常超出再開
                     break
         return node
@@ -178,10 +178,10 @@ class TreeAncestor_no_weight:
         if y == x:
             return x
         for i in range(self.depth[y].bit_length()-1, -1, -1):
-            px, py = self.fa_list[i][x], self.fa_list[i][y]
+            px, py = self.bin_lift[i][x], self.bin_lift[i][y]
             if px != py:
                 x, y = px, py  # 同時往上找前 2**i 個父node
-        return self.fa_list[0][x]
+        return self.bin_lift[0][x]
 
     # # 如果已經知道 x和y 在同一條路徑上，不應該呼叫此function，而是直接在程式中計算
     def get_dist(self, x: int, y: int, lca = None) -> int:
