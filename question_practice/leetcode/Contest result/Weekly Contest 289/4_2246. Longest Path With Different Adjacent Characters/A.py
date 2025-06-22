@@ -1,3 +1,8 @@
+# 2246. Longest Path With Different Adjacent Characters
+# https://leetcode.com/problems/longest-path-with-different-adjacent-characters/
+
+from collections import defaultdict
+
 # my Runtime: 1814 ms, faster than 100.00% of Python3
 # 就差一點點就能解出來... 上一題coding很久 要不然就四題 
 class Solution:

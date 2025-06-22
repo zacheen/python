@@ -15,16 +15,13 @@
 # # 如果同時要取 index 跟 value 使用 enumerate (list or str)
 
 # s = "abcd"
-# s = ["a","b","c"]
-# s = [1,2,3]
 # for idx, val in enumerate(s):
 #     print(idx, val)
 
 # # enumerate 可以設定起始 index
 # s = "abcd"
-# s = ["a","b","c"]
-# s = [1,2,3]
-# for idx, val in enumerate(s ,1):
+# start_idx = 2
+# for idx, val in enumerate(s ,start_idx):
 #     print(idx, val)
 
 # #------------------------------------
