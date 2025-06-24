@@ -1,52 +1,57 @@
-# SegTree 比 Fenwick trees 應用範圍更廣(但也花更多空間儲存)
+# Segment tree, SegTree
+    # SegTree 比 Fenwick trees 應用範圍更廣(但也花更多空間儲存)
 # self.tree[1] 存的是所有範圍的結果(可以直接取值)
 import random
 
-# # template ##############################################################
-# class SegTree:
-#     def __init__(self, nums):
-#         self.n = len(nums)
-#         # init
-#         self.tree = [INITNUM] * 2 * self.n
-#         for i,n in zip(range(self.n, 2 * self.n) , nums):
-#             self.tree[i] = n
-#         for i in range(self.n-1, 0, -1):
-#             # execute def
-#             self.tree[i] = 
-#                 self.tree[2*i], self.tree[2*i+1]
+# 缺點是沒有 top down
+# # template 1 ##############################################################
+class SegTree:
+    def __init__(self, nums):
+        self.n = len(nums)
+        # init
+        self.tree = [INITNUM] * 2 * self.n
+        for i,n in zip(range(self.n, 2 * self.n) , nums):
+            self.tree[i] = n
+        for i in range(self.n-1, 0, -1):
+            # execute def
+            self.tree[i] = OP
+                self.tree[i<<1], self.tree[i<<1+1]
 
-#     def update(self, index, val):
-#         index += self.n
-#         self.tree[index] = val
-#         while index > 1:
-#             # update node
-#             self.tree[index>>1] = 
-#                 self.tree[index], self.tree[index^1]
-#             index >>= 1
+    def update(self, index, val):
+        index += self.n
+        self.tree[index] = val
+        while index > 1:
+            # update node
+            self.tree[index>>1] = 
+                self.tree[index], self.tree[index^1]
+            index >>= 1
 
-#     def query(self, left, right):
-#         # include
-#         left += self.n
-#         right += self.n
-#         # not include
-#         left += self.n+1
-#         right += self.n-1
-#         l_res = INITNUM
-#         r_res = INITNUM
-#         while left <= right:
-#             if left & 1 :
-#                 # combine result
-#                 l_res = l_res, self.tree[left]
-#                 left += 1
-#             if not (right & 1) :
-#                 # combine result
-#                 r_res = self.tree[right], r_res
-#                 right -= 1
-#             left >>= 1
-#             right>>= 1
-#         return l_res, r_res
+    def query(self, left, right):
+        # include
+        left += self.n
+        right += self.n
+        # not include
+        left += self.n+1
+        right += self.n-1
+        l_res = INITNUM
+        r_res = INITNUM
+        while left <= right:
+            if left & 1 :
+                # combine result
+                l_res = l_res, self.tree[left]
+                left += 1
+            if not (right & 1) :
+                # combine result
+                r_res = self.tree[right], r_res
+                right -= 1
+            left >>= 1
+            right>>= 1
+        return l_res, r_res
 # # template end ##############################################################
 
+# 範例1 : 區域和
+# 307. Range Sum Query - Mutable
+# https://leetcode.com/problems/range-sum-query-mutable/description
 class SegTree_Sum:
     def __init__(self, nums):
         self.n = len(nums)
@@ -120,7 +125,7 @@ class SegTree_Sum:
 #     ans = sum(ll[s:e+1])
 #     print("check :", s, e, res, res == ans)
 
-
+# 範例2 : 找最大值
 from math import inf
 class SegTree_Max:
     def __init__(self, nums):
@@ -188,10 +193,201 @@ print("ll :", ll)
 #     ans = max(ll[s:e+1])
 #     print("check :", s, e, res, res == ans)
 
+# # template 2 - top down recursive (array) ##############################################################
+class SegTree:
+    def __init__(self, nums):
+        self.default_value = INITNUM # None
+        self.n = len(nums)
+        self.tree = [self.default_value] * (4 * self.n)
+        def build_rec(tree_idx, seg_st, seg_en):
+            if seg_st == seg_en:
+                self.tree[tree_idx] = nums[seg_st]
+                return
+            mid = (seg_st + seg_en) >> 1
+            tree_idx_l = tree_idx << 1
+            tree_idx_r = tree_idx_l + 1
+            build_rec(tree_idx_l, seg_st, mid)
+            build_rec(tree_idx_r, mid + 1, seg_en)
+            self._update_node(tree_idx, tree_idx_l, tree_idx_r)
+        build_rec(1, 0, self.n-1)
 
-# # template 2 還沒研究 ##############################################################
-# 因為普通 segment tree 也能辦到
+    def _update_node(self, tree_idx, tree_idx_l, tree_idx_r) :
+        self.tree[tree_idx] = OP 
+                self.tree[tree_idx_l], self.tree[tree_idx_r]
+
+    def update(self, index, value):
+        def update_rec(tree_idx, seg_st, seg_en):
+            if seg_st == index and index == seg_en:  # Entire segment is target index
+                self.tree[tree_idx] = value
+            else: # Update nested segments that contain the target index
+                mid = (seg_st + seg_en) >> 1
+                tree_idx_l = tree_idx << 1
+                tree_idx_r = tree_idx_l + 1
+                if index <= mid:
+                    update_rec(tree_idx_l, seg_st, mid)
+                else:
+                    update_rec(tree_idx_r, mid + 1, seg_en)
+                self._update_node(tree_idx, tree_idx_l, tree_idx_r)
+        update_rec(1, 0, self.n - 1)
+
+    def query(self, q_left, q_right): # include both q_left, q_right
+        def query_rec(tree_idx, seg_st, seg_en):
+            if q_right < seg_st or seg_en < q_left :  # No overlap
+                return self.default_value
+            elif q_left <= seg_st and seg_en <= q_right:  # Full overlap
+                return self.tree[tree_idx]
+            else:  # Partial overlap
+                mid = (seg_st + seg_en) >> 1
+                tree_idx_l = tree_idx << 1
+                tree_idx_r = tree_idx_l + 1
+                left_ret = query_rec(tree_idx_l, seg_st, mid)
+                right_ret = query_rec(tree_idx_r, mid + 1, seg_en)
+                return OP left_ret , right_ret
+        return query_rec(1, 0, self.n-1)
+    
+class SegTree_fir_indx:
+    def __init__(self, nums):
+        self.default_value = -1
+        self.n = len(nums)
+        self.tree = [self.default_value] * (4 * self.n)
+        def build_rec(tree_idx, seg_st, seg_en):
+            if seg_st == seg_en:
+                self.tree[tree_idx] = nums[seg_st]
+                return
+            mid = (seg_st + seg_en) >> 1
+            tree_idx_l = tree_idx << 1
+            tree_idx_r = tree_idx_l + 1
+            build_rec(tree_idx_l, seg_st, mid)
+            build_rec(tree_idx_r, mid + 1, seg_en)
+            self._update_node(tree_idx, tree_idx_l, tree_idx_r)
+        build_rec(1, 0, self.n-1)
+
+    def _update_node(self, tree_idx, tree_idx_l, tree_idx_r) :
+        self.tree[tree_idx] = OP self.tree[tree_idx_l], self.tree[tree_idx_r]
+
+    # 其實這個有點像 DFS 了，只不過可以不到尾端就 return
+    def query(self, q_left, q_right, limit = None): # include both q_left
+        def query_rec(tree_idx, seg_st, seg_en):
+            if seg_en < q_left or q_right < seg_st : # No overlap
+                return -1
+            if self.tree[tree_idx] OP limit : # 此點以下的數值都不夠大
+                return -1
+            if seg_st == seg_en :
+                return seg_st
+            mid = (seg_st + seg_en) >> 1
+            tree_idx_l = tree_idx << 1
+            tree_idx_r = tree_idx_l + 1
+            left_ret = query_rec(tree_idx_l, seg_st, mid)
+            if left_ret != -1 :
+                return left_ret
+            right_ret = query_rec(tree_idx_r, mid + 1, seg_en)
+            return right_ret
+        return query_rec(1, 0, self.n-1)
 # # template 2 end ##############################################################
+
+# 範例1 : 區域和
+# 307. Range Sum Query - Mutable
+# https://leetcode.com/problems/range-sum-query-mutable/description
+class SegTree_sum:
+    def __init__(self, nums):
+        self.default_value = 0
+        self.n = len(nums)
+        self.tree = [self.default_value]*(4*self.n)
+        def build_(tree_idx, seg_st, seg_en):
+            if seg_st == seg_en:
+                self.tree[tree_idx] = nums[seg_st]
+                return
+            mid = (seg_st + seg_en) >> 1
+            tree_idx_l = tree_idx << 1
+            tree_idx_r = tree_idx_l + 1
+            build_(tree_idx_l, seg_st, mid)
+            build_(tree_idx_r, mid + 1, seg_en)
+            self.tree[tree_idx] = self.tree[tree_idx_l] + self.tree[tree_idx_r]
+        build_(1, 0, self.n-1)
+
+    def update(self, index, value):
+        def update_(tree_idx, seg_st, seg_en):
+            if seg_st == index and index == seg_en:  # Entire segment is target index
+                self.tree[tree_idx] = value
+            else: # Update nested segments that contain the target index
+                mid = (seg_st + seg_en) >> 1
+                tree_idx_l = tree_idx << 1
+                tree_idx_r = tree_idx_l + 1
+                if index <= mid:
+                    update_(tree_idx_l, seg_st, mid)
+                else:
+                    update_(tree_idx_r, mid + 1, seg_en)
+                self.tree[tree_idx] = self.tree[tree_idx_l] + self.tree[tree_idx_r]
+        update_(1, 0, self.n - 1)
+
+    def query(self, q_left, q_right):
+        def query_(tree_idx, seg_st, seg_en):
+            if q_right < seg_st or seg_en < q_left :  # No overlap
+                return self.default_value
+            elif q_left <= seg_st and seg_en <= q_right:  # Full overlap
+                return self.tree[tree_idx]
+            else:  # Partial overlap
+                mid = (seg_st + seg_en) >> 1
+                tree_idx_l = tree_idx << 1
+                tree_idx_r = tree_idx_l + 1
+                left_sum = query_(tree_idx_l, seg_st, mid)
+                right_sum = query_(tree_idx_r, mid + 1, seg_en)
+                return left_sum + right_sum
+        return query_(1, 0, self.n - 1)
+    
+# # 雖然比較好理解 但是比較慢 也沒有比較省空間
+# # # template 3  - top down recursive (node) ##############################################################
+# class SegTree_sum:
+#     def __init__(self, nums):
+#         self.default_value = 0
+#         self.n = len(nums)
+#         class Node(object):
+#             def __init__(self, val = self.default_value):
+#                 self.value = val
+#                 # self.left = None
+#                 # self.right = None
+
+#         def build_(seg_st, seg_en):
+#             if seg_st == seg_en:
+#                 return Node(nums[seg_st])
+#             mid = (seg_st + seg_en) >> 1
+#             root = Node()
+#             root.left = build_(seg_st, mid)
+#             root.right = build_(mid + 1, seg_en)
+#             self._update_node(root)
+#             return root
+#         self.root = build_(0, self.n-1)
+
+#     def _update_node(self, root) :
+#         root.value = root.left.value + root.right.value
+
+#     def update(self, index, value):
+#         def update_(root, seg_st, seg_en):
+#             if seg_st == seg_en:  # Entire segment is target index
+#                 root.value = value
+#             else: # Update nested segments that contain the target index
+#                 mid = (seg_st + seg_en) >> 1
+#                 if index <= mid:
+#                     update_(root.left, seg_st, mid)
+#                 else:
+#                     update_(root.right, mid + 1, seg_en)
+#                 self._update_node(root)
+#         update_(self.root, 0, self.n - 1)
+
+#     def query(self, q_left, q_right):
+#         def query_(root, seg_st, seg_en):
+#             if seg_en < q_left or q_right < seg_st : # No overlap
+#                 return self.default_value
+#             if q_left <= seg_st and seg_en <= q_right:  # Full overlap
+#                 return root.value
+#             else:  # Partial overlap
+#                 mid = (seg_st + seg_en) >> 1
+#                 left_ret = query_(root.left, seg_st, mid)
+#                 right_ret = query_(root.right, mid + 1, seg_en)
+#                 return left_ret + right_ret
+#         return query_(self.root, 0, self.n-1)
+# # # template 3 end ##############################################################
+
 
 # # 406. Queue Reconstruction by Height
 # # https://leetcode.com/problems/queue-reconstruction-by-height/description
