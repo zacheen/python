@@ -201,7 +201,7 @@ class SegTree:
         self.tree = [self.default_value] * (4 * self.n)
         def build_rec(tree_idx, seg_st, seg_en):
             if seg_st == seg_en:
-                self.tree[tree_idx] = nums[seg_st]
+                self.tree[tree_idx] = TODO nums[seg_st] 
                 return
             mid = (seg_st + seg_en) >> 1
             tree_idx_l = tree_idx << 1
@@ -211,14 +211,16 @@ class SegTree:
             self._update_node(tree_idx, tree_idx_l, tree_idx_r)
         build_rec(1, 0, self.n-1)
 
+    def _merge_val(self, l, r):
+        OP l,r
+    
     def _update_node(self, tree_idx, tree_idx_l, tree_idx_r) :
-        self.tree[tree_idx] = OP 
-                self.tree[tree_idx_l], self.tree[tree_idx_r]
+        self.tree[tree_idx] = self._merge_val(self.tree[tree_idx_l], self.tree[tree_idx_r])
 
     def update(self, index, value):
         def update_rec(tree_idx, seg_st, seg_en):
             if seg_st == index and index == seg_en:  # Entire segment is target index
-                self.tree[tree_idx] = value
+                self.tree[tree_idx] = TODO value
             else: # Update nested segments that contain the target index
                 mid = (seg_st + seg_en) >> 1
                 tree_idx_l = tree_idx << 1
@@ -230,7 +232,9 @@ class SegTree:
                 self._update_node(tree_idx, tree_idx_l, tree_idx_r)
         update_rec(1, 0, self.n - 1)
 
-    def query(self, q_left, q_right): # include both q_left, q_right
+    def query(self, q_left = None, q_right = None): # include both q_left, q_right
+        if q_left == None : 
+            q_left, q_right = 0, self.n-1
         def query_rec(tree_idx, seg_st, seg_en):
             if q_right < seg_st or seg_en < q_left :  # No overlap
                 return self.default_value
@@ -242,7 +246,7 @@ class SegTree:
                 tree_idx_r = tree_idx_l + 1
                 left_ret = query_rec(tree_idx_l, seg_st, mid)
                 right_ret = query_rec(tree_idx_r, mid + 1, seg_en)
-                return OP left_ret , right_ret
+                return self._merge_val(left_ret, right_ret)
         return query_rec(1, 0, self.n-1)
     
 class SegTree_fir_indx:
@@ -336,57 +340,62 @@ class SegTree_sum:
         return query_(1, 0, self.n - 1)
     
 # # 雖然比較好理解 但是比較慢 也沒有比較省空間
-# # # template 3  - top down recursive (node) ##############################################################
-# class SegTree_sum:
+# # template 3  - top down recursive (node) ##############################################################
+# class SegTree:
 #     def __init__(self, nums):
-#         self.default_value = 0
+#         self.default_value = INITVAL # None
 #         self.n = len(nums)
 #         class Node(object):
-#             def __init__(self, val = self.default_value):
+#             def __init__(self, seg_st, seg_en, val = self.default_value):
 #                 self.value = val
+#                 self.seg_st = seg_st
+#                 self.seg_en = seg_en
 #                 # self.left = None
 #                 # self.right = None
 
 #         def build_(seg_st, seg_en):
 #             if seg_st == seg_en:
-#                 return Node(nums[seg_st])
+#                 return Node(seg_st, seg_en, TODO nums[seg_st])
 #             mid = (seg_st + seg_en) >> 1
-#             root = Node()
+#             root = Node(seg_st, seg_en)
 #             root.left = build_(seg_st, mid)
 #             root.right = build_(mid + 1, seg_en)
 #             self._update_node(root)
 #             return root
 #         self.root = build_(0, self.n-1)
 
+#     def _merge_val(self, l, r):
+#         return OP l, r
+    
 #     def _update_node(self, root) :
-#         root.value = root.left.value + root.right.value
+#         root.value = self._merge_val(root.left.value, root.right.value)
 
 #     def update(self, index, value):
-#         def update_(root, seg_st, seg_en):
-#             if seg_st == seg_en:  # Entire segment is target index
-#                 root.value = value
+#         def update_(root):
+#             if root.seg_st == root.seg_en:  # Entire segment is target index
+#                 root.value = TODO value
 #             else: # Update nested segments that contain the target index
-#                 mid = (seg_st + seg_en) >> 1
-#                 if index <= mid:
-#                     update_(root.left, seg_st, mid)
+#                 # mid = (root.seg_st + root.seg_en) >> 1
+#                 if index <= (root.seg_st + root.seg_en) >> 1:
+#                     update_(root.left)
 #                 else:
-#                     update_(root.right, mid + 1, seg_en)
+#                     update_(root.right)
 #                 self._update_node(root)
-#         update_(self.root, 0, self.n - 1)
+#         update_(self.root)
 
 #     def query(self, q_left, q_right):
-#         def query_(root, seg_st, seg_en):
-#             if seg_en < q_left or q_right < seg_st : # No overlap
-#                 return self.default_value
-#             if q_left <= seg_st and seg_en <= q_right:  # Full overlap
+#         # q_left, q_right = 0, self.n-1
+#         def query_(root):
+#             if root.seg_en < q_left or q_right < root.seg_st : # No overlap
+#                 return TODO
+#             if q_left <= root.seg_st and root.seg_en <= q_right:  # Full overlap
 #                 return root.value
 #             else:  # Partial overlap
-#                 mid = (seg_st + seg_en) >> 1
-#                 left_ret = query_(root.left, seg_st, mid)
-#                 right_ret = query_(root.right, mid + 1, seg_en)
-#                 return left_ret + right_ret
-#         return query_(self.root, 0, self.n-1)
-# # # template 3 end ##############################################################
+#                 left_ret = query_(root.left)
+#                 right_ret = query_(root.right)
+#                 return self._merge_val(left_ret + right_ret)
+#         return query_(self.root)
+# # template 3 end ##############################################################
 
 
 # # 406. Queue Reconstruction by Height
