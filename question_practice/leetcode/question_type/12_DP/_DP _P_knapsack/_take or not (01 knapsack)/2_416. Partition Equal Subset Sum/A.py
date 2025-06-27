@@ -4,21 +4,21 @@
 from typing import List
 from math import inf
 
-# my practice again 
+# my : 149ms Beats97.30%
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         total = sum(nums)
-        if total & 1 == 1 :
+        if total & 1 :
             return False
 
-        target = total//2
-        can_comb_set = {0}  # 裡面紀錄目前可以的組合
-        for num in nums:
-            for s in can_comb_set.copy() :
-                if (new_s := s+num) <= target:
-                    if new_s == target :
-                        return True
-                    can_comb_set.add(new_s)
+        half = total // 2
+        reach_sum = set([0])
+        for n in nums :
+            for s in reach_sum.copy():
+                if (new_s := s+n) <= half :
+                    reach_sum.add(new_s)
+            if half in reach_sum :
+                return True
         return False
 
 s = Solution()

@@ -1,15 +1,13 @@
 # 518. Coin Change II
 # https://leetcode.com/problems/coin-change-ii/description/
 
-# my practice again : 125ms Beats79.53%
+# my : 115ms Beats96.20%
 class Solution:
     def change(self, amount, coins):
         dp = [1]+[0]*(amount)
-
         for coin in coins:
-            for i in range(coin, amount + 1):
+            for i in range(coin, len(dp)):
                 dp[i] += dp[i - coin]
-
         # print(dp)
         return dp[amount]
 

@@ -1,5 +1,5 @@
-# 練 index
-# 
+# 474. Ones and Zeroes
+# https://leetcode.com/problems/ones-and-zeroes
 
 # my 
 # Runtime: 2212 ms, faster than 93.06% of Python3

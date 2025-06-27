@@ -7,7 +7,7 @@ class Solution:
         if n == 1 : return 1
         dp = [1,2]
         for i in range(2,n) :
-            dp.append(dp[-1] + dp[-2])
+            dp.append(dp[-1] + dp[-2]) # 從前面一格過來(爬一格) + 從前面兩格過來(爬兩格)
         return dp[-1]
 
 # given ans 一樣
