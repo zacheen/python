@@ -23,91 +23,6 @@ class Solution:
             min_sum = min(min_sum, now_sum)
             min_sub = min(min_sub, min_sum)
         return res
-    
-# # # given ans (after my opt) : segment tree
-# # # 7453ms Beats30.09%
-# # # 1. 找出所有可能的刪除數字
-# # # 2. 組合排除完的數字
-# from collections import defaultdict
-# class Solution:
-#     def __init_node(self, val: int):
-#         return (val,val, val, val)
-
-#     def __merge(self, left_node, right_node):
-#         total_l, pre_l, suf_l, best_l = left_node
-#         total_r, pre_r, suf_r, best_r = right_node
-
-#         total = total_l + total_r
-#         prefix = max(pre_l, total_l + pre_r)
-#         suffix = max(suf_r, total_r + suf_l)
-#         best = max(best_l, best_r, suf_l + pre_r)
-#         return (total, prefix, suffix, best)
-
-#     def build_segment_tree(self, arr: list[int]):
-#         n = len(arr)
-#         self.n = n
-#         self.tree = [None]*(4*n)
-
-#         def build(idx, left, right):
-#             if left == right:
-#                 self.tree[idx] = self.__init_node(arr[left])
-#                 return
-#             mid = (left+right)//2
-#             build(idx*2, left, mid)
-#             build(idx*2+1, mid+1, right)
-#             self.tree[idx] = self.__merge(self.tree[idx*2], self.tree[idx*2+1])
-
-#         build(1, 0, n-1)
-
-#     def query_segment_tree(self, ql: int, qr: int):
-#         def query(idx, left, right, ql, qr):
-#             if ql > right or qr < left:
-#                 return (0, float('-inf'), float('-inf'), float('-inf'))
-#             if ql <= left and right <= qr:
-#                 return self.tree[idx]
-#             mid = (left+right)//2
-#             left_part = query(idx*2, left, mid, ql, qr)
-#             right_part = query(idx*2+1, mid+1, right, ql, qr)
-#             return self.__merge(left_part, right_part)
-
-#         return query(1, 0, self.n-1, ql, qr)
-
-#     def merge_segments(self, segments):
-#         curr = segments[0]
-#         for i in range(1, len(segments)):
-#             curr = self.__merge(curr, segments[i])
-#         return curr
-        
-#     def maxSubarraySum(self, nums: List[int]) -> int:
-#         n = len(nums)
-#         if n == 1:
-#             return nums[0]
-
-#         neg_pos = defaultdict(list)
-#         for i, val in enumerate(nums):
-#             if val <= 0:
-#                 neg_pos[val].append(i)
-
-#         self.build_segment_tree(nums)
-#         ans = self.query_segment_tree(0, n-1)[3] # full range
-#         for x, pos in neg_pos.items():
-#             if len(pos) == n:
-#                 continue
-#             seg_nodes = []
-#             prev_end = -1
-#             for idx in (pos+[n]):
-#                 seg_l = prev_end + 1
-#                 seg_r = idx - 1
-#                 if seg_l <= seg_r: # 如果此兩個 indx 中間沒有其他項目
-#                     node = self.query_segment_tree(seg_l, seg_r)
-#                     seg_nodes.append(node)
-#                 prev_end = idx
-
-#             if not seg_nodes:
-#                 continue
-#             merged_node = self.merge_segments(seg_nodes)
-#             ans = max(ans, merged_node[3])
-#         return ans
 
 # my segment tree : 4243ms Beats40.68%
 from math import inf
@@ -170,19 +85,105 @@ class Solution:
             ans = max(ans, mem[3])
         return ans
                 
+# my using SegTree template 2 : 6753ms Beats19.70%  
+class SegTree:
+    def __init__(self, nums):
+        self.default_value = None
+        self.n = len(nums)
+        self.tree = [self.default_value] * (4 * self.n)
+        def build_rec(tree_idx, seg_st, seg_en):
+            if seg_st == seg_en:
+                self.tree[tree_idx] = (nums[seg_st], nums[seg_st], nums[seg_st], nums[seg_st]) 
+                return
+            mid = (seg_st + seg_en) >> 1
+            tree_idx_l = tree_idx << 1
+            tree_idx_r = tree_idx_l + 1
+            build_rec(tree_idx_l, seg_st, mid)
+            build_rec(tree_idx_r, mid + 1, seg_en)
+            self._update_node(tree_idx, tree_idx_l, tree_idx_r)
+        build_rec(1, 0, self.n-1)
 
-
+    def _merge_val(self, l, r):
+        l_sum, l_left_max, l_right_max, l_max_sum = l
+        r_sum, r_left_max, r_right_max, r_max_sum = r
         
+        return (
+            l_sum + r_sum,
+            max(l_left_max, l_sum + r_left_max),
+            max(r_right_max, r_sum + l_right_max),
+            max(l_max_sum, r_max_sum, l_right_max + r_left_max)
+        )
+    
+    def _update_node(self, tree_idx, tree_idx_l, tree_idx_r) :
+        self.tree[tree_idx] = self._merge_val(self.tree[tree_idx_l], self.tree[tree_idx_r])
 
+    # def update(self, index, value):
+    #     def update_rec(tree_idx, seg_st, seg_en):
+    #         if seg_st == index and index == seg_en:  # Entire segment is target index
+    #             self.tree[tree_idx] = value
+    #         else: # Update nested segments that contain the target index
+    #             mid = (seg_st + seg_en) >> 1
+    #             tree_idx_l = tree_idx << 1
+    #             tree_idx_r = tree_idx_l + 1
+    #             if index <= mid:
+    #                 update_rec(tree_idx_l, seg_st, mid)
+    #             else:
+    #                 update_rec(tree_idx_r, mid + 1, seg_en)
+    #             self._update_node(tree_idx, tree_idx_l, tree_idx_r)
+    #     update_rec(1, 0, self.n - 1)
+
+    def query(self, q_left, q_right): # include both q_left, q_right
+        def query_rec(tree_idx, seg_st, seg_en):
+            if q_right < seg_st or seg_en < q_left :  # No overlap
+                return [0,0,0,0]
+            elif q_left <= seg_st and seg_en <= q_right:  # Full overlap
+                return self.tree[tree_idx]
+            else:  # Partial overlap
+                mid = (seg_st + seg_en) >> 1
+                tree_idx_l = tree_idx << 1
+                tree_idx_r = tree_idx_l + 1
+                left_ret = query_rec(tree_idx_l, seg_st, mid)
+                right_ret = query_rec(tree_idx_r, mid + 1, seg_en)
+                return self._merge_val(left_ret, right_ret)
+        return query_rec(1, 0, self.n-1)
+
+class Solution:
+    def maxSubarraySum(self, nums: List[int]) -> int:
+        mem_pos = defaultdict(list)
+        neg_cou = 0
+        for i, n in enumerate(nums):
+            if n < 0 :
+                mem_pos[n].append(i)
+                neg_cou += 1
+        
+        if neg_cou == len(nums) :
+            return max(nums)
+        if neg_cou == 0 :
+            return sum(nums)
+
+        segtree = SegTree(nums)
+        ans = 0
+        end_i = len(nums)
+        for neg_n, pos in mem_pos.items() :
+            now_info = [0,0,0,0]
+            last_i = 0
+            for neg_i in pos + [end_i] :
+                if (en:=neg_i-1) >= last_i :
+                    ret = segtree.query(last_i, en)
+                    now_info = segtree._merge_val(now_info, ret)
+                last_i = neg_i+1
+            ans = max(ans, max(now_info[1:]))
+        return ans
 
 s = Solution()
-# print("ans :",s.maxSubarraySum([-3,2,-2,-1,3,-2,3])) # 7
-# print("ans :",s.maxSubarraySum([1,2,3,4])) # 10
-# print("ans :",s.maxSubarraySum([4,-6,9,-7,4])) # 13
-# print("ans :",s.maxSubarraySum([-3,-3,6,-9,6,-3,-3])) # 12
-# print("ans :",s.maxSubarraySum([4,-3,4,-3,4,-3,4])) # 16
-# print("ans :",s.maxSubarraySum([-2,-2,-2])) # -2
-print("ans :",s.maxSubarraySum([-24,-29,45,48,-32,25,11,-7,27,-21,-38,-35,47,39,-48,-48])) # 149 [45,48,25,11,-7,27]
+print("ans :",s.maxSubarraySum([-3,2,-2,-1,3,-2,3])) # 7
+print("ans :",s.maxSubarraySum([1,2,3,4])) # 10
+print("ans :",s.maxSubarraySum([4,-6,9,-7,4])) # 13
+print("ans :",s.maxSubarraySum([-3,-3,6,-9,6,-3,-3])) # 12
+print("ans :",s.maxSubarraySum([4,-3,4,-3,4,-3,4])) # 16
+print("ans :",s.maxSubarraySum([-2,-2,-2])) # -2
+print("ans :",s.maxSubarraySum([-31,-23,-47])) # -23
+# print("ans :",s.maxSubarraySum([-24,-29,45,48,-32,25,11,-7,27,-21,-38,-35,47,39,-48,-48])) # 149 [45,48,25,11,-7,27]
 # print("ans :",s.maxSubarraySum([45,48,-32,25,11,-7,27,-21,-38,-35,47,39])) # 149
 # print(sum([45,48,-32,25,11,-7,27,-21,-38,-35,47,39]))
 # print(sum([45,48,-32,25,11,-7,27]))

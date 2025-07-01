@@ -7,7 +7,7 @@ from collections import Counter, deque, defaultdict
 
 # <linking> # <建立某個點連出去有哪些點>
 def link(relation, len_n = -1):
-    # method 1
+    # method 1 (slow)
     li = defaultdict(list)
     # method 2
     if len_n == -1 :
