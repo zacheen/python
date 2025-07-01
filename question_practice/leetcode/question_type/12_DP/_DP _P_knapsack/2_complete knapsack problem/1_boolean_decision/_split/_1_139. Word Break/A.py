@@ -1,6 +1,18 @@
 # 139. Word Break
 # https://leetcode.com/problems/word-break/description/
 
+# my using template C_Knap_reach v2 : 0ms
+class Solution:
+    def wordBreak(self, s, wordDict):
+        dp = [True]+[False]*len(s)
+        for i in range(len(dp)-1) :
+            if dp[i] :
+                for word in wordDict :
+                    if s[i:i+len(word)] == word :
+                        dp[i+len(word)] = True
+        # print(dp)
+        return dp[-1]
+
 from functools import lru_cache
 # my practice again : 4ms Beats41.52%
 class Solution:
@@ -16,33 +28,6 @@ class Solution:
                 return True
             return False
         return dp(0)
-
-# My_v2  Runtime: 35 ms, faster than 95.90% of Python3
-class Solution:
-    def wordBreak(self, s, wordDict):
-        cache = [False]* (len(s)+1)
-        cache[0] = True
-        def find(remainstr, index):
-            if remainstr == "" :
-                return True
-
-            if cache[index] :
-                return False
-            
-            for eachWord in wordDict :
-                fit = True
-                for i in range(len(eachWord)) :
-                    if i>=len(remainstr) or eachWord[i] != remainstr[i] :
-                        fit = False
-                        break
-                if fit :
-                    cache[index] = True
-                    if find(remainstr[len(eachWord):], index+len(eachWord)) :
-                        return True
-
-            return False
-
-        return find(s, 1)
 
 # given ans
 # 完美的縮寫 (O)

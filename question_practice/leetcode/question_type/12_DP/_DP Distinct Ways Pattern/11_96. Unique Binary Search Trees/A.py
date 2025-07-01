@@ -42,18 +42,12 @@
 # Runtime: 26 ms, faster than 95.48% of Python3
 class Solution:
     def numTrees(self, n):
-
         dp = [1]+[0]*n
-
-        for i in range(1,n+1) :
+        for i in range(1,len(dp)) :
             for now in range(i):
                 dp[i] += dp[now]*dp[i-now-1]
-
         # print(dp)
         return dp[n]
-
-
-# given ans 一樣
 
 s = Solution()
 
