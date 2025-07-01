@@ -3,38 +3,84 @@
 
 from math import inf
 from typing import List
+from collections import defaultdict
 MOD = 10**9+7
 
 ## 0/1 take or don't take ################################################################
+# << 1_boolean_decision >>
+# # v1 (slower)
+# def knapsack_01_reach(nums, target):
+#     # dp[i] := True if i can be formed by nums so far
+#     dp = [True] + [False]*(target)
+#     for num in nums:
+#         for pre_i in range(target-num, -1, -1): # 從大到小
+#             if dp[pre_i] :
+#                 dp[pre_i+num] = True
+#         if dp[-1] :
+#             return True
+#     return False
+# v2, if sparse, this is faster
 def knapsack_01_for_set(nums, target):
     can_comb_set = {0}  # 裡面紀錄目前可以的組合
     for num in nums:
         can_comb_set |= set( new_s for s in can_comb_set if (new_s := s + num) <= target )
-    return target in can_comb_set
+        if target in can_comb_set:
+            return True
+    return False
 
-# print(knapsack_01_for_set([1,2,3,6], 5))
-# print(knapsack_01_for_set([1,2,4,8,16], 31))
-# print([knapsack_01_for_set([1,2,4,8,16], i) for i in range(1,32)])
-# print(knapsack_01_for_set([1,2,5], 11))
-
-# 如果項目多 但target小 會比較快
-def knapsack_01_for_target(nums, target):
-    # dp[i] := True if i can be formed by nums so far
-    dp = [True] + [False] * (target)
+# << 2_path_count >> 
+# # v1 (slower)
+# def knapsack_01_max_cnt(nums, target):
+#     dp = [0] + [-inf]*(target)
+#     for num in nums:
+#         for i in range(target, num-1, -1): # 從大到小
+#             dp[i] = max(dp[i], dp[i-num]+1)
+#     return dp[-1] if dp[-1] != -inf else -1
+# v2, if sparse, this is faster
+def knapsack_01_max_cnt(nums, target):
+    mem = defaultdict(int)
+    mem[0] = 0
     for num in nums:
-        for i in range(target, num - 1, -1): # 從大到小
-            dp[i] = dp[i] or dp[i - num]
-    print(dp)
-    return dp[-1]
+        for s, l in mem.copy().items() :
+            if (new_s := s+num) <= target :
+                if (new_l := l+1) > mem[new_s] :
+                    mem[new_s] = new_l
+    if target in mem :
+        return mem[target]
+    else :
+        return -1
 
-# print(knapsack_01_for_target([1,2,3,6], 5))
-# print(knapsack_01_for_target([1,2,4,8,16], 31))
-# print([knapsack_01_for_target([1,2,4,8,16], i) for i in range(1,32)])
-# print(knapsack_01_for_target([1,2,5], 11))
+# << 3_Combinations_count >>
+# v1
+def knapsack_01_comb(nums, target):
+    dp = [1]+[0]*(target)
+    for num in nums:
+        for fut_i in range(target, num-1, -1):
+            dp[fut_i] += dp[fut_i-num]
+    return dp[target]
+# v2, if sparse, this is faster
+def knapsack_01_comb(nums, target):
+    mem = defaultdict(int)
+    mem[0] = 1
+    for num in nums:
+        for s, cnt in mem.copy().items() :
+            mem[s+num] += cnt
+    return mem[target]
 
 ## complete knapsack problem / bounded Knapsack problem ########################
 # << 1_boolean_decision >>
-# v1. 看前面有沒有路
+# v1. 從這點往後推 下一點可以到的位置
+def C_Knap_reach(nums, target):
+    dp = [True] + [False]*target
+    for i in range(len(dp)-1) :
+        if dp[i] :
+            for n in nums :
+                if (lat_i:=i+n) < len(dp) :
+                    dp[lat_i] = True
+        if dp[-1] :
+            return True
+    return False
+# v2. 看前面有沒有路
 def C_Knap_reach(nums, target):
     dp = [True]
     for i in range(1,target+1):
@@ -45,15 +91,7 @@ def C_Knap_reach(nums, target):
                 break
         dp.append(can_reach)
     return dp[-1]
-# v2. 從這點往後推 下一點可以到的位置
-def C_Knap_reach(nums, target):
-    dp = [True] + [False]*target
-    for i in range(len(dp)-1) :
-        if dp[i] :
-            for n in nums :
-                if (lat_i:=i+n) < len(dp) :
-                    dp[lat_i] = True
-    return dp[-1]
+
 
 # << 2_path_count >> 
     # 可以用 < 3_Unbounded Combination > 跟 < 4_Unbounded Permutation > 修改

@@ -10,8 +10,9 @@ class Solution:
                 for word in wordDict :
                     if s[i:i+len(word)] == word :
                         dp[i+len(word)] = True
-        # print(dp)
-        return dp[-1]
+            if dp[-1] :
+                return True
+        return False
 
 from functools import lru_cache
 # my practice again : 4ms Beats41.52%

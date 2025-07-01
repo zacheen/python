@@ -35,8 +35,9 @@ class Solution:
                 if dp[i] :
                     for n in trie.find_all_len(w[i:]) :
                         dp[i+n] = True
-            if dp[-1] :
-                ans.append(w)
+                if dp[-1] :
+                    ans.append(w)
+                    break
             trie.insert(w)
         return ans
 
