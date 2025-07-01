@@ -32,3 +32,9 @@ next_default(list_iter)
 # next_try(list_iter)
 # next_try(list_iter)
 
+## 較少用到的方法 ################################
+# <跳過 找過的位置>
+t = iter("".join(c+str(i) for i,c in enumerate("abccabcdcc")))
+for i in range(5) :
+    print(i, "c" in t) # 在現在 t 指到的位置後面還有沒有 "3"
+    print("now_i",next(t))

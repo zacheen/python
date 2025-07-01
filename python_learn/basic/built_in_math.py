@@ -11,7 +11,11 @@
 # m = {"c":"a","a":9,"b":9}
 # print(min(m))
 
-# # 使用 key 技巧
+# # # < default= >
+# # print(min([])) # 傳入空的 list 會跳 ValueError
+# print(min([] , default = 0)) # 這時可以給預設值
+
+# # < key = >
 # # min max sort bisect 只要是可以帶入key參數的都適用
 # # 技巧1 < 如果是 tuple 會先比前面的 如果前面都一樣才會比下一個 >
 # ll = [(1,3,7),(3,1,3),(1,3,9),(1,5,3),(1,5,9),(1,3,5),(3,-1,-1)]

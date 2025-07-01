@@ -105,6 +105,7 @@ from itertools import pairwise  # 前一個與後一個 同時取出
 from itertools import accumulate  # 到此 index 的總和
 # num_list = [1,3,6,2,100]
 # print(list(accumulate(num_list))) # [1, 4, 10, 12, 112]
+# print(list(accumulate(num_list, initial=0))) # [0, 1, 4, 10, 12, 112]
 
 # # -----------------------------------------------
 from itertools import groupby  # 把 key 值相同的項目分組
