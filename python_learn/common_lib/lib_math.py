@@ -68,6 +68,11 @@ def fact(n) :
 # print("fact(5)",fact(5))
 # print("fact(6)",fact(6))
 
+# # #------------------------------------
+# # pow (actually not in math lib, is bulit in function)
+print("pow(2,3)",pow(2,3))
+print("pow(2,3,5)",pow(2,3, mod = 5)) # 8 % 5 = 3
+
 # # # 特殊(很少用到) #####################################################
 # # #------------------------------------
 # # < isqrt > 平方根,開根號 + floor

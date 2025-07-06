@@ -60,6 +60,17 @@ class Trie:
         return now_n
     
     ## not necessary ####################################
+    def find_all_len(self, prefix) :
+        ret = []
+        now_n = self.root
+        for l, c in enumerate(prefix, 1) :
+            if c not in now_n :
+                return ret
+            now_n = now_n[c]
+            if None in now_n :
+                ret.append(l)
+        return ret
+    
     def search(self, word: str) -> bool:
         ret = self.find_end(word)
         return None != ret and None in ret

@@ -99,7 +99,8 @@ class TreeAncestor:
 # 點跟點之間沒有 weight 或 cost
 class TreeAncestor_no_weight:
     def __init__(self, edges):
-        len_n = len(edges)+1 +1 # edges indx start from 1
+        root_num = 0
+        len_n = len(edges)+root_num
         self.max_bit_len = max_bit_len = len_n.bit_length()
         li = [[] for _ in range(len_n)]
         for x, y in edges:
@@ -108,7 +109,7 @@ class TreeAncestor_no_weight:
 
         parent = [-1]*len_n
         depth = [0]*len_n  # 此 node 在第幾層
-        root_num = 1
+        
         stack = [root_num]
         while stack:
             u = stack.pop()
