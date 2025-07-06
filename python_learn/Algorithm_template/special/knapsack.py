@@ -20,10 +20,10 @@ MOD = 10**9+7
 #             return True
 #     return False
 # v2, if sparse, this is faster
-def knapsack_01_for_set(nums, target):
+def knapsack_01_reach(nums, target):
     can_comb_set = {0}  # 裡面紀錄目前可以的組合
     for num in nums:
-        can_comb_set |= set( new_s for s in can_comb_set if (new_s := s + num) <= target )
+        can_comb_set |= set( new_s for s in can_comb_set if (new_s := s+num) <= target )
         if target in can_comb_set:
             return True
     return False
@@ -58,14 +58,15 @@ def knapsack_01_comb(nums, target):
         for fut_i in range(target, num-1, -1):
             dp[fut_i] += dp[fut_i-num]
     return dp[target]
-# v2, if sparse, this is faster
-def knapsack_01_comb(nums, target):
-    mem = defaultdict(int)
-    mem[0] = 1
-    for num in nums:
-        for s, cnt in mem.copy().items() :
-            mem[s+num] += cnt
-    return mem[target]
+# # v2, if sparse, this is faster
+# def knapsack_01_comb(nums, target):
+#     mem = defaultdict(int)
+#     mem[0] = 1
+#     for num in nums:
+#         for s, cnt in mem.copy().items() :
+#             if (new_s := s+num) <= target :
+#                 mem[new_s] += cnt
+#     return mem[target]
 
 ## complete knapsack problem / bounded Knapsack problem ########################
 # << 1_boolean_decision >>

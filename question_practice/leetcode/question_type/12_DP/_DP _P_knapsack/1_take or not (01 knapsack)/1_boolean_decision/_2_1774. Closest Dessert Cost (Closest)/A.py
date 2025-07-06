@@ -5,36 +5,17 @@ from typing import List
 from math import inf
 from bisect import bisect_left
 
-# my 51ms Beats71.11%
+# my using template knapsack_01_reach v2 : 2ms Beats99%
 class Solution:
     def closestCost(self, baseCosts: List[int], toppingCosts: List[int], target: int) -> int:
-        can_comb_set = {0}  # 裡面紀錄目前可以的組合
-        for num in toppingCosts*2:
-            can_comb_set |= set( s + num for s in can_comb_set )
-        
-        poss_top = list(can_comb_set)
-        poss_top.sort()
-        poss_top = [-inf] + poss_top + [inf]
-        min_diff = inf
-        act_cost = inf
-        for cup in baseCosts :
-            t = target-cup
-            ret_i = bisect_left(poss_top, t)
-            # right num
-            di = poss_top[ret_i]-t
-            if di < min_diff :
-                min_diff = di
-                act_cost = target + di
-            # left num
-            di = poss_top[ret_i-1]-t
-            if abs(di) <= min_diff :
-                min_diff = abs(di)
-                act_cost = target + di
-
-            if act_cost == target :
-                return target
-
-        return act_cost
+        max_target = target*2 # since the number bigger than target*2 have a higher diff than 0 to target
+        can_comb_set = set(baseCosts)  # 裡面紀錄目前可以的組合
+        for num in toppingCosts:
+            for _ in range(2) :
+                can_comb_set |= set( new_s for s in can_comb_set if (new_s := s+num) <= max_target )
+                if target in can_comb_set:
+                    return target
+        return min((abs(target-n), n) for n in can_comb_set)[1]
 
 from functools import cache
 # given ans : 10ms
