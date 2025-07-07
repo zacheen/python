@@ -1,4 +1,6 @@
 # count_overlap
+    # st +1 , en -1
+    # 根據 accumulate 的結果，判斷有多少個區間重疊
 
 from itertools import accumulate
 ## <template> ######################################

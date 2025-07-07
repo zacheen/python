@@ -1,4 +1,4 @@
-# recursionlimit / recursion depth
+# recursionlimit / recursion limit / recursion depth
 # 有時候 recursion 會超過預設的限制
 
 # 設定 : sys.setrecursionlimit(100000)
