@@ -82,15 +82,15 @@ class UF_count:
 class UF_each_set_count:
     def __init__(self, n):
         self.id = list(range(n))
-        self.set_member = [1]*n     # <計算各個 set 的個數> 多的
+        self.set_member_cnt = [1]*n     # <計算各個 set 的個數> 多的
 
     def union(self, u, v):
         i = self.find(u)
         j = self.find(v)
         if i == j:
             return
-        self.set_member[j] += self.set_member[i]  # <計算各個 set 的個數> 多的
-        self.set_member[i] = 0                    # 0 代表被合併了 (非必要)
+        self.set_member_cnt[j] += self.set_member_cnt[i]  # <計算各個 set 的個數> 多的
+        self.set_member_cnt[i] = 0                    # 0 代表被合併了 (非必要)
         self.id[i] = j 
 
     def find(self, up):
@@ -106,16 +106,16 @@ class UF_each_set_count:
 class UF_by_size:
     def __init__(self, n):
         self.id = list(range(n))
-        self.set_member = [1]*n    # <計算各個 set 的個數> 多的
+        self.set_member_cnt = [1]*n    # <計算各個 set 的個數> 多的
 
     def union(self, u, v):
         i = self.find(u)
         j = self.find(v)
         if i == j:
             return
-        if self.set_member[i] > self.set_member[j] : #  <Union by size> 多的
+        if self.set_member_cnt[i] > self.set_member_cnt[j] : #  <Union by size> 多的
             i,j = j,i
-        self.set_member[j] += self.set_member[i]  # <計算各個 set 的個數> 多的
+        self.set_member_cnt[j] += self.set_member_cnt[i]  # <計算各個 set 的個數> 多的
         self.id[i] = j
 
     def find(self, up):
@@ -142,34 +142,44 @@ class UF_by_min:
         while (up:=self.id[up]) != (deep:=self.id[up]):
             self.id[up] = self.id[deep]
         return up
-
-# 全功能都有 (除了 "讓 union 每次都指到最小的數字")
-class UF_all:
+    
+# 如果一開始 relation 不會再修改
+    # 應該要用普通的 UF，之後再for全部項目，歸類set (較快)
+        # set_member = defaultdict(set)
+        # for i in range(c):
+        #     set_member[uf.find(i)].add(i)
+class UF_find_relate:
     def __init__(self, n):
-        self.count = n
         self.id = list(range(n))
-        self.set_member = [1]*n
+        self.set_member = [set([i]) for i in range(n)]
 
     def union(self, u, v):
         i = self.find(u)
         j = self.find(v)
         if i == j:
             return
-        if self.set_member[i] > self.set_member[j] :
+        if i < j :
             i,j = j,i
-        self.set_member[j] += self.set_member[i]
+        self.set_member[j] = self.set_member[j] | self.set_member[i]
+        self.set_member[i] = None
         self.id[i] = j
-        self.count -= 1
 
     def find(self, up):
         while (up:=self.id[up]) != (deep:=self.id[up]):
             self.id[up] = self.id[deep]
         return up
     
-# 全功能都有 
-    # 但set_member 改成紀錄相關的成員
-    # 因此可以透過 uf.set_member[uf.find(ID)] 查詢相關成員
-class UF_find_relate:
+    def ger_related(self, u):
+        if self.id[u] != u:
+            self.id[u] = self.find(self.id[u])
+        return self.set_member[self.id[u]]
+    
+# 全功能都有 (除了 "讓 union 每次都指到最小的數字")
+    # count : 目前群組個數
+    # set_member : 每個組的項目
+    # each_set_count 可以 len(set_member)
+    # by_min
+class UF_all:
     def __init__(self, n):
         self.count = n
         self.id = list(range(n))
@@ -195,9 +205,9 @@ class UF_find_relate:
             self.id[u] = self.find(self.id[u])
         return self.set_member[self.id[u]]
 
-# 從 UF_find_relate 修改而來 + UF_no_init
+# 從 UF_all 修改而來 + UF_no_init
 # 新增功能 : 一開始不用指定大小 且適用 char
-class UF_find_relate_no_init_v1:
+class UF_all_no_init_v1:
     def __init__(self):
         self.id = {}
         self.set_member = {}
