@@ -1,3 +1,5 @@
+# check limitation of pick k node
+
 from bisect import bisect_left
 
 # checking whether picking "pick_k" nodes, these nodes distance is larger than "dis_thresh"

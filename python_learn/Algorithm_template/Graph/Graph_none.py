@@ -4,6 +4,7 @@
 # li 是已經歸納好的 [0可以到的點, 1可以到的點 ...]
     # link() 的結果
 from collections import Counter, deque, defaultdict
+from UF_copy import UF_for_cycle
 
 # <linking> # <建立某個點連出去有哪些點>
 def link(relation, len_n = -1):
@@ -51,6 +52,25 @@ def has_cycle(links, len_n): # ?? 有問題
 # print(has_cycle([(0, 1), (1, 2), (0, 2), (0, 3)], 4)) # 0 > 1 > 2 > 0 
 # print(has_cycle([(0, 1), (2, 0)], 3)) # 0 > 1 > 0 
 # print(has_cycle([(0, 1), (1, 2), (2, 0), (1, 3), (3, 0)], 4))
+
+def check_no_cycle(edges, len_n) :
+    uf = UF_for_cycle(len_n)
+    for n1,n2 in edges :
+        if not uf.union(n1, n2) :
+            return False
+    # if uf.count != 1 : # 如果要判斷是不是全部點連起來的 tree
+    #     return False
+    return True
+
+# edges[i] = n1, n2, w
+def Kruskal(edges, len_n) : # finding Minimum Spanning Tree
+    edges.sort(key = lambda x : x[2])
+    uf = UF_for_cycle(len_n)
+    for n1,n2, w in edges :
+        if uf.union(n1, n2) :
+            if uf.count == 1 :
+                return w
+    return -1
 
 # this two version speed almost the same
 def cut_all_branch(links, len_n): # 驗證 tree
