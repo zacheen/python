@@ -1,4 +1,4 @@
-# binarySearch
+# binarySearch / binary search
     # 需要注意計算 check 的時候，能不能中途 return 結果
 
 # # 最快 : 可以直接丟入 bisect
@@ -26,20 +26,25 @@
 # classic 2560. House Robber IV
 # https://leetcode.com/problems/house-robber-iv
 
-# 好像是泛用型 (binarySearch2 變形而來的)
-    # 最後的 l 為插入的位置 (所以 l 有可能最後會超出 list 的長度)
+# 適合用來找 "大於等於 符合條件"的 "第一個"位置
+    # EX: 找插入的位置 (所以 l 有可能最後會超出 list 的長度)
         # 要注意如果有相同的項目，插入的位置是相同的項目"之前"
-    # 只有通過與不通過
-# 這個方法就是一定要做到最後 就算中間有找到答案 還是會做到 l == r
+    # EX: 找最小符合的數字
+        # EX: 找最大符合的數字 = 找最小超出的數字-1
 def binarySearch_adv2(nums, target):
-    left, right = 0, len(nums) # right 通常會超出界線(因為執行的時候不會執行到這個數字) # 但是最後 l 有可能會超出範圍
+    def check(mid):
+        # True  : mid應該要往大的方向跑(目標沒有在 left 跟 mid 之間)
+            # EX: 找 target [如果 nums[mid] 比 target 小] > [mid 應該要變大 num[mid] 才有可能變大 才會遇到 target]
+        # False : 其他 以及 包含 == target 的情況
+        return nums[mid] < target
+
+    left = 0
+    right = max(len(nums), left)  # right 通常會超出界線(因為執行的時候不會執行到這個數字) # 但是最後 l 有可能會超出範圍
     while left < right:
-        mid = (left + right) // 2
-        if nums[mid] < target : # 條件 (如果 == target 的情況 要是 False)
-            # 沒通過 或 數字應該要往大的方向跑(目標沒有在 left 跟 mid 之間)
+        mid = (left + right) >> 1 # //2
+        if check(mid) :
             left = mid + 1 # 需注意 left 不會停留在 mid !
         else:
-            # 通過(包含 == target 的情況)
             right = mid 
 
     # # 如果找不到要回傳 -1
@@ -50,6 +55,10 @@ def binarySearch_adv2(nums, target):
 
     # 如果要回傳插入的位置
     return left
+    
+    # # 如果要找的是上界 (=找到第一個超出的位置 -1)
+    # if check(left) : return left
+    # else : return left-1
 
 # # test correct
 # ll = [2,4,6,8,10]
@@ -59,12 +68,12 @@ def binarySearch_adv2(nums, target):
 #     insert_result.insert(insert_place, i)
 #     print("num :", i, "binarySearch_adv2 insert_place :", insert_place, "insert result :", insert_result)
 
-# 這種最不會出錯(left=mid right=mid) 且全功能都有
+# 這種最不會出錯 且全功能都有
 def binarySearch_adv(nums, target):
-    left, right = 0, len(nums) - 1
+    left, right = 0, len(nums)-1
     # left right 不會碰到
-    while left + 1 < right:
-        mid = (left + right) // 2
+    while left+1 < right:
+        mid = (left + right) << 1 # // 2
         # 這裡我移除 少一次判斷
         # if nums[mid] == target:
         #     return mid
@@ -74,6 +83,11 @@ def binarySearch_adv(nums, target):
             right = mid
 
     # End Condition: left + 1 == right
+    # # 找符合數值
+    # if check(right): return right # right 先做，如果希望結果愈大愈好!
+    # else: return left
+
+    # 找特定數值
     if nums[right] == target: return right # right 先做，如果希望結果愈大愈好!
     if nums[left] == target: return left
     return -1
@@ -97,12 +111,11 @@ def binarySearch_adv(nums, target):
         # 不需要處理 == 的情況
 
 # (l+r) // 2 都可以換成 (l+r) >> 1
-
 def binarySearch1(nums, target):
     if len(nums) == 0:
         return -1
 
-    left, right = 0, len(nums) - 1
+    left, right = 0, len(nums)-1
     # left 會越過 right
     while left <= right:
         mid = (left + right) // 2
