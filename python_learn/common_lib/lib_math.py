@@ -16,9 +16,9 @@ import math
 # print("sys.maxsize+1 > sys.maxsize :",sys.maxsize+1 > sys.maxsize) # True
 
 # #------------------------------------
-# # # 最大公因數
+# # # 最大公因數 greatest common division / greatest common factor O(log(min(a,b)))
 # print("最大公因數 :",math.gcd(105, 140)) # 35
-# # # 最小公倍數
+# # # 最小公倍數 Least Common Multiple
 # n1, n2 = 105, 140
 # print("最小公倍數 :",(n1*n2) // math.gcd(105, 140)) # 420
 # # python3.9 之後才有

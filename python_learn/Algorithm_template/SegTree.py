@@ -15,7 +15,7 @@ class SegTree:
         for i in range(self.n-1, 0, -1):
             # execute def
             self.tree[i] = OP
-                self.tree[i<<1], self.tree[i<<1+1]
+                self.tree[i<<1], self.tree[(i<<1)+1]
 
     def update(self, index, val):
         index += self.n
