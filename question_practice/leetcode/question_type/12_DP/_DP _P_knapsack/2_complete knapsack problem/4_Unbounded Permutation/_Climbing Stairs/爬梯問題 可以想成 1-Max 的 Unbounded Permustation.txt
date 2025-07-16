@@ -1,0 +1,2 @@
+爬梯問題可以想成 Unbounded Permustation，只是 nums 只有 1 到 MAX 的爬梯限制
+    我可以取無限個 1, 2, MAX 組成 target(梯子的底)

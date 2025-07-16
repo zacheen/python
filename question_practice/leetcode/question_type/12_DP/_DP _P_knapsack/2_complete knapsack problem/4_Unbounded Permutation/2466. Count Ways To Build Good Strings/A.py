@@ -4,6 +4,17 @@
 from typing import List
 import functools
 
+# my using template C_Knap_perm
+MOD = 10**9 + 7
+class Solution:
+    def countGoodStrings(self, low: int, high: int, zero: int, one: int) -> int:
+        target = high
+        nums = [zero, one]
+        dp = [1]
+        for i in range(1,target+1):
+            dp.append( sum(dp[i-n] for n in nums if i>=n) % MOD )
+        return sum(dp[low:]) % MOD
+
 # my 2024/12/30 70ms Beats96.36%
 import math
 MOD = 10**9 + 7
