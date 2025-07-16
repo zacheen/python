@@ -1,3 +1,15 @@
+## SortedSet 自己實作速度最快，還可以自訂 key
+from bisect import bisect_left
+# big_set, small_set 都是已經排序好的 list (雖然是 set 但實際上是 list)
+def merge(big_set, small_set) :
+    if len(small_set) > len(big_set) :
+        big_set,small_set = small_set,big_set
+    for ins_item in small_set :
+        ins_i = bisect_left(big_set, ins_item)
+        if ins_i == len(big_set) or big_set[ins_i] != ins_item :
+            big_set.insert(ins_i, ins_item)
+    return big_set
+
 from sortedcontainers import SortedSet
 # 存進去時就會自動排序好
 from operator import neg 
