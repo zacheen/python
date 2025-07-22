@@ -1,18 +1,18 @@
 # #------------------------------------
-# # str 轉 int
+# # str 轉 int / str to int
 # print(int("12"))
-# # int 轉 str
+# # int 轉 str / int to str
 # print(str(12))
 
-# # char 轉 int (ascii)
+# # char 轉 int (ascii) / char to int
 # print(ord("A"))
-# # # int 轉 char
+# # # int 轉 char / int to char
 # print(chr(65))
 
-# # bit 轉 str
+# # bit 轉 str / bit to str
 # print(f'{17:0>{6}b}')
 # print(f'{17:b}')
-# # str 轉 bit(int)
+# # str 轉 bit(int) / str to bit(int)
 # print(int("10001", 2))
 # #------------------------------------
 # # 判斷是不是字母

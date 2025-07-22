@@ -34,8 +34,6 @@ class Solution:
         # print(mem)
         return max(mem)
 
-# given ans
-
 s = Solution()
 # print(s.mostPoints(questions = [[3,2],[4,3],[4,4],[2,5]]))
 # print(s.mostPoints(questions = [[1,1],[2,2],[3,3],[4,4],[5,5]]))
