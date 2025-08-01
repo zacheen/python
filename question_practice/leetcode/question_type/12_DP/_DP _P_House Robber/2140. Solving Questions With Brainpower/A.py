@@ -4,6 +4,25 @@
 from typing import List
 import functools
 
+# my 39ms Beats99.46%
+class Solution:
+    def mostPoints(self, questions: List[List[int]]) -> int:
+        mem = [0]*len(questions)
+        max_sum = 0
+        max_ans = 0
+        for i, (po, br) in enumerate(questions):
+            if mem[i] > max_sum :
+                max_sum = mem[i]
+            new_sum = max_sum + po
+            # print(max_sum, new_sum)
+            fut_i = i+br+1
+            if fut_i < len(mem) :
+                if new_sum > mem[fut_i] :
+                    mem[fut_i] = new_sum
+            elif new_sum > max_ans : # 到底了
+                max_ans = new_sum 
+        return max_ans
+
 # my v1 Beats 31.69%
 class Solution:
     def mostPoints(self, questions: List[List[int]]) -> int:
@@ -19,7 +38,7 @@ class Solution:
 
         return dfs(0)
     
-# my v2 Beats 91.36%
+# my v2 55ms Beats98.15%
 # 但是 我沒有辦法直接想出 for 的寫法 
 class Solution:
     def mostPoints(self, questions: List[List[int]]) -> int:
