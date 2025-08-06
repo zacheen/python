@@ -6,6 +6,7 @@ from math import inf
 from bisect import bisect_left, bisect_right
 
 # query 的同時，recursive backward 時更新 segment tree
+    # 其實這個比較像二分法，每次都會走到最底 (只是 segment tree 提供了資訊要往左或右)
 # my using SegTree template 2: 2407ms Beats55.08%
 class SegTree:
     def __init__(self, nums):
