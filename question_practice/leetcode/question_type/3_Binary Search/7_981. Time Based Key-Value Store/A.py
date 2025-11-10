@@ -1,31 +1,36 @@
-# 不能跑
-# my Runtime: 808 ms, faster than 72.01% of Python3
+# 981. Time Based Key-Value Store
+# https://leetcode.com/problems/time-based-key-value-store/description/
+
+# my : 95ms
 class TimeMap:
     def __init__(self):
-        self.mem = {}
-    def set(self, key, value, timestamp):
-        ret = self.mem.get(key ,None)
-        if ret==None :
-            self.mem[key] = [(value, timestamp)]
-        else :
-            insort_right(self.mem[key], (value, timestamp), key = lambda x : x[1])
-    def get(self, key, timestamp):
-        # print("in get self.mem :",self.mem)
-        ret = self.mem.get(key ,None)
-        if ret != None :
-            # print(ret)
-            find_indx = bisect_left(ret, timestamp, key = lambda x : x[1])
-            if find_indx >= len(ret) :
-                return ret[-1][0]
+        self.value = defaultdict(list)
+        self.timestamp = defaultdict(list)
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        self.value[key].append(value)
+        self.timestamp[key].append(timestamp)
+
+    def get(self, key: str, timestamp: int) -> str:
+        all_timestamp = self.timestamp[key]
+        if len(all_timestamp) == 0 :
+            return ""
+
+        l = 0
+        r = len(all_timestamp)-1
+
+        while l+1 < r :
+            mid = (l+r) >> 1
+            if all_timestamp[mid] < timestamp :
+                l = mid
             else :
-                if ret[find_indx][1] == timestamp :
-                    return ret[find_indx][0]       
-                else :
-                    after_indx = find_indx-1
-                    if after_indx >= 0 :
-                        return ret[find_indx-1][0]
-                    else :
-                        return ""
+                r = mid
+
+        # print(l,r, all_timestamp[l], all_timestamp[r], timestamp)
+        if all_timestamp[r] <= timestamp :
+            return self.value[key][r]
+        elif all_timestamp[l] <= timestamp :
+            return self.value[key][l]
         else :
             return ""
 

@@ -2,31 +2,7 @@
 # https://leetcode.com/problems/house-robber-ii/description/
 
 from typing import List
-from math import inf
-
-# my : 0ms Beats100.00%
-class Solution:
-    def rob(self, nums: List[int]) -> int:
-        if len(nums) == 1 :return nums[0]
-        
-        dp1_no1 = 0
-        dp2_no1 = 0
-        dp1_t1 = 0
-        dp2_t1 = nums[0]
-        for n in nums[1:] :
-            # take 
-            new_dp_no1 = n + dp1_no1
-            new_dp_t1 = n + dp1_t1
-            # don't take
-            new_dp_no1 = max(new_dp_no1, dp2_no1)
-            new_dp_t1 = max(new_dp_t1, dp2_t1)
-
-            # update
-            dp1_no1 , dp2_no1 = dp2_no1, new_dp_no1
-            dp1_t1  , dp2_t1  = dp2_t1 , new_dp_t1
-        return max(dp1_t1, dp2_no1)
-
-# optimized by given ans
+# 0ms
 class Solution:
     def rob(self, nums: List[int]) -> int:
         if len(nums) == 1 :return nums[0]
