@@ -65,11 +65,15 @@ def check_no_cycle(edges, len_n) :
 # edges[i] = n1, n2, w
 def Kruskal(edges, len_n) : # finding Minimum Spanning Tree
     edges.sort(key = lambda x : x[2])
+    total_w = 0
     uf = UF_for_cycle(len_n)
     for n1,n2, w in edges :
         if uf.union(n1, n2) :
+            total_w += w
             if uf.count == 1 :
-                return w
+                return total_w
+                # if want to return the largest weight edge in the MST
+                # return w
     return -1
 
 # this two version speed almost the same
@@ -133,6 +137,95 @@ def circle_path(links, len_n) : # 目前驗證一題
 
 # print(circle_path([[0,1],[1,2],[2,0],[1,3]], 4))
 # print(circle_path([[0,1],[1,2],[2,0],[1,3],[3,4],[4,5],[5,3]], 6))
-
 # # 1192. Critical Connections in a Network
 # https://leetcode.com/problems/critical-connections-in-a-network/description/
+
+
+from collections import Counter, deque, defaultdict
+from math import inf
+from heapq import heappop, heappush
+
+EXCEED_Limitation = False
+def Dijkstra(rela, start, target):
+    li = link(rela)
+
+    min_path = defaultdict(lambda : inf)
+    min_path[start] = 0
+    heap = [(0, start)]
+    while heap:
+        now_path, now_node = heappop(heap)
+        if now_path > min_path[now_node] :
+            continue
+        if EXCEED_Limitation or now_node == target:
+            break
+        # min_path[now_node] = now_path # no needed
+        for nei_node, nei_w in li[now_node] :
+            if (new_path := now_path + nei_w) < min_path[nei_node] :
+                min_path[nei_node] = new_path
+                heappush(heap, (new_path, nei_node))
+    return min_path[target]
+
+MOD = 10**9+7
+
+# 1976. Number of Ways to Arrive at Destination
+# https://leetcode.com/problems/number-of-ways-to-arrive-at-destination
+def Dijkstra_comb_cnt(self, n, roads):
+    li = link(rela)
+
+    start = 0
+    target = n-1
+    min_path = defaultdict(lambda : [inf, 0])
+    min_path[start] = [0,1]
+    heap = [(0, start)]
+    while heap:
+        now_path, now_node = heappop(heap)
+        if now_path > min_path[now_node][0] :
+            continue 
+        if now_node == target:
+            break
+        for nei_node, nei_w in li[now_node] :
+            new_path = now_path + nei_w
+            if new_path == min_path[nei_node][0] :
+                min_path[nei_node][1] += min_path[now_node][1]
+            if new_path < min_path[nei_node][0] :
+                min_path[nei_node] = [new_path, min_path[now_node][1]]
+                heappush(heap, (new_path, nei_node))
+    return min_path[target][1] % MOD
+
+# 1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance
+# https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance
+EXCEED_Limitation = False
+def Dijkstra_every_node(rela, len_n):
+    li = link(rela, len_n)
+
+    all_min_path = defaultdict(list)
+    STATUS = len_n+1
+    for each_node in range(len_n-1, -1, -1):
+        min_path = defaultdict(lambda : inf)
+        min_path[each_node] = 0
+        heap = [(0, each_node)]
+        # optimized
+        for dp_node, dp_dist in all_min_path[each_node]:
+            heappush(heap, (dp_dist, dp_node))
+            min_path[dp_node] = dp_dist
+        
+        min_cnt = NODES+1 # unnecessay
+        new_cnt = 0
+        while heap and new_cnt < min_cnt:
+            now_path, now_node = heappop(heap)
+            if now_path > min_path[now_node] :
+                continue
+            if EXCEED_Limitation :
+                break
+            # update STATUS
+            new_cnt += 1
+            # min_path[now_node] = now_path # no needed
+            all_min_path[now_node].append((each_node, now_path))
+            for nei_node, nei_w in li[now_node] :
+                if (new_path := now_path + nei_w) < min_path[nei_node] :
+                    min_path[nei_node] = new_path
+                    heappush(heap, (new_path, nei_node))
+        if new_cnt < min_cnt : # unnecessay
+            min_cnt = new_cnt
+            min_indx = each_node
+    return min_indx

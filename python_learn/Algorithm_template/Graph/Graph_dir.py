@@ -2,7 +2,9 @@
 # li 是已經歸納好的 [0可以到的點, 1可以到的點 ...]
     # link() 的結果
 from collections import Counter, deque, defaultdict
+from math import inf
 from functools import cache
+from heapq import heappop, heappush
 
 # <linking> # <建立某個點連出去有哪些點>
 def link(relation, len_n = -1):
@@ -38,14 +40,14 @@ def find_top(links, len_n):
     # 2 : 走過了
 def has_cycle(li, len_n):
     color = [0] * len_n
-    def dfs(x):
-        if color[x] == 2 :
+    def dfs(now_n):
+        if color[now_n] == 2 :
             return False
-        color[x] = 1
-        for next_n in li[x]:
-            if color[next_n] == 1 or dfs(next_n):
+        color[now_n] = 1
+        for nei_n in li[now_n]:
+            if color[nei_n] == 1 or dfs(nei_n):
                 return True
-        color[x] = 2
+        color[now_n] = 2
         return False
     return any(dfs(n) for n in range(len_n))
 
@@ -68,12 +70,12 @@ def has_cycle(li, len_n):
 # <Topological_Sort> ############################################################
 # <cut all branch - remain only cycle>
 def cut_all_branch(links, len_n):
-    deg = [0] * len_n
+    deg = [0]*len_n
     li = [[] for _ in range(len_n)]
-    for n1,n2 in links:
-        deg[n2] += 1  # 統計基環樹每個節點的入度
-        li[n1].append(n2)
-    end_point = [i for i, d in enumerate(deg) if d == 0]
+    for st, en in links:
+        deg[en] += 1  # 統計基環樹每個節點的入度
+        li[st].append(en)
+    end_point = [n for n, d in enumerate(deg) if d == 0]
     while end_point:  # 拓樸排序，剪掉圖上所有樹枝
         now_n = end_point.pop()
         for nei_n in li[now_n] :
@@ -82,7 +84,7 @@ def cut_all_branch(links, len_n):
                 end_point.append(nei_n)
 
     # return cycle (回傳全部形成 cycle 的點)
-    return [i for i, d in enumerate(deg) if d > 0]
+    return [n for n, d in enumerate(deg) if d > 0]
 
 # 從 cut_all_branch 改編而來
     # 回傳 cycle 點上如果有 branch, 這個 branch 的最長長度
