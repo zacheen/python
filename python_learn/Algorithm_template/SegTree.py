@@ -341,60 +341,61 @@ class SegTree_sum:
     
 # # 雖然比較好理解 但是比較慢 也沒有比較省空間
 # # template 3  - top down recursive (node) ##############################################################
-# class SegTree:
-#     def __init__(self, nums):
-#         self.default_value = INITVAL # None
-#         self.n = len(nums)
-#         class Node(object):
-#             def __init__(self, seg_st, seg_en, val = self.default_value):
-#                 self.value = val
-#                 self.seg_st = seg_st
-#                 self.seg_en = seg_en
-#                 # self.left = None
-#                 # self.right = None
+class SegTree:
+    def __init__(self, nums):
+        self.default_value = INITVAL # None
+        self.n = len(nums)
+        class Node(object):
+            def __init__(self, seg_st, seg_en, val = self.default_value):
+                self.value = val
+                self.seg_st = seg_st
+                self.seg_en = seg_en
+                # self.left = None
+                # self.right = None
 
-#         def build_(seg_st, seg_en):
-#             if seg_st == seg_en:
-#                 return Node(seg_st, seg_en, TODO nums[seg_st])
-#             mid = (seg_st + seg_en) >> 1
-#             root = Node(seg_st, seg_en)
-#             root.left = build_(seg_st, mid)
-#             root.right = build_(mid + 1, seg_en)
-#             self._update_node(root)
-#             return root
-#         self.root = build_(0, self.n-1)
+        def build_(seg_st, seg_en):
+            if seg_st == seg_en:
+                return Node(seg_st, seg_en, TODO nums[seg_st])
+            mid = (seg_st + seg_en) >> 1
+            ret = Node(seg_st, seg_en)
+            ret.left = build_(seg_st, mid)
+            ret.right = build_(mid+1, seg_en)
+            self._update_node(ret)
+            return ret
+        self.root = build_(0, self.n-1)
 
-#     def _merge_val(self, l, r):
-#         return OP l, r
+    # 可以不用 self
+    def _merge_val(self, l, r):
+        return OP l, r
     
-#     def _update_node(self, root) :
-#         root.value = self._merge_val(root.left.value, root.right.value)
+    def _update_node(self, node) :
+        node.value = self._merge_val(node.left.value, node.right.value)
 
-#     def update(self, index, value):
-#         def update_(root):
-#             if root.seg_st == root.seg_en:  # Entire segment is target index
-#                 root.value = TODO value
-#             else: # Update nested segments that contain the target index
-#                 # mid = (root.seg_st + root.seg_en) >> 1
-#                 if index <= (root.seg_st + root.seg_en) >> 1:
-#                     update_(root.left)
-#                 else:
-#                     update_(root.right)
-#                 self._update_node(root)
-#         update_(self.root)
+    def update(self, index, value):
+        def update_(node):
+            if node.seg_st == node.seg_en:  # Entire segment is target index
+                node.value = TODO value
+            else: # Update nested segments that contain the target index
+                # mid = (node.seg_st + node.seg_en) >> 1
+                if index <= (node.seg_st + node.seg_en) >> 1:
+                    update_(node.left)
+                else:
+                    update_(node.right)
+                self._update_node(node)
+        update_(self.root)
 
-#     def query(self, q_left, q_right):
-#         # q_left, q_right = 0, self.n-1
-#         def query_(root):
-#             if root.seg_en < q_left or q_right < root.seg_st : # No overlap
-#                 return TODO
-#             if q_left <= root.seg_st and root.seg_en <= q_right:  # Full overlap
-#                 return root.value
-#             else:  # Partial overlap
-#                 left_ret = query_(root.left)
-#                 right_ret = query_(root.right)
-#                 return self._merge_val(left_ret + right_ret)
-#         return query_(self.root)
+    def query(self, q_left, q_right):
+        # q_left, q_right = 0, self.n-1
+        def query_(node):
+            if node.seg_en < q_left or q_right < node.seg_st : # No overlap
+                return TODO
+            if q_left <= node.seg_st and node.seg_en <= q_right:  # Full overlap
+                return node.value
+            else:  # Partial overlap
+                left_ret = query_(node.left)
+                right_ret = query_(node.right)
+                return self._merge_val(left_ret + right_ret)
+        return query_(self.root)
 # # template 3 end ##############################################################
 
 

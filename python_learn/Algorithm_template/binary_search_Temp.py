@@ -72,8 +72,8 @@ def binarySearch_adv2(nums, target):
 def binarySearch_adv(nums, target):
     left, right = 0, len(nums)-1
     # left right 不會碰到
-    while left+1 < right:
-        mid = (left + right) << 1 # // 2
+    while left < right-1:
+        mid = (left + right) >> 1 # // 2
         # 這裡我移除 少一次判斷
         # if nums[mid] == target:
         #     return mid

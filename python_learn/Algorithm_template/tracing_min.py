@@ -3,7 +3,7 @@
 # tracing max / trace max
     # 雖然是 tracing min，但是可以用負號來實現 tracing max
 
-from collections import Counter  
+from collections import Counter
 from heapq import heappop, heappush
 
 # faster version, also easier to implement

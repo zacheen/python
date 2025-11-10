@@ -12,7 +12,7 @@ start = time.time()
 for i in range(n) :
     ret = pos1 > pos2
 end = time.time()
-print("> :",end - start)
+print("> :", end - start)
 
 start = time.time()
 for i in range(n) :

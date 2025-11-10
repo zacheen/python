@@ -17,11 +17,10 @@ class Trie:
                 now_n.next[c] = Trie_node()
             now_n = now_n.next[c]
         now_n.end = True
-        # now_n.next[last_c].end = True
 
     # None : return at the middle
     # else : return the end node
-    def find_end(self, prefix) :
+    def find_end(self, prefix):
         now_n = self.root
         for c in prefix :
             if c not in now_n.next :

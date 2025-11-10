@@ -1,3 +1,5 @@
+# 如果要合併兩個已經排序好的 List，應該要用 heapq.merge
+
 from sortedcontainers import SortedList
 from operator import neg 
 

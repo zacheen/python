@@ -48,8 +48,8 @@ class UF_no_init:
         self.id[u] = v
 
     def find(self, up):
-        while up in self.id and up != (deep:=self.id[up]):
-            self.id[up] = up = self.id[deep] if deep in self.id else deep
+        while up in self.id and up != (deep := self.id[up]):
+            self.id[up] = up = (self.id[deep] if deep in self.id else deep)
         return up
     # # recursive version (slower)
     # def find(self, u):

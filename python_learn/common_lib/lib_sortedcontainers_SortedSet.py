@@ -1,10 +1,11 @@
 ## SortedSet 自己實作速度最快，還可以自訂 key
 from bisect import bisect_left
-# big_set, small_set 都是已經排序好的 list (雖然是 set 但實際上是 list)
-def merge(big_set, small_set) :
-    if len(small_set) > len(big_set) :
-        big_set,small_set = small_set,big_set
-    for ins_item in small_set :
+# big_set 是已經排序好的 list (雖然是 set 但實際上是 list)
+# 如果 for_list 是沒有排序的 要開啟 swap=False
+def merge(big_set, for_list, swap = True) :
+    if swap and len(for_list) > len(big_set) :
+        big_set,for_list = for_list,big_set
+    for ins_item in for_list :
         ins_i = bisect_left(big_set, ins_item)
         if ins_i == len(big_set) or big_set[ins_i] != ins_item :
             big_set.insert(ins_i, ins_item)

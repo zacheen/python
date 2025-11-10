@@ -1,4 +1,7 @@
-import itertools
+from itertools import product, permutations, combinations
+from itertools import pairwise, accumulate, groupby, cycle
+
+from itertools import zip_longest
 # https://docs.python.org/3/library/itertools.html
 
 # # -----------------------------------------------
@@ -13,13 +16,12 @@ import itertools
 # #     會 zip 到最長的結果
 # #     如果某一個長度不夠，會用 None 去補充
 # #     或使用 fillvalue 指定數值
-# for n1,n2 in itertools.zip_longest(l1, l2) :
+# for n1,n2 in zip_longest(l1, l2) :
 #     print("zip_longest",n1,n2)
-# for n1,n2 in itertools.zip_longest(l1, l2, fillvalue=100) :
+# for n1,n2 in zip_longest(l1, l2, fillvalue=100) :
 #     print("zip_longest",n1,n2)
 
-# # -----------------------------------------------
-from itertools import product
+# # -- <product> ---------------------------------------------
 # # # product 會回傳全部的組合
 # # 1. repeat 是自己跟自己組合
 # print(list(product([1,2,3],repeat = 2)))
@@ -33,8 +35,7 @@ from itertools import product
 # A = [[1,2,3],[3,4],[7,8]]
 # print(list(product(*A)))
 
-# # -----------------------------------------------
-from itertools import permutations
+# # -- < permutations > ---------------------------------------------
 # # combinations 從list中挑n個出來(會重複)
 #     # [1,2,3] 挑過 (1,2) 還會有 (2,1)
 # # 跟 product 不同的是 "不會挑到同樣的項目"
@@ -44,8 +45,7 @@ from itertools import permutations
 # print("perm : ",list(permutations([1,1,2])))
 # print("perm : ",list(set(permutations([1,1,2]))))
 
-# # -----------------------------------------------
-from itertools import combinations
+# # -- < combinations > ---------------------------------------------
 # # combinations 從list中挑n個出來(不會重複)
 #     # [1,2,3] 挑過 (1,2) 就不會有 (2,1)
 # # 一定要選擇要挑 n 個出來
@@ -93,22 +93,22 @@ def certain_subsets(arr, indexs):
 
 # print(certain_subsets(["a","b","c","d","e"],[0,2]))
 
-# # -----------------------------------------------
-from itertools import pairwise  # 前一個與後一個 同時取出
+# # -- < pairwise > ---------------------------------------------
+# # pairwise : 前一個與後一個 同時取出
 # s = "abcdefghijklmnop"
 # indx_list = [3,4,6,9,10,12]
 # # 不規則split很好用
 # indx_list = [0]+indx_list+[len(s)]
 # print([s[f:b] for f,b in pairwise(indx_list)])
 
-# # -----------------------------------------------
-from itertools import accumulate  # 到此 index 的總和
+# # -- < accumulate > ---------------------------------------------
+# # accumulate : 到此 index 的總和
 # num_list = [1,3,6,2,100]
 # print(list(accumulate(num_list))) # [1, 4, 10, 12, 112]
 # print(list(accumulate(num_list, initial=0))) # [0, 1, 4, 10, 12, 112]
 
-# # -----------------------------------------------
-from itertools import groupby  # 把 key 值相同的項目分組
+# # -- < groupby > ---------------------------------------------
+# # groupby : 把 key 值相同的項目分組
 # # 預設的 key 就是值本身
 # s = "1000110111001100001"
 # print([(key_value, len(list(group))) for key_value, group in groupby(s)])
@@ -117,8 +117,8 @@ from itertools import groupby  # 把 key 值相同的項目分組
 # print([(key_value, list(group)) for key_value, group in groupby(l, key=len)])
 # #      (key_value 長度, 包含什麼項目)
 
-# # -----------------------------------------------
-from itertools import cycle  # 會一直循環取出
+# # -- < cycle > ---------------------------------------------
+# # cycle : 會一直循環取出
 # num_list = [1,3,6,2,100]
 # count = 0
 # l = []
