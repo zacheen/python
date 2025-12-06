@@ -1,4 +1,4 @@
-# asterisk 星號用法
+# asterisk, star 星號用法
 
 # -- 乘法 ----------------------
 print("4*7",4*7)
@@ -7,10 +7,12 @@ print("4*7",4*7)
 print("4**7",4**7)
 
 # -- 解包 ----------------------
+l = [1, 2, 5]
+print("original  l :",l)
+print("asterisk *l :",*l)
+
 def func_3(a, b, c):
     return a + b + c
-
-l = [1, 2, 5]
 print(func_3(*l))
 
 # # 錯誤數量會跳錯
