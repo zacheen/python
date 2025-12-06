@@ -1,0 +1,23 @@
+from collections import namedtuple
+# able to access variables like class, but easier to create 
+
+Point = namedtuple('Point' , ['x' , 'y'])
+Point = namedtuple('Point' , ('x' , 'y'))
+
+p = Point(3, 4)
+
+# access
+print(p.x)          # 3
+print(p.y)          # 4
+print(p[0])         # 3
+print(p[1])         # 4
+print(p)
+
+data = [
+    ["data 1", "result 1"],
+    ["data 2", "result 2"],
+    ["data 3", "result 3"],
+]
+print( list(zip(*data)) )
+print( *zip(*data) )
+print( Point(*(zip(*data))) )

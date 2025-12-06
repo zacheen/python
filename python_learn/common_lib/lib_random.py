@@ -6,6 +6,9 @@ import random
 # # <random.randrange(a, b)>  產生的數字不會到b
 # print([random.randrange(1, 3) for i in range(10)])
 
+# # 隨機產生 0~1 之間的 float
+print([random.random() for i in range(10)])
+
 # #------------------------------------
 # # 隨機list的順序
 # ll = list(range(10))
