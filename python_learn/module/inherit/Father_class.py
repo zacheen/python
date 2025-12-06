@@ -2,5 +2,8 @@ class Father():
     def __init__(self):
         print("father init")
 
-    def func1(self):
-        print("father func1")
+    def test_inherit(self):
+        print("father inherit")
+
+    def test_polymofisim(self):
+        print("father polymofisim")
