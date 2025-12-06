@@ -108,15 +108,16 @@ class UF_by_size:
         self.id = list(range(n))
         self.set_member_cnt = [1]*n    # <計算各個 set 的個數> 多的
 
-    def union(self, u, v):
-        i = self.find(u)
-        j = self.find(v)
-        if i == j:
+    def union(self, n1, n2):
+        root_n1 = self.find(n1)
+        root_n2 = self.find(n2)
+        if root_n1 == root_n2:
             return
-        if self.set_member_cnt[i] > self.set_member_cnt[j] : #  <Union by size> 多的
-            i,j = j,i
-        self.set_member_cnt[j] += self.set_member_cnt[i]  # <計算各個 set 的個數> 多的
-        self.id[i] = j
+        if self.set_member_cnt[root_n1] > self.set_member_cnt[root_n2] : #  <Union by size> 多的
+            root_n1,root_n2 = root_n2,root_n1
+        # merge root_n1 into root_n2
+        self.set_member_cnt[root_n2] += self.set_member_cnt[root_n1]  # <計算各個 set 的個數> 多的
+        self.id[root_n1] = root_n2
 
     def find(self, up):
         while (up:=self.id[up]) != (deep:=self.id[up]):
@@ -266,6 +267,35 @@ class UF_find_relate_no_init_v2: # 尚未驗證
             self.id[u] = self.find(self.id[u])
         return self.set_member[self.id[u]]
 
+class UF_Parity:
+    def __init__(self, n):
+        self.id = list(range(n))
+        self.set_member_cnt = [1]*n
+        self.x = [0]*n
+
+    def union(self, n1, n2, w = 1):
+        root_n1 = self.find(n1)
+        root_n2 = self.find(n2)
+        if root_n1 == root_n2:
+            return (self.x[n1] ^ self.x[n2]) == w
+        if self.set_member_cnt[root_n1] > self.set_member_cnt[root_n2] :
+            root_n1, root_n2 = root_n2, root_n1
+            n1, n2 = n2, n1
+        self.id[root_n1] = root_n2
+        # Setting root_n1 different from root_n2 label
+        self.x[root_n1] = (self.x[n1] ^ self.x[n2] ^ w)
+        self.set_member_cnt[root_n2] += self.set_member_cnt[root_n1]
+        return True
+
+    def find(self, up):
+        # To maintain Parity here can't use Half Path Compression
+        if self.id[up] != up:
+            deep = self.find(self.id[up])
+            # update all the 
+            self.x[up] ^= self.x[self.id[up]]
+            self.id[up] = deep
+        return self.id[up]
+   
 # classic question : 計算目前總共分成幾個 set
 # 547. Number of Provinces
 # https://leetcode.com/problems/number-of-provinces/description/
