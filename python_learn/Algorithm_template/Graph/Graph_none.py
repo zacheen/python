@@ -147,6 +147,16 @@ from heapq import heappop, heappush
 
 EXCEED_Limitation = False
 def Dijkstra(rela, start, target):
+    def back_track_path(target_node):
+        path = []
+        current = target_node
+        while current != start:
+            path.append(current)
+            current = li[current]
+        path.append(start)
+        path.reverse()
+        return path
+    
     li = link(rela)
 
     min_path = defaultdict(lambda : inf)
@@ -156,14 +166,17 @@ def Dijkstra(rela, start, target):
         now_path, now_node = heappop(heap)
         if now_path > min_path[now_node] :
             continue
-        if EXCEED_Limitation or now_node == target:
-            break
+        if now_node == target :
+            return (now_path, back_track_path(now_node))
         # min_path[now_node] = now_path # no needed
         for nei_node, nei_w in li[now_node] :
             if (new_path := now_path + nei_w) < min_path[nei_node] :
+                if EXCEED_Limitation :
+                    continue
                 min_path[nei_node] = new_path
                 heappush(heap, (new_path, nei_node))
-    return min_path[target]
+    # not reachable
+    return (min_path[target], [])
 
 MOD = 10**9+7
 
