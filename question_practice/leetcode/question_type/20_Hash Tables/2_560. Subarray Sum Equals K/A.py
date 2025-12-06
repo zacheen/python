@@ -2,6 +2,7 @@
 # https://leetcode.com/problems/subarray-sum-equals-k/description/
 
 from collections import Counter
+from itertools import accumulate
 
 # my practice again : 55ms Beats5.10% 
 # 計算從頭到現在有幾種總和
@@ -10,12 +11,10 @@ class Solution:
     def subarraySum(self, nums, k):
         cou = Counter()
         cou[0] = 1 # 不用減去前面
-        s = 0
         ans = 0
-        for n in nums :
-            s += n
-            ans += cou[s-k]
-            cou[s] += 1
+        for acc in accumulate(nums) :
+            ans += cou[acc-k]
+            cou[acc] += 1
         return ans
     
 # given ans : using dict is faster : 29ms Beats68.19%

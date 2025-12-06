@@ -1,4 +1,5 @@
 # 測試的結果
+.vscode*
 *test_result.*
 # *_Template* # 會覆蓋到 Algorithm_template
 

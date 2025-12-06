@@ -1,0 +1,7 @@
+Dynamic Programming.
+· There is optimal substructure. An optimal solution to the problem contains within it optimal solutions to subproblems.
+· There are overlapping subproblems. A recursive algorithm solves the same subproblems over and over again.
+In Dynamic Programming, we solve each subproblem once and then store the information in a table, which we call “memoization” (this is not a spelling mistake)!
+
+Why can’t this problem be solved using Dynamic Programming?
+Given a graph, determine the longest path from the start vertex to the end vertex without repeating any edges.
