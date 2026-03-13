@@ -1,0 +1,17 @@
+複習觀念
+count_overlap
+knapsack
+	考試時注意 
+	1. 從前面還是從後面加
+	2. 需不需要 copy
+	3. set 或 dp 要不要重新開始 或 繼承上一輪的紀錄
+
+背 Template
+Trie OK
+Union OK
+Graph
+
+Segment tree
+Binary_Search
+複習 Lib_recall
+考試

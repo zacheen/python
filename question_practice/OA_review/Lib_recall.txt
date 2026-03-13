@@ -1,0 +1,23 @@
+from functools import cache, lru_cache, reduce
+
+from itertools import pairwise, accumulate
+
+from math import gcd, lcm, ceil, floor, sqrt, log
+from math import perm, comb
+
+from sortedcontainers import SortedList
+	sl_rev = SortedList('gallahad', key=lambda x: -ord(x)) # 如果要大到小就加"負號"
+    
+sort key
+l.sort(reverse=True, key = lambda x : (len(x), x) )
+
+# # char 轉 int (ascii) / char to int
+# print(ord("A"))
+# # # int 轉 char / int to char
+# print(chr(65))
+
+# # bit 轉 str / bit to str
+# print(f'{17:0>{6}b}')
+# print(f'{17:b}')
+# # str 轉 bit(int) / str to bit(int)
+# print(int("10001", 2))
