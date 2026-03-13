@@ -21,3 +21,6 @@ l.sort(reverse=True, key = lambda x : (len(x), x) )
 # print(f'{17:b}')
 # # str 轉 bit(int) / str to bit(int)
 # print(int("10001", 2))
+
+sys.setrecursionlimit(2500)
+sys.set_int_max_str_digits(0) 
